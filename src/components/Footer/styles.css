@@ -1,0 +1,28 @@
+footer{
+    background: #7402E5;
+    color: #fff;
+    width: (100% - 80px);
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.logo {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    letter-spacing: .1rem;
+    font-size: 30px;
+}
+
+.contacts {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
