@@ -1,0 +1,37 @@
+.flex-big-logo {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-y: inherit;
+}
+
+.logo-card {
+    width: 335px;
+    padding: 5em 0 5em 14em;
+    z-index: 1;
+}
+
+.pink-big-card {
+    height: 428px;
+    width: 1094px;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, rgba(2, 11, 229, 0.3) 0%, rgba(251, 252, 255, 0.3) 99.99%, rgba(255, 255, 255, 0.3) 100%), rgba(255, 27, 136, 0.49);
+    border-radius: 100px 0px 0px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-text{
+    color: #fff;
+    width: 734px;
+    line-height: 41px;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
