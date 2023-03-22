@@ -6,11 +6,11 @@ import BigLogoCard from "../../components/BigLogoCard";
 
 function Homepage() {
     return (
-        <div>
+        <>
             <Header></Header>
             <BigLogoCard />
             <Footer/>
-        </div>
+        </>
     )
 }
 

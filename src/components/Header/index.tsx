@@ -1,13 +1,15 @@
 import React from 'react';
+import Button from '../Button';
 import './styles.css';
 
 const Header = () => {
     return (
-        <div id="headerContainer">
-            <div>
-                <img src='./log2.svg' alt="logo"></img>
+        <div className='header-container'>
+            <div className='logo-container'>
+                <img src='./log2.svg' alt="logo" className='logo-image'></img>
+                <div className='logo-text'>ComuniTube</div>
             </div>
-            <div>asdf2</div>
+            <Button text='Login' />
         </div>
     )
 }

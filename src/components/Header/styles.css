@@ -1,5 +1,31 @@
-#headerContainer {
+.header-container {
     background-color: #3B1BFF;
-    font-size: 40px;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 6rem;
+    padding: 1rem;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.logo-image {
+    height: 100%;
+    width: auto;
+}
+
+.logo-text {
+    font-family:
+        'IBM Plex Sans Condensed',
+        sans-serif;
+    letter-spacing: .1rem;
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: #FFF;
 }
