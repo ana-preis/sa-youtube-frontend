@@ -25,3 +25,8 @@ footer{
     align-items: center;
     justify-content: center;
 }
+
+.span-contacts {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
