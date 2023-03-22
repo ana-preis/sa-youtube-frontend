@@ -10,3 +10,56 @@ html, body {
     flex-direction: column;
     justify-content: space-between;
 }
+
+span {
+    color: #fff;
+    line-height: 2.5rem;
+    font-size: 1.8rem;
+}
+
+input {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1.3rem;
+    font-size: 1.8rem;
+}
+
+button {
+    border: none;
+    background: none;
+    font-weight: 400px;
+    padding: 0.5rem 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+a {
+    border-bottom: 1px solid;
+    color: rgb(255, 255, 255);
+    line-height: 1.4;
+    padding: .25em;
+    text-decoration: none;
+  }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+  color: #fff;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 45px;
+  max-width: 160px; 
+  position: relative;
+  text-decoration: none;
+  width: 100%; 
+  border-radius: 1.2rem;
+  }
+
+
+.btn:hover { text-decoration: none; }
