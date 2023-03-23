@@ -1,19 +1,17 @@
 
-import React from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer'
-import BigLogoCard from '../../components/BigLogoCard';
-import RowCategory from '../../components/RowCategory';
+import React from "react";
+import BigLogoCard from "../../components/BigLogoCard";
+import RowCategory from "../../components/RowCategory";
+import PageBase from "../../layouts/PageBase";
 
 function Homepage() {
     return (
-        <>
-            <Header></Header>
+        <PageBase>
             <RowCategory />
             <BigLogoCard />
-            <Footer/>
-        </>
-    )
+        </PageBase>
+
+    );
 }
 
 export default Homepage;

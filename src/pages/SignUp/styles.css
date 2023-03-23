@@ -1,24 +1,36 @@
+.page-base {
+    background: linear-gradient(
+        rgba(2,66,229,1) 0%,
+        rgba(2,45,157,0.89) 35%,
+        rgba(1,42,147,0.48) 70%,
+        rgba(0,0,0,0) 100%
+    );
+}
+
 .signup-card {
-    margin-left: 20%;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    max-width: 60rem;
+    background-color: #FFF;
+    border-radius: 1rem;
 }
 
 .signup-fields {
-    display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .signup-field {
-    width: 50%;
+    width: 24rem;
+}
+.signup-field>* {
+    height: 2rem;
 }
 
-.page-wrapper {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.signup-field>input {
+    background-color: #EEE;
+}
+
+.asdf {
+    align-items: center;
 }
