@@ -1,5 +1,5 @@
-import SearchBar from "../SearchBar";
-import CategoryContainer from "../CategoryContainer";
+import SearchBar from '../SearchBar';
+import CategoryContainer from '../CategoryContainer';
 import './styles.css';
 
 const RowCategory = () => {

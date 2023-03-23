@@ -37,19 +37,20 @@
 .search-input {
     width: 40rem;
     height: 3rem;
-    background: #F4F7FF;
-    font-size: 1.2rem;
+    background-color: #F4F7FF;
     border-radius: 20px;
     display: flex;
-    justify-content: end;
-    box-sizing:border-box;
+    justify-content: space-between;
+}
+
+.text {
+    background-color: #F4F7FF;
+    border-radius: inherit;
+    width: 35rem;
+    font-size: 1.2rem;
 }
 
 .icon-search {
-    position: absolute;
-    top: 18.5rem;
-    right: 10rem;
-    box-sizing: border-box;
     width: 2rem;
     color: rgba(0, 0, 0, 0.521);
-}
+} 

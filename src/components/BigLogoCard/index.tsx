@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './styles.css';
 
 const BigLogoCard = () => {
@@ -7,7 +7,7 @@ const BigLogoCard = () => {
 
     return(
         <div className="flex-big-logo">
-            <img src='./log2.svg' alt="logo" className="logo-card"></img>
+            <img src="./log2.svg" alt="logo" className="logo-card"></img>
             <div className="pink-big-card">
                 <span className="card-text">{firstText}</span>
                 <span className="card-text">{secondText}</span>

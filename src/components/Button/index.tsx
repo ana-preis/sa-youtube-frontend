@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './styles.css';
 
 export interface ButtonProps {
@@ -8,7 +8,7 @@ export interface ButtonProps {
 const Button = ({text}: ButtonProps) => {
     return (
         <button
-            className='button'
+            className="button"
             onClick={()=>{console.log('click')}}
         >
             {text}
