@@ -10,7 +10,7 @@ const Header = () => {
                 <img src="./log2.svg" alt="logo" className="logo-image"></img>
                 <div className="logo-text">ComuniTube</div>
             </div>
-            <Button className="login-button" text="Login" />
+            <Button className="login-button" text="Login"/>
         </div>
     )
 }

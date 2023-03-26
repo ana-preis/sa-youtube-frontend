@@ -13,7 +13,7 @@ const SearchBar = () => {
         <div className="flex-row search-bar">
             <img src="./log2.svg" alt="logo" className="search-bar-logo"/>
             <div className="flex-row search-container">
-                <Dropdown placeholder="Filtros" options={searchDropdownItems} onChange={handleOnChangeDropdown}/>
+                <Dropdown options={searchDropdownItems} onChange={handleOnChangeDropdown}/>
                 <div className="flex-row search-input">
                     <input className="text"/>
                 </div>

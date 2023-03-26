@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: space-around;
     width: 68rem;
-    margin-right: 7rem;
+    margin-right: 10rem;
 }
 
 .btn-3 {
@@ -42,14 +42,14 @@
 .search-input {
     width: 40rem;
     height: 3rem;
-    background-color: #F4F7FF;
+    background-color: #fff;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
 }
 
 .text {
-    background-color: #F4F7FF;
+    background-color: #fff;
     border-radius: inherit;
     width: 35rem;
     font-size: 1.2rem;

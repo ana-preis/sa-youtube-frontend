@@ -1,5 +1,5 @@
 import './styles.css';
-import { CategoryList } from '../../mocks/videoList';
+import { CategoryList } from '../../mocks/CategoryList';
 import { Category } from '../../types/Category';
 import { truncateVideoCount } from '../../helpers/truncateVideoCount';
 

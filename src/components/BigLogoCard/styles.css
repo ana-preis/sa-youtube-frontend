@@ -3,6 +3,7 @@
     margin-bottom: 3rem;
     align-items: center;
     z-index: 1;
+    justify-content: end;
 }
 
 .logo-card {

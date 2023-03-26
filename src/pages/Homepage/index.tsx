@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 import RowCategory from "../../components/RowCategory";
 import './styles.css'
 
-function Homepage() {
+const Homepage = () => {
     return (
       <>
         <div className="flex-column home-main-text">

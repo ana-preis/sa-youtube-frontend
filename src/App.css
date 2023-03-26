@@ -23,12 +23,19 @@ button {
 }
 
 a {
-    border-bottom: 1px solid;
     color: rgb(255, 255, 255);
     line-height: 1.4;
     padding: .25em;
     text-decoration: none;
   }
+
+a:hover {
+  cursor: pointer;
+}
+
+iframe {
+  border-radius: 15px;
+}
 
 .width-100 {
   width: 100%;
