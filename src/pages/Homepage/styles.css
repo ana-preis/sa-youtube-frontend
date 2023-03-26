@@ -1,0 +1,42 @@
+.img-home-bg {
+  width: 102%;
+  z-index: -5;
+  position: relative;
+  height: 102%;
+}
+
+.img-container-bg{
+  margin-top: -28rem;
+  width: 100%;
+  background: linear-gradient(
+        rgba(2,66,229,1) 0%,
+        rgba(2,45,157,0.89) 35%,
+        rgba(1,42,147,0.48) 70%,
+        rgba(0,0,0,0) 100%
+    );
+}
+
+.home-main-text {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10rem;
+}
+
+.text-h2 {
+  font-size: 2.2rem;
+}
+
+.text-span {
+  text-align: center;
+}
+
+.sign-up-btn {
+  margin-top: 5rem;
+  padding-bottom: 4px;
+  height: 3.5rem;
+  width: 18rem;
+  border-radius: 25px;
+  font-size: 2rem;
+  background-color: #2a13c273;
+}

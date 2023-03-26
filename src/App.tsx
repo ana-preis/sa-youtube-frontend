@@ -7,7 +7,7 @@ import SignUp from './pages/SignUp';
 function App() {
   return (
     <PageBase>
-      <SignUp />
+      <Homepage />
     </PageBase>
   );
 }

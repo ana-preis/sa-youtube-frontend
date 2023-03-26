@@ -4,10 +4,10 @@ import './styles.css';
 
 const RowCategory = () => {
     return (
-        <div>
+        <>
             <SearchBar/>
             <CategoryContainer />
-        </div>
+        </>
     )
 }
 

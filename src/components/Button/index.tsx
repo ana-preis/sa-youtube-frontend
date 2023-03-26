@@ -2,13 +2,14 @@ import React from 'react';
 import './styles.css';
 
 export interface ButtonProps {
-    text: string
+    text: string,
+    className?: string
 }
 
-const Button = ({text}: ButtonProps) => {
+const Button = ({text, className}: ButtonProps) => {
     return (
         <button
-            className="button"
+            className={`button ${className}`}
             onClick={()=>{console.log('click')}}
         >
             {text}

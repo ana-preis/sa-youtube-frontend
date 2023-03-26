@@ -4,8 +4,10 @@
     justify-content: space-between;
     align-items: center;
     height: 6rem;
-    width: 95%;
+    width: 100%;
     padding: 1rem;
+    position: initial;
+    z-index: 1;
 }
 
 .logo-container {
@@ -13,6 +15,7 @@
     flex-direction: row;
     align-items: center;
     height: 100%;
+    margin-left: 1rem;
 }
 
 .logo-image {
@@ -28,4 +31,10 @@
     font-size: 3.5rem;
     margin-left: 1rem;
     color: #FFF;
+}
+
+.login-button{
+  margin-right: 2rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
 }

@@ -1,4 +1,4 @@
-span {
+span, h2 {
     color: #fff;
     line-height: 2.5rem;
     font-size: 1.8rem;
@@ -30,6 +30,10 @@ a {
     text-decoration: none;
   }
 
+.width-100 {
+  width: 100%;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -46,12 +50,8 @@ a {
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 45px;
-  max-width: 160px; 
-  position: relative;
   text-decoration: none;
-  width: 100%; 
   border-radius: 1.2rem;
   }
-
 
 .btn:hover { text-decoration: none; }
