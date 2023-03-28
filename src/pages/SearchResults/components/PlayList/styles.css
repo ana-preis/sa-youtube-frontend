@@ -1,0 +1,60 @@
+.video-list {
+  width: 65%;
+  margin: 1.5rem 0 5rem 0;
+  gap: 1.3rem;
+}
+
+.list-tip {
+  color: #000;
+  font-size: 1rem;
+  line-height: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+}
+
+.video-container {
+  gap: 0.8rem;
+  position: relative;
+}
+
+.video-text span, a {
+  padding: 0 0;
+  color: #000;
+  border: none;
+}
+
+.video-title {
+  font-size: 1.5rem;
+}
+
+.video-details {
+  margin-top: 0.5rem;
+  gap: 1.5rem;
+}
+
+.video-details span {
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+.video-channel {
+  font-size: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.video-description {
+  font-size: 1rem;
+}
+
+.playlist-video-side-panel {
+  width: 180px;
+  background-color: rgba(0, 0, 0, 0.767);
+  position: relative;
+  z-index: 10;
+}
+
+iframe {
+  z-index: -10;
+  position: relative;
+}

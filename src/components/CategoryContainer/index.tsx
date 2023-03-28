@@ -1,5 +1,5 @@
 import "./styles.css";
-import { CategoryList } from "../../mocks/CategoryList";
+import { MockCategoryList } from "../../mocks/MockCategoryList";
 import { Category } from "../../types/Category";
 import { truncateVideoCount } from "../../helpers/truncateVideoCount";
 
@@ -42,7 +42,7 @@ const CategoryContainer = () => {
     <div className="flex-column width-100">
       <div className="title">Categorias</div>
       <div className="category-container">
-        {CategoryList.map((c) => renderCategory(c))}
+        {MockCategoryList.map((c) => renderCategory(c))}
       </div>
       <div className="flex-row category-btn-row">
         <a href="" className="btn category-btn flex-row">

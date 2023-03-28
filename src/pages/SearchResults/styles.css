@@ -1,8 +1,14 @@
 .header-container {
   background: linear-gradient(
-    rgba(2,66,229,1) 0%,
-    rgba(2,45,157,0.89) 35%,
+    rgba(2, 66, 229, 1) 0%,
+    rgba(2, 45, 157, 0.89) 35%,
     rgb(1, 42, 147) 70%,
     rgb(1, 42, 147) 70%
   );
+}
+
+.search-results-container {
+  justify-content: initial;
+  align-items: center;
+  width: 100%;
 }

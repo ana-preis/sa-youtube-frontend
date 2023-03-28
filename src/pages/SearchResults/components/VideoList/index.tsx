@@ -1,14 +1,14 @@
 
 import React, {useState} from "react";
 import { MockVideoList } from "../../../../mocks/MockVideoList";
-import { Video } from "../../../../types/Video";
+import { VideoType } from "../../../../types/Video";
 import './styles.css'
 
 const VideoList = () => {
   const [searchType, setSearchType] = useState<string>('Videos')
   const [searchValue, setSearchValue] = useState<string>('React JS')
 
-  const renderVideoList : any = (video : Video) => {
+  const renderVideoList : any = (video : VideoType) => {
     return (
       <div className="flex-row video-container">
         <iframe className="video" src={video.url} title="YouTube video player" height="200" width="360" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>

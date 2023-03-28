@@ -3,17 +3,15 @@ import "./styles.css";
 
 export interface ButtonProps {
   text: string;
-  onClick?: () => {};
+  onClick?: () => void;
   className?: string;
 }
 
 const Button = ({ text, className, onClick }: ButtonProps) => {
   return (
     <button
-      className={`button ${className}`}
-      onClick={() => {
-        onClick;
-      }}
+      className={className ? `button ${className}` : 'button'}
+      onClick={onClick}
     >
       {text}
     </button>
