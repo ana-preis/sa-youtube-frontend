@@ -12,7 +12,7 @@ const Header = () => {
             </div>
             <Button className="login-button" text="Login"/>
         </div>
-    )
+    )  
 }
 
 export default Header;

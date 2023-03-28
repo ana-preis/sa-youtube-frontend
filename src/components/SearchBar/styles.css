@@ -1,61 +1,66 @@
 .search-bar {
-    background: linear-gradient(180deg, rgba(2, 11, 229, 0.3) 0%, rgba(251, 252, 255, 0.3) 99.99%, rgba(255, 255, 255, 0.3) 100%), rgb(255, 27, 137);
-    height: 6rem;
-    padding: 1rem 0;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  background: linear-gradient(
+      180deg,
+      rgba(2, 11, 229, 0.3) 0%,
+      rgba(251, 252, 255, 0.3) 99.99%,
+      rgba(255, 255, 255, 0.3) 100%
+    ),
+    rgb(255, 27, 137);
+  height: 6rem;
+  padding: 1rem 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .search-bar-logo {
-    width: 4.5rem;
-    margin-left: 2rem;
+  width: 4.5rem;
+  margin-left: 2rem;
 }
 
-
 .search-container {
-    align-items: center;
-    justify-content: space-around;
-    width: 68rem;
-    margin-right: 10rem;
+  align-items: center;
+  justify-content: space-around;
+  width: 68rem;
+  margin-right: 10rem;
 }
 
 .btn-3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 11rem;
-    background: rgb(253, 67, 157);  
-    border: 1px solid rgb(253, 67, 157);
-    box-shadow: 0px 2px 0 rgba(226, 44, 132, 0.658), 2px 4px 6px rgb(255, 22, 135);
-    transition: all 150ms linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11rem;
+  background: rgb(253, 67, 157);
+  border: 1px solid rgb(253, 67, 157);
+  box-shadow: 0px 2px 0 rgba(226, 44, 132, 0.658), 2px 4px 6px rgb(255, 22, 135);
+  transition: all 150ms linear;
 }
-  
+
 .btn-3:hover {
-    background: rgb(230, 52, 138);
-    border: 1px solid rgba(226, 44, 132, 0.658);
-    box-shadow: 1px 1px 2px rgba(#fff, .2);
-    color: rgba(255, 255, 255, 0.788);
-    transition: all 250ms linear;
+  background: rgb(230, 52, 138);
+  border: 1px solid rgba(226, 44, 132, 0.658);
+  box-shadow: 1px 1px 2px rgba(#fff, 0.2);
+  color: rgba(255, 255, 255, 0.788);
+  transition: all 250ms linear;
 }
 
 .search-input {
-    width: 40rem;
-    height: 3rem;
-    background-color: #fff;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
+  width: 40rem;
+  height: 3rem;
+  background-color: #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .text {
-    background-color: #fff;
-    border-radius: inherit;
-    width: 35rem;
-    font-size: 1.2rem;
+  background-color: #fff;
+  border-radius: inherit;
+  width: 35rem;
+  font-size: 1.2rem;
 }
 
 .icon-search {
-    margin-left: 1rem;
-    width: 2rem;
-} 
+  margin-left: 1rem;
+  width: 2rem;
+}
