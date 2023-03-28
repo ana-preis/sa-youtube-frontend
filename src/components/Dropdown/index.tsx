@@ -3,7 +3,6 @@ import { Filter } from '../../types/Filters';
 import './styles.css'
 
 interface DropdownProps {
-  placeholder: string;
   options: Filter[];
   onChange: ()=>void;
 }
@@ -16,10 +15,10 @@ const Icon = () => {
   );
 };
 
-const Dropdown = ({placeholder, options} : DropdownProps) => {
+const Dropdown = ({options} : DropdownProps) => {
 
   const [showMenu, setShowMenu] = useState(false);
-  const [selectdValue, setSelectedValue] = useState<Filter | null>(null);
+  const [selectdFilter, setSelectedFilter] = useState<Filter | null>(options[0]);
 
   useEffect(() => {
     const handler = () => setShowMenu(false)
@@ -35,21 +34,21 @@ const Dropdown = ({placeholder, options} : DropdownProps) => {
   }
 
   const getDisplay = () => {
-    if (selectdValue) {
-      return selectdValue.title
+    if (selectdFilter) {
+      return selectdFilter.title
     }
-    return placeholder
+    return options[0].title
   }
 
   const onItemClick = (option: Filter) => {
-    setSelectedValue(option)
+    setSelectedFilter(option)
   }
 
   const isSelected = (option: Filter) => {
-    if(!selectdValue) {
+    if(!selectdFilter) {
       return false;
     }
-    return selectdValue.value === option.value
+    return selectdFilter.value === option.value
   }
 
   return (
