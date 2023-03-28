@@ -6,9 +6,9 @@ const BigLogoCard = () => {
     const secondText = 'Busque os vídeos mais bem avaliados pela comunidade.'
 
     return(
-        <div className="flex-big-logo">
+        <div className="flex-big-logo width-100 flex-row">
             <img src="./log2.svg" alt="logo" className="logo-card"></img>
-            <div className="pink-big-card">
+            <div className="pink-big-card flex-column">
                 <span className="card-text">{firstText}</span>
                 <span className="card-text">{secondText}</span>
             </div>

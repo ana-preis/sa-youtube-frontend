@@ -10,9 +10,9 @@ export interface PageBaseProps {
 
 const PageBase = ({children}: PageBaseProps) => {
     return (
-        <div className='page-base'>
+        <div className="page-base">
             <Header />
-            {children}
+              {children}
             <Footer />
         </div>
     );
