@@ -8,4 +8,5 @@ export interface VideoType {
   viewCount?: number;
   likeCount?: number;
   dislikeCount?: number;
+  rate?: number;
 }

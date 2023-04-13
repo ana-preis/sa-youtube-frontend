@@ -17,7 +17,6 @@ const PlayList = () => {
         <div className="flex-column video-text">
           <a className="video-title">{playlist.name}</a>
           <div className="flex-row video-details">
-            <span>{playlist.totalViewCount} views</span>
             <span> Publicado em {playlist.publishedAt}</span>
           </div>
           <a className="video-channel">{playlist.channel}</a>

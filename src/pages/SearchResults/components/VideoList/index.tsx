@@ -15,9 +15,6 @@ const VideoList = () => {
         <div className="flex-column video-text">
           <a className="video-title">{video.name}</a>
           <div className="flex-row video-details">
-            <span>{video.viewCount} views</span>
-            <span>{video.likeCount} likes</span>
-            <span>{video.dislikeCount} dislikes</span>
             <span> Publicado em {video.publishedAt}</span>
           </div>
           <a className="video-channel">{video.channel}</a>

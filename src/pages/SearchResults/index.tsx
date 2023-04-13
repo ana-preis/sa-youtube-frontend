@@ -12,7 +12,7 @@ const SearchResults = () => {
     return (
       <div className="search-results-container flex-column">
         <SearchBar/>
-        <PlayList/>
+        <VideoList/>
       </div>
     );
 }
