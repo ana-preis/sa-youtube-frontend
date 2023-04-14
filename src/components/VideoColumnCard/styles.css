@@ -1,0 +1,24 @@
+.related-videos-container {
+	width: 30%;
+	background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
+	border-radius: 25px;
+}
+
+.white-bg {
+    background: #fff;
+    width: 90%;
+    height: 100%;
+    border-radius: 25px 0 0 25px;
+    align-items: center;
+}
+
+.video-thumbnail {
+    border: 1px solid red;
+    width: 20rem;
+    height: 12rem;
+    margin-top: 2rem;
+}
+
+.video-title {
+    margin-top: 20px;
+}

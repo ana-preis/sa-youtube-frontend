@@ -2,9 +2,13 @@
 	background: linear-gradient(
 			rgba(2,66,229,1) 0%,
 			rgba(2,45,157,0.89) 35%,
-			rgba(1,42,147,0.48) 70%,
-			rgba(0,0,0,0) 100%
+			rgba(255, 255, 255, 0.48) 70%,
+			rgba(255, 255, 255, 0) 100%
 	);
+}
+
+.breadcrumb {
+	color: #fff;
 }
 
 .video-detail {
@@ -14,65 +18,3 @@
 	justify-content: space-around;
 }
 
-.video-container {
-	background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
-	border-radius: 25px;
-	width: 60%;
-	justify-content: center;
-	align-items: center;
-}
-
-.related-videos-container {
-	width: 30%;
-	background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
-	border-radius: 25px;
-}
-
-.video {
-	border-radius: 15px;
-	margin-top: 2rem;
-}
-
-.description {
-	width: 100%;
-	justify-content: space-around;
-	margin: 1.5rem 0;
-}
-
-.text-container {
-	width: 35rem;
-	justify-content: flex-start;
-	color: #fff;
-}
-
-.video-title{
-	line-height: 0;
-}
-
-.channel{
-	color: #d1d1d1;
-}
-
-.rating-card {
-	width: 14rem;
-	background: #fff;
-	border-radius: 25px;
-	justify-content: center;
-	align-items: center;
-	padding: 1rem 0;
-}
-
-.rate {
-	font-size: 2rem;
-	margin: 0;
-}
-
-.stars {
-	margin: 1rem 0;
-}
-
-.review-button {
-	background-color:#7402E5;
-	height: 3.5rem;
-	font-size: 1.5rem;
-}

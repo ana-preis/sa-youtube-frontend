@@ -11,7 +11,7 @@ export const MockVideoList: VideoType[] = [
       viewCount: 21989,
       likeCount: 314,
       dislikeCount: 200,
-      rate: 5.0,
+      rate: 1,
   },
   {
       id: 'test-id',
