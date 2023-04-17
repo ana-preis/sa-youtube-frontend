@@ -28,26 +28,26 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
 		return emptyStars;
 	}
 
-    return (
-			<div className="video-container flex-column">
-				<iframe className="video" src={video.url} title="YouTube video player" height="525" width="870" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-				<div className="flex-row description">
-					<div className="flex-column text-container">
-						<h2 className="video-title">{video.name}</h2>
-						<p>Por <a className="channel">{video.channel}</a></p>
-						<p>{video.description}</p>
-					</div>
-					<div className="rating-card flex-column">
-						<h3>Média de avaliações</h3>
-						<p className="rate">{video.rate}</p>
-						<div className="flex-row stars">
-							{getNumberOfStars(video.rate)}
-						</div>
-						<Button className="review-button" text="Avalie"/>
-					</div>
-				</div>
-			</div>
-    )
+  return (
+    <div className="video-container flex-column">
+      <iframe className="video" src={video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      <div className="flex-row description">
+        <div className="flex-column text-container">
+          <h2 className="video-title">{video.name}</h2>
+          <p>Por <a className="channel">{video.channel}</a></p>
+          <p>{video.description}</p>
+        </div>
+        <div className="rating-card flex-column">
+          <h3>Média de avaliações</h3>
+          <p className="rate">{video.rate}</p>
+          <div className="flex-row stars">
+            {getNumberOfStars(video.rate)}
+          </div>
+          <Button className="review-button" text="Avalie"/>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default VideoDetailCard;

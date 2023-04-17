@@ -11,9 +11,9 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 
 	const renderVideoList = (video : VideoType ) => {
 		return (
-			<div>
+			<div className="width-100 flex-column ai-center">
 				<img className="video-thumbnail"></img>
-				<h3 className="video-title">{video.name}</h3>
+				<h3 className="related-video-title">{video.name}</h3>
 			</div>
 		)
 	}
