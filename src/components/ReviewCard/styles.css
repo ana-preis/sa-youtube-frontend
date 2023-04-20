@@ -1,0 +1,39 @@
+.card {
+	height: 10rem;
+	background: #E9E9E9;
+	border: 1px solid red;
+	border-radius: 25px;
+	padding: 2rem 2rem;
+	justify-content: space-between;
+}
+
+.user {
+	font-weight: 400;
+	color: #000;
+	margin: 0;
+}
+
+.review {
+	justify-content: space-between;
+	width: 100%;
+	margin-right: 2rem;
+}
+
+.review-header {
+	justify-content: start;
+	width: 100%;
+}
+
+.review-footer {
+	justify-content: space-between;
+	width: 100%;
+}
+
+.rate-card {
+	height: 10rem;
+	width: 10rem;
+	background: #fff;
+	border-radius: 25px;
+	justify-content: space-around;
+	align-items: center;
+}

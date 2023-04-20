@@ -1,0 +1,64 @@
+.video-container {
+	background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
+	border-radius: 25px;
+	width: 60%;
+	justify-content: center;
+	align-items: center;
+}
+
+.video {
+	border-radius: 15px;
+	margin-top: 2rem;
+  width: 90%;
+  height: 90%;
+}
+
+.description {
+	width: 95%;
+	justify-content: space-around;
+	margin: 1.5rem 0;
+}
+
+.text-container {
+	width: 35rem;
+	justify-content: flex-start;
+	color: #fff;
+}
+
+.video-title{
+	margin: 0;
+}
+
+.channel{
+	color: #d1d1d1;
+}
+
+.rating-card {
+	width: 14rem;
+	background: #fff;
+	border-radius: 25px;
+	justify-content: center;
+	align-items: center;
+  text-align: center;
+	padding: 1rem 0;
+}
+
+.rate {
+	font-size: 2rem;
+	margin: 0;
+}
+
+.stars {
+	margin: 1rem 0;
+}
+
+.star {
+	width: 25px;
+	height: 25px;
+}
+
+.review-button {
+	background-color:#7402E5;
+	height: 3.5rem;
+	font-size: 1.5rem;
+}

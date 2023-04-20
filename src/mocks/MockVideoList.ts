@@ -1,6 +1,6 @@
-import { Video } from "../types/Video"
+import { VideoType } from "../types/Video"
 
-export const MockVideoList: Video[] = [
+export const MockVideoList: VideoType[] = [
   {
       id: 'test-id',
       name:'React JS - aprendendo o basico',
@@ -11,6 +11,7 @@ export const MockVideoList: Video[] = [
       viewCount: 21989,
       likeCount: 314,
       dislikeCount: 200,
+      rate: 1,
   },
   {
       id: 'test-id',

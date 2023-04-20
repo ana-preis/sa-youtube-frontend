@@ -1,4 +1,6 @@
-export interface Video {
+import { Category } from "./Category";
+
+export interface VideoType {
   id: string;
   name: string;
   url: string;
@@ -8,4 +10,19 @@ export interface Video {
   viewCount?: number;
   likeCount?: number;
   dislikeCount?: number;
+  rate?: number;
 }
+
+// export interface VideoReviewDetail {
+//   id: string,
+//   categoryList: Category[],
+//   title: string,
+//   embedHtml: string,
+//   description: string,
+//   tags: string[],
+//   publishedAt: string,
+//   channelName: string,
+//   likeCount: number,
+//   viewCount: number,
+//   userToWatch: Video[],
+// }
