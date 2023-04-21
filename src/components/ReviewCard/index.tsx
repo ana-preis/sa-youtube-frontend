@@ -21,7 +21,7 @@ const ReviewCard = (props : ReviewCardProps) => {
 			</div>
 			<div className="rate-card flex-column">
 				<div>
-					{review.rate}
+					{review.rating}
 				</div>
 				<div>
 					Estrelas

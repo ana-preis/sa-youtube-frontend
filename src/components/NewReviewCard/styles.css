@@ -1,0 +1,59 @@
+.card {
+	height: 10rem;
+	width: 95%;
+	background: #E9E9E9;
+	border: 1px solid red;
+	border-radius: 25px;
+	padding: 2rem 2rem;
+	justify-content: space-between;
+}
+
+.user {
+	font-weight: 400;
+	color: #000;
+	margin: 0;
+}
+
+.review {
+	justify-content: space-between;
+	width: 100%;
+	margin-right: 2rem;
+}
+
+.review-header {
+	justify-content: start;
+	width: 100%;
+}
+
+.review-footer {
+	justify-content: space-between;
+	width: 100%;
+}
+
+.rate-card {
+	height: 10rem;
+	width: 10rem;
+	background: #fff;
+	border-radius: 25px;
+	justify-content: space-around;
+	align-items: center;
+}
+
+
+.text-input {
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	padding: 0.5rem 0.5rem;
+	height: 5rem;
+	width: 80%;
+	font-size: 1rem;
+	text-align: start;
+	outline: none;
+	resize: none;
+}
+
+.rating-input {
+	width: 5rem;
+	border: 1px solid #ccc;
+	text-align: center;
+}

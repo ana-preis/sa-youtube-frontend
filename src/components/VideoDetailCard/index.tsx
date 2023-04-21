@@ -4,10 +4,11 @@ import "./styles.css"
 
 interface VideoDetailCardProps {
 	video: VideoType;
+  renderNewReviewModal: () => void
 }
 
 const VideoDetailCard = (props: VideoDetailCardProps) => {
-	const {video} = props;
+	const {video, renderNewReviewModal} = props;
 
 	const getNumberOfStars = (rate: number | undefined) => {
 		if (!rate) return (<div></div>);
@@ -43,7 +44,7 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
           <div className="flex-row stars">
             {getNumberOfStars(video.rate)}
           </div>
-          <Button className="review-button" text="Avalie"/>
+          <Button className="review-button" text="Avalie" onClick={renderNewReviewModal}/>
         </div>
       </div>
     </div>

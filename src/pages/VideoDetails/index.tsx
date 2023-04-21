@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react';
 // import { getVideoByID } from '../../api/backend';
 import { fetchReviewByVideoId } from '../../api/review';
 import { ReviewType } from '../../types/Review';
+import NewReviewCard from '../../components/NewReviewCard';
 
 const VideoDetails = () => {
-	const[reviewList, setReviewList] = useState<ReviewType[]>([])
+	const [reviewList, setReviewList] = useState<ReviewType[]>([])
+	const [showNewReview, setShowNewReview] = useState(false);
 
 	const video = MockVideoList[0]
 
@@ -29,16 +31,22 @@ const VideoDetails = () => {
 		handleFetchReview()
 	},[])
 
+	const renderNewReviewModal = () => {
+		setShowNewReview(true)
+	}
+
 	return (
 		<>
 			<div className="breadcrumb">
 				Breadcrumb - Breadcrumb
 			</div>
 			<div className="video-detail flex-row">
-				<VideoDetailCard video={video}/>
+				<VideoDetailCard video={video} renderNewReviewModal={renderNewReviewModal}/>
 				<VideoColumnCard videoList={MockVideoList} />
 			</div>
-			<ReviewContainer reviews={reviewList}/>
+			{showNewReview && 
+			<NewReviewCard />}
+			<ReviewContainer reviewList={reviewList}/>
 		</>
 	)       
 }
