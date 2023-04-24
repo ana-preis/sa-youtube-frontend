@@ -1,6 +1,8 @@
 import { VideoType } from "../../types/Video";
 import Button from "../../components/Button";
 import "./styles.css"
+import parse from 'html-react-parser';
+import { ReactNode } from "react";
 
 interface VideoDetailCardProps {
 	video: VideoType;
@@ -29,9 +31,17 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
 		return emptyStars;
 	}
 
+  const renderEmbbedHtml = (): ReactNode => {
+    return <iframe src={video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+  }
+
   return (
     <div className="video-container flex-column">
-      <iframe className="video" src={video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      <div className="video">
+        {parse(video.embedHtml) 
+        ?? renderEmbbedHtml()
+        }
+      </div>
       <div className="flex-row description">
         <div className="flex-column text-container">
           <h2 className="video-title">{video.name}</h2>
@@ -40,10 +50,19 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
         </div>
         <div className="rating-card flex-column">
           <h3>Média de avaliações</h3>
-          <p className="rate">{video.rate}</p>
-          <div className="flex-row stars">
-            {getNumberOfStars(video.rate)}
-          </div>
+          {!video.rate ? (
+            <div className="first-review-msg">
+              <p>Este video ainda nao foi avaliado.</p>
+              <p>Seja o primeiro a avaliar clicando no botao abaixo:</p>
+            </div>
+          ) : (
+            <div>
+              <p className="rate">{video.rate}</p>
+              <div className="flex-row stars">
+                {getNumberOfStars(video.rate)}
+              </div>
+            </div>
+          )}
           <Button className="review-button" text="Avalie" onClick={renderNewReviewModal}/>
         </div>
       </div>

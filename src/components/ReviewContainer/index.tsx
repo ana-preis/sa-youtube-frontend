@@ -20,7 +20,7 @@ const ReviewContainer = (props: ReviewContainerProps) => {
 	return (
 		<>
 			<h2 className="review-title">Avaliações</h2>
-			{reviewList.forEach(renderReview)}
+			{reviewList.map(renderReview)}
 		</>
 	)
 }

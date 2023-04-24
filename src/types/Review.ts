@@ -1,18 +1,34 @@
-import { VideoPostType } from "./Video";
+import { UserType } from "./User";
+import { VideoPostType, VideoReviewDTO } from "./Video";
 
 export interface ReviewType {
-  id: string;
+  id?: string;
   user: string;
   publishedAt: string;
   rating: number;
   videoId: string;
+  userID: string;
   text?: string;
   likeCount?: number;
 }
 
-export interface ReviewPostType {
-  rating: number;
-  text: string;
+export interface ReviewDTO {
+  rating: Number;
+  text?: string;
   userID: string;
-  video: VideoPostType
+  publishedAt: string;
+}
+
+export interface ReviewPostType {
+  review: ReviewDTO;
+  video: VideoPostType;
+}
+
+export interface ReviewGetType {
+  id?: string;
+  text?: string;
+  user: UserType;
+  rating: number;
+  video: VideoReviewDTO;
+  publishedAt: string;
 }

@@ -4,6 +4,7 @@ export const MockReviewList: ReviewType[] = [
   {
     id: "1234",
     user: "Ana",
+    userID: "1234",
     publishedAt: "25/07/22",
     rating: 6.7,
     videoId: "1234",
@@ -12,6 +13,7 @@ export const MockReviewList: ReviewType[] = [
   {
     id: "1234",
     user: "Ana",
+    userID: "1234",
     publishedAt: "25/07/22",
     rating: 6.7,
     videoId: "1234",

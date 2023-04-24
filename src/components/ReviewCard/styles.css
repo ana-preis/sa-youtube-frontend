@@ -1,7 +1,7 @@
 .card {
 	height: 10rem;
-	background: #E9E9E9;
-	border: 1px solid red;
+	background: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	border-radius: 25px;
 	padding: 2rem 2rem;
 	justify-content: space-between;

@@ -21,6 +21,7 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 	return (
 		<div className="related-videos-container">
 			<div className="white-bg flex-column">
+        <h2 className="related-title">Relacionados</h2>
 				{videoList.slice(0, 3).map((v) => renderVideoList(v))}
 			</div>
 		</div>

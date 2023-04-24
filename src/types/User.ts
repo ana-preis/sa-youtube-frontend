@@ -7,4 +7,5 @@ export interface UserType {
   email: string,
   toWatchList?: VideoType[],
   finishedList?: VideoType[],
+  messageList?: string[],
 }

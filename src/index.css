@@ -3,7 +3,7 @@ button,
 input, 
 textarea {
   margin: 0;
-  font-family: proxima-nova, sans-serif;
+  font-family: 'Proxima Nova', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

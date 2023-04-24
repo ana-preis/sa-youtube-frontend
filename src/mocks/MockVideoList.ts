@@ -12,6 +12,8 @@ export const MockVideoList: VideoType[] = [
       likeCount: 314,
       dislikeCount: 200,
       rate: 1,
+      embedHtml: "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/6EI1K4qP8YI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+
   },
   {
       id: 'test-id',
@@ -22,7 +24,9 @@ export const MockVideoList: VideoType[] = [
       description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
       viewCount: 21989,
       likeCount: 314,
-      dislikeCount: 200
+      dislikeCount: 200,
+      embedHtml: "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/6EI1K4qP8YI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+
   }
   ,
   {
@@ -34,7 +38,8 @@ export const MockVideoList: VideoType[] = [
       description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
       viewCount: 21989,
       likeCount: 314,
-      dislikeCount: 200
+      dislikeCount: 200,
+      embedHtml: "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/6EI1K4qP8YI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
   },
   {
       id: 'test-id',
@@ -45,6 +50,7 @@ export const MockVideoList: VideoType[] = [
       description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
       viewCount: 21989,
       likeCount: 314,
-      dislikeCount: 200
+      dislikeCount: 200,
+      embedHtml: "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/6EI1K4qP8YI\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
   }
 ]
