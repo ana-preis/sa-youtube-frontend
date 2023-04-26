@@ -12,11 +12,23 @@
   border-radius: 25px 0 0 25px;
 }
 
+.video-thumbnail-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 57%;
+  line-height: 0;
+  color: #000;
+  width: 98.2%;
+}
+
 .video-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
   margin-top: 2rem;
-  border: 1px solid red;
-  width: 320px;
-  height: 180px;
 }
 
 .video-thumbnail:-moz-first-node {
@@ -25,6 +37,8 @@
 
 .related-video-title {
   margin-bottom: 0;
+  color: #000;
+  text-align: center;
 }
 
 .related-title {

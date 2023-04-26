@@ -1,5 +1,5 @@
-import { Category } from "./Category";
 import { PlayListType } from "./PlayList";
+import { ReviewPostType } from "./Review";
 
 export interface VideoType {
   id: string;
@@ -47,7 +47,9 @@ interface Items {
 }
 
 export interface VideoGetType {
-  items: Items[]
+  items?: Items[]
+  videoDTO?: VideoPostType
+  reviewDTOs: ReviewPostType[]
 }
 
 export interface VideoPostType {
@@ -56,10 +58,12 @@ export interface VideoPostType {
   embedHtml: string;
   description?: string;
   tags?: string[];
-  publishedAt: string;
+  publishedAt: string | number;
   channelName: string;
   likeCount?: Number;
   viewCount?: Number;
+  reviewList?: ReviewPostType[]
+  thumbnail?: string;
 }
 
 export interface VideoReviewDTO {

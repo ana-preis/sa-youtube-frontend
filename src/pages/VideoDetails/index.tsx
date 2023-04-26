@@ -5,7 +5,7 @@ import VideoColumnCard from '../../components/VideoColumnCard';
 import ReviewContainer from '../../components/ReviewContainer';
 import { useEffect, useState } from 'react';
 import { api } from '../../api/api';
-import { ReviewGetType, ReviewType } from '../../types/Review';
+import { ReviewSearchType, ReviewType } from '../../types/Review';
 import NewReviewCard from '../../components/NewReviewCard';
 import { VideoType, VideoGetType } from '../../types/Video';
 import { videoTransformer } from '../../helpers/videoTransformer';
@@ -32,9 +32,9 @@ const VideoDetails = () => {
 	}
 
 	const handleFetchReview = async () => {
-		const response = await api.get<ReviewGetType[]>(`http://localhost:8080/reviews?videoId=${video.id}`)
+		const response = await api.get<ReviewSearchType[]>(`http://localhost:8080/reviews?videoId=${video.id}`)
     const reviewList = response.map((r) => {
-      return reviewGetTransformer(r)
+      return reviewGetTransformer(r, videoId)
     })
 		setReviewList(reviewList)
 	}

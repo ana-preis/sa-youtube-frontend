@@ -32,3 +32,12 @@ export interface ReviewGetType {
   video: VideoReviewDTO;
   publishedAt: string;
 }
+
+export interface ReviewSearchType {
+  id?: string;
+  text?: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  publishedAt: string;
+}

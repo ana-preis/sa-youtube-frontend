@@ -11,10 +11,12 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 
 	const renderVideoList = (video : VideoType ) => {
 		return (
-			<div className="width-100 flex-column ai-center">
-				<img className="video-thumbnail"></img>
+			<>
+				<a className="width-100 flex-column ai-center video-thumbnail-container">
+					<img className="video-thumbnail" src={video.thumbnail}></img>
+				</a>
 				<h3 className="related-video-title">{video.name}</h3>
-			</div>
+			</>
 		)
 	}
 

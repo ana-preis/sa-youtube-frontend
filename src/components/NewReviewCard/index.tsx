@@ -10,7 +10,7 @@ import Button from '../Button';
 import './styles.css'
 import { api } from '../../api/api';
 
-// user ID : f6689180-f389-443b-9e30-417fe8309b14
+// user ID : d2e83590-fb49-47b1-a301-027c0b5657bd
 
 interface NewReviewCardProps {
   video: VideoType;
@@ -24,27 +24,24 @@ const NewReviewCard = (
   const [rating, setRating] = useState<number>();
   const [reviewText, setReviewText] = useState<string>("");
 
-  const validateFields = () => {
-    if(!rating) {
+  const handleSendNewReview = async () => {
+    if (!rating) {
       alert("Preencha o campo da nota!")
       return
     }
-  }
 
-  const handleSendNewReview = async () => {
-    validateFields()
     const now = Date.now()
     const newReview = {
       "rating": Number(rating),
       "text": reviewText,
-      "userID": "f6689180-f389-443b-9e30-417fe8309b14",
+      "userID": "d2e83590-fb49-47b1-a301-027c0b5657bd",
       "user": "Ana Preis",
       "publishedAt": now.toString(),
       "videoId": video.id,
     }
     const body = reviewFormTransformer(video, newReview)
     const response = await api.post<string, ReviewDTO>(`http://localhost:8080/reviews`, JSON.stringify(body))
-    console.log(response);
+    alert(`Sucesso ${response.userID}, sua nota foi enviada :) `)
     window.location.reload();
   }
 

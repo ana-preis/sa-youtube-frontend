@@ -1,14 +1,15 @@
-import { ReviewType, ReviewGetType } from "../types/Review";
+import { ReviewType, ReviewSearchType } from "../types/Review";
 
-export const reviewGetTransformer = (review: ReviewGetType): ReviewType => {
+export const reviewGetTransformer = (review: ReviewSearchType, videoId: string): ReviewType => {
+  const dateFormat = new Date(review.publishedAt);
   const newReview = {
     id: review.id,
-    user: review.user.name,
+    user: review.userName,
     rating: review.rating,
-    videoId: review.video.id,
+    videoId: videoId,
     text: review.text,
-    userID: review.user.id,
-    publishedAt: review.publishedAt,
+    userID: review.userId,
+    publishedAt: dateFormat.toDateString(),
   }
   return newReview; 
 }

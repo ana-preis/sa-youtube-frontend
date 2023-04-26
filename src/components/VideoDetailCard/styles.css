@@ -6,17 +6,25 @@
 	align-items: center;
 }
 
-.video iframe {
-  margin-top: 2rem;
-	border-radius: 15px;
-  width: 60rem;
-  height: 35rem;
+.video {
+  position: relative;
+  overflow: hidden;
+  padding-top: 57%;
+}
+
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
 }
 
 .description {
 	width: 95%;
 	justify-content: space-around;
-	margin: 1.5rem 0;
+	margin: 1.5rem 1rem 1.5rem 1rem;
   align-items: end;
 }
 
@@ -24,10 +32,11 @@
 	width: 35rem;
 	justify-content: flex-start;
 	color: #fff;
+	margin-right: 2rem;
 }
 
 .video-title{
-	margin: 0;
+	margin: 1rem 0 0 1.5rem;
 }
 
 .channel{
@@ -37,6 +46,8 @@
 .rating-card {
 	width: 20rem;
   height: 20rem;
+	max-height: 350px;
+	min-width: 200px;
 	background: #fff;
 	border-radius: 25px;
 	justify-content: space-between;

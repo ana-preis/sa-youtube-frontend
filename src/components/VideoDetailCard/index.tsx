@@ -1,8 +1,6 @@
 import { VideoType } from "../../types/Video";
 import Button from "../../components/Button";
-import "./styles.css"
-import parse from 'html-react-parser';
-import { ReactNode } from "react";
+import "./styles.css";
 
 interface VideoDetailCardProps {
 	video: VideoType;
@@ -31,20 +29,14 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
 		return emptyStars;
 	}
 
-  const renderEmbbedHtml = (): ReactNode => {
-    return <iframe src={video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-  }
-
   return (
     <div className="video-container flex-column">
-      <div className="video">
-        {parse(video.embedHtml) 
-        ?? renderEmbbedHtml()
-        }
+      <div className="video width-100">
+        <iframe className="video-iframe width-100" src={`//www.youtube.com/embed/${video.id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
+      <h2 className="video-title">{video.name}</h2>
       <div className="flex-row description">
         <div className="flex-column text-container">
-          <h2 className="video-title">{video.name}</h2>
           <p>Por <a className="channel">{video.channel}</a></p>
           <p>{video.description}</p>
         </div>
