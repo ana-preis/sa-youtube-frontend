@@ -6,17 +6,5 @@ export const searchDropdownItems = [
   {
     title: 'Categorias',
     value: 'categories',
-  },
-  {
-    title: 'Playlists',
-    value: 'playlists',
-  },
-  {
-    title: 'Grupos',
-    value: 'groups',
-  },
-  {
-    title: 'Canais',
-    value: 'channels',
-  },
+  }
 ]
