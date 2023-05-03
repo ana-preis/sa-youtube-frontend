@@ -1,36 +1,108 @@
 .page-base {
-    background: linear-gradient(
-        rgba(2,66,229,1) 0%,
-        rgba(2,45,157,0.89) 35%,
-        rgba(1,42,147,0.48) 70%,
-        rgba(0,0,0,0) 100%
-    );
+	background: linear-gradient(
+		rgba(2,66,229,1) 0%,
+		rgba(2,45,157,0.89) 35%,
+		rgba(1,42,147,0.48) 70%,
+		rgba(0,0,0,0) 100%
+	);
 }
 
 .signup-card {
-    justify-content: space-between;
-    align-items: center;
-    max-width: 60rem;
-    background-color: #FFF;
-    border-radius: 1rem;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 60rem;
+	min-height: 29rem;
+	background-color: #FFF;
+	border-radius: 1rem;
+	padding: 1rem 5rem;
 }
 
-.signup-fields {
-    flex-wrap: wrap;
-    gap: 1rem;
+.title {
+	color: black;
+}
+
+.signup-fields-1 {
+	flex-wrap: wrap;
+	gap: 5rem;
+	min-height: 8rem;
+}
+
+.min-caract {
+	font-size: 0.8rem;
+	text-align: end;
+	color: #818181;
+	margin: 0;
+}
+
+.input-login {
+	font-size: 1rem;
+}
+
+.signup-fields-2 {
+	flex-wrap: wrap;
+	gap: 5rem;
+	margin-bottom: 2.5rem;
+	min-height: 8rem;
 }
 
 .signup-field {
-    width: 24rem;
+	width: 24rem;
 }
 .signup-field>* {
-    height: 2rem;
+	height: 2rem;
 }
 
 .signup-field>input {
-    background-color: #EEE;
+	background-color: #EEE;
 }
 
-.asdf {
-    align-items: center;
+.alert-text {
+	color: rgb(157, 0, 0);
+	margin: 0;
+	font-size: 0.8rem;
+	line-height: 1.5rem;
 }
+
+.alert-text-password {
+	color: rgb(157, 0, 0);
+	margin: 0;
+	font-size: 0.8rem;
+	line-height: 1.5rem;
+}
+
+.password-msgs {
+	justify-content: space-between;
+}
+
+.btn-cadastro {
+	height: 3.5rem;
+	width: 13rem;
+  margin-bottom: 1rem;
+	font-size: 1.5rem;
+	background: rgb(253, 67, 157);
+  border: 1px solid rgb(253, 67, 157);
+  box-shadow: 0px 2px 0 rgba(226, 44, 132, 0.658), 2px 4px 6px rgb(255, 22, 135);
+  transition: all 150ms linear;
+	align-items: center;
+}
+
+.btn-cadastro:hover {
+	background: rgb(230, 52, 138);
+  border: 1px solid rgba(226, 44, 132, 0.658);
+  box-shadow: 1px 1px 2px rgba(#fff, 0.2);
+  color: rgba(255, 255, 255, 0.788);
+  transition: all 250ms linear;
+}
+
+.login-redirect {
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #818181;
+	text-align: center;
+}
+
+.login-link {
+	color: #3B1BFF;
+}
+

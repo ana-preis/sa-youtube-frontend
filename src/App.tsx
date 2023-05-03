@@ -9,7 +9,7 @@ import VideoDetails from './pages/VideoDetails';
 function App() {
   return (
     <PageBase>
-      <VideoDetails />
+      <SignUp />
     </PageBase>
   );
 }

@@ -9,6 +9,7 @@ import {
 import Button from '../Button';
 import './styles.css'
 import { api } from '../../api/api';
+import { UserType } from "../../types/User";
 
 // user ID : d2e83590-fb49-47b1-a301-027c0b5657bd
 
@@ -27,6 +28,10 @@ const NewReviewCard = (
   const handleSendNewReview = async () => {
     if (!rating) {
       alert("Preencha o campo da nota!")
+      return
+    }
+    if(rating > 10 || rating < 0) {
+      alert("A nota deve ser entre 0 e 10!")
       return
     }
 
@@ -51,7 +56,7 @@ const NewReviewCard = (
         <div className="flex-row">
           <div className="review flex-column">
             <div className="flex-row review-header">
-              <h2 className="new-review-title">O que voce achou do conteudo?</h2>
+              <h2 className="new-review-title">O que você achou do conteúdo?</h2>
             </div>
             <textarea 
             className="text-input" 
@@ -75,7 +80,7 @@ const NewReviewCard = (
             </div>
           </div>
         </div>
-        <h2 className="new-review-title">Escolha uma categoria para o video:</h2>
+        <h2 className="new-review-title">Escolha uma categoria para o vídeo:</h2>
         <input className="new-category-input" />
         <span className="optional" >(opcional)</span>
         <Button 

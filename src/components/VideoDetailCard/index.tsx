@@ -44,8 +44,8 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
           <h3>Média de avaliações</h3>
           {!video.rate ? (
             <div className="first-review-msg">
-              <p>Este video ainda nao foi avaliado.</p>
-              <p>Seja o primeiro a avaliar clicando no botao abaixo:</p>
+              <p>Este vídeo ainda não foi avaliado.</p>
+              <p>Seja o primeiro a avaliar clicando no botão abaixo:</p>
             </div>
           ) : (
             <div>
