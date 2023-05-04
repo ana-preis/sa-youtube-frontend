@@ -1,18 +1,16 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
 
 import "./styles.css";
 
-export interface PageBaseProps {
-  children: React.ReactNode;
-}
 
-const PageBase = ({ children }: PageBaseProps) => {
+const PageBase = () => {
   return (
     <div className="page-base">
       <Header />
-      {children}
+        <Outlet />
       <Footer />
     </div>
   );

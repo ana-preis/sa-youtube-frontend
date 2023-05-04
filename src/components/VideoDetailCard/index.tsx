@@ -49,7 +49,7 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
             </div>
           ) : (
             <div>
-              <p className="rate">{video.rate}</p>
+              <p className="rate">{video.rate.toFixed(1)}</p>
               <div className="flex-row stars">
                 {getNumberOfStars(video.rate)}
               </div>

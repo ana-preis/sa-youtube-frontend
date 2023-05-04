@@ -10,6 +10,9 @@ import NewReviewCard from '../../components/NewReviewCard';
 import { VideoType, VideoGetType } from '../../types/Video';
 import { videoTransformer } from '../../helpers/videoTransformer';
 import { reviewGetTransformer } from '../../helpers/reviewGetTranformer';
+import {
+  useLoaderData,
+} from "react-router-dom";
 
 const videoId = "6EI1K4qP8YI";
 
@@ -23,9 +26,10 @@ const initialVideo: VideoType = {
 }
 
 const VideoDetails = () => {
+	const videoLoader: VideoType = useLoaderData() as VideoType;
 	const [reviewList, setReviewList] = useState<ReviewType[]>([])
 	const [showNewReview, setShowNewReview] = useState(false);
-  const [video, setVideo] = useState<VideoType>(initialVideo);
+  const [video, setVideo] = useState<VideoType>(videoLoader);
 
 	const handleError = () => {
 		console.log('erro')
@@ -39,13 +43,7 @@ const VideoDetails = () => {
 		setReviewList(reviewList)
 	}
 
-  const handleFetchVideoDetails = async (videoId: string) => {
-		const response = await api.get<VideoGetType>(`http://localhost:8080/videos/${videoId}`)
-    setVideo(videoTransformer(response))
-	}
-
 	useEffect(() => {
-    handleFetchVideoDetails(videoId)
 		handleFetchReview()
 	},[])
 

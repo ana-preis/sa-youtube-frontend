@@ -1,12 +1,3 @@
-.page-base {
-	background: linear-gradient(
-		rgba(2,66,229,1) 0%,
-		rgba(2,45,157,0.89) 35%,
-		rgba(1,42,147,0.48) 70%,
-		rgba(0,0,0,0) 100%
-	);
-}
-
 .signup-card {
 	justify-content: space-between;
 	align-items: center;

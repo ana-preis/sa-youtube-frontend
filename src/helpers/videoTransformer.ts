@@ -32,7 +32,8 @@ export const videoTransformer = (video: VideoGetType): VideoType => {
       thumbnail: item.thumbnail ?? "",
       likeCount: item.likeCount,
       viewCount: item.viewCount,
-      tags: item.tags
+      tags: item.tags,
+      rate: video.averageRating
     }
     return newVideo;
   } else {

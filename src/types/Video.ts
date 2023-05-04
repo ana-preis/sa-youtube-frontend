@@ -9,8 +9,8 @@ export interface VideoType {
   channel: string;
   embedHtml: string;
   description?: string;
-  viewCount?: Number;
-  likeCount?: Number;
+  viewCount?: number;
+  likeCount?: number;
   dislikeCount?: number;
   rate?: number;
   thumbnail?: string;
@@ -22,7 +22,7 @@ interface Player {
 }
 
 interface Thumbnails {
-  medium: { url: string }
+  medium: { url: string };
 }
 
 interface Snippet {
@@ -35,8 +35,8 @@ interface Snippet {
 }
 
 interface Statistics {
-  likeCount: Number;
-  viewCount: Number;
+  likeCount: number;
+  viewCount: number;
 }
 
 interface Items {
@@ -47,9 +47,12 @@ interface Items {
 }
 
 export interface VideoGetType {
-  items?: Items[]
-  videoDTO?: VideoPostType
-  reviewDTOs: ReviewPostType[]
+  items?: Items[];
+  videoDTO?: VideoPostType;
+  reviewDTOList?: ReviewPostType[];
+  averageRating?: number;
+  totalReviews?: number;
+
 }
 
 export interface VideoPostType {
@@ -60,8 +63,8 @@ export interface VideoPostType {
   tags?: string[];
   publishedAt: string | number;
   channelName: string;
-  likeCount?: Number;
-  viewCount?: Number;
+  likeCount?: number;
+  viewCount?: number;
   reviewList?: ReviewPostType[]
   thumbnail?: string;
 }
@@ -77,7 +80,7 @@ export interface VideoReviewDTO {
   channelName: string;
   likeCount: number;
   viewCount: number;
-  userToWatch?: VideoType[],
-  userFinishedList?: VideoType[],
+  userToWatch?: VideoType[];
+  userFinishedList?: VideoType[];
   playlist?: PlayListType[];
 }

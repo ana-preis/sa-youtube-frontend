@@ -1,9 +1,10 @@
 .video-container {
 	background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
 	border-radius: 25px;
-	width: 60%;
+	width: 53%;
 	justify-content: center;
 	align-items: center;
+	max-height: 73rem;
 }
 
 .video {
@@ -23,16 +24,16 @@
 
 .description {
 	width: 95%;
-	justify-content: space-around;
 	margin: 1.5rem 1rem 1.5rem 1rem;
-  align-items: end;
 }
 
 .text-container {
 	width: 35rem;
+	height: 22rem;
 	justify-content: flex-start;
 	color: #fff;
 	margin-right: 2rem;
+	overflow: auto;
 }
 
 .video-title{

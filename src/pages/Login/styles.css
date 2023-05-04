@@ -1,0 +1,31 @@
+.login-card {
+	justify-content: space-between;
+	align-items: center;
+	max-width: 60rem;
+  min-width: 50rem;
+	min-height: 29rem;
+	background-color: #FFF;
+	border-radius: 1rem;
+	padding: 1rem 5rem;
+}
+
+.signup-fields {
+  flex-wrap: wrap;
+	gap: 1.5rem;
+	min-height: 8rem;
+}
+
+.signup-field_login {
+  min-height: 7rem;
+}
+
+.alert-text_login {
+  color: rgb(157, 0, 0);
+	margin: 0;
+	font-size: 0.8rem;
+	line-height: 1.5rem;
+}
+
+.password-msgs-login {
+	justify-content: space-between;
+}

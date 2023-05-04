@@ -1,15 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './App.css';
+import PageBase from './layouts/PageBase';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Homepage from './pages/Homepage'
+import SearchResults from './pages/SearchResults';
+import SignUp from './pages/SignUp';
+import VideoDetails from './pages/VideoDetails';
+import Login from "./pages/Login";
+import { handleFetchVideoDetails } from "./services/VideoServices";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route
+} from "react-router-dom";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<PageBase />}>
+      <Route path="home" element={<Homepage />} />
+      <Route path="signup" element={<SignUp />} />
+      <Route path="login" element={<Login />} />
+      <Route path="videos/:id" element={<VideoDetails />} loader={({ params }) => {
+        return handleFetchVideoDetails(params.id)
+      }} />
+      <Route path="results" element={<SearchResults />} />
+    </Route>
+  )
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

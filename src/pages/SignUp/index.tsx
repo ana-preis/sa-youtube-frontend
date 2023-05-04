@@ -50,7 +50,7 @@ const SignUp = () => {
 		}
 		const response = await api.post<string, UserType>(`http://localhost:8080/users`, JSON.stringify(body))
     alert(`Cadastrado com sucesso :) `)
-    window.location.reload();
+    window.location.href;
 	}
 
 	const handleSignUp = () => {
