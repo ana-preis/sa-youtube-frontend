@@ -7,14 +7,14 @@
 }
 
 .logo-card {
-  width: 24rem;
+  width: 14rem;
   padding: 5rem 0 5rem 14rem;
   margin-right: -5rem;
   z-index: 1;
 }
 
 .pink-big-card {
-  height: 27rem;
+  height: 20rem;
   width: 71rem;
   background: linear-gradient(
       180deg,
@@ -29,6 +29,7 @@
 }
 
 .card-text {
+  font-size: 1.5rem;
   width: 46rem;
   text-align: center;
   margin-bottom: 1.25rem;

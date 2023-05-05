@@ -4,7 +4,7 @@ import './styles.css'
 
 interface DropdownProps {
   options: Filter[];
-  onChange: ()=>void;
+  onChange: (e:string)=>any;
 }
 
 const Icon = () => {
@@ -15,7 +15,10 @@ const Icon = () => {
   );
 };
 
-const Dropdown = ({options} : DropdownProps) => {
+const Dropdown = (props : DropdownProps) => {
+
+  const {options, onChange} = props
+
 
   const [showMenu, setShowMenu] = useState(false);
   const [selectdFilter, setSelectedFilter] = useState<Filter | null>(options[0]);
@@ -40,10 +43,6 @@ const Dropdown = ({options} : DropdownProps) => {
     return options[0].title
   }
 
-  const onItemClick = (option: Filter) => {
-    setSelectedFilter(option)
-  }
-
   const isSelected = (option: Filter) => {
     if(!selectdFilter) {
       return false;
@@ -63,7 +62,7 @@ const Dropdown = ({options} : DropdownProps) => {
         <div className="dropdown-menu">
           {options.map((option: any, index: number) => (
             <div 
-              onClick={() => onItemClick(option)} 
+              onClick={() => onChange(option.value)} 
               key={index} 
               className={`dropdown-item ${isSelected(option) && "selected"}`}>
               {option.title}

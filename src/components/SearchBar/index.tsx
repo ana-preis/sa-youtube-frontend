@@ -1,12 +1,18 @@
 import "./styles.css";
 import { searchDropdownItems } from "../../helpers/searchDropdownItems";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import Dropdown from "../Dropdown";
 
-const SearchBar = () => {
-  const handleOnChangeDropdown = () => {
-    return null;
-  };
+interface SearchBarProps {
+  onSearch: (text: string) => MouseEventHandler<HTMLAnchorElement>;
+  handleOnChangeDropdown: (text: string) => any;
+}
+
+const SearchBar = (props: SearchBarProps) => {
+
+  const [inputValue, setInputValue] = useState("");
+
+  const { onSearch, handleOnChangeDropdown } = props;
 
   return (
     <div className="flex-row search-bar">
@@ -17,9 +23,9 @@ const SearchBar = () => {
           onChange={handleOnChangeDropdown}
         />
         <div className="flex-row search-input">
-          <input className="text" />
+          <input className="text" onChange={(e) => setInputValue(e.target.value)}/>
         </div>
-        <a href="" className="btn btn-3">
+        <a href="" className="btn btn-3" onClick={onSearch(inputValue)}>
           Pesquisar
           <img
             src="./icon-search.svg"

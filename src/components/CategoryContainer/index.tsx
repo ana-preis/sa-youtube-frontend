@@ -26,7 +26,7 @@ const CategoryContainer = () => {
           <span className="video-footer-text">
             + {videoCount}k visualizacoes
           </span>
-          <button>
+          <button className="arrow-left_btn">
             <img
               src="./arrow-left.svg"
               alt="arrow-left"
@@ -39,8 +39,8 @@ const CategoryContainer = () => {
   };
 
   return (
-    <div className="flex-column width-100">
-      <div className="title">Categorias</div>
+    <div className="flex-column width-100 ai-center">
+      <div className="title">Categorias:</div>
       <div className="category-container">
         {MockCategoryList.map((c) => renderCategory(c))}
       </div>

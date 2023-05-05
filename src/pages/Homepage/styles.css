@@ -11,22 +11,20 @@
   justify-content: center;
   align-items: center;
   margin: 0 10rem;
-}
-
-.text-h2 {
-  font-size: 2.2rem;
+  width: 50rem;
 }
 
 .text-span {
+  font-size: 1.5rem;
   text-align: center;
 }
 
 .sign-up-btn {
   margin-top: 5rem;
-  padding-bottom: 4px;
-  height: 3.5rem;
-  width: 18rem;
+  padding-top: 3px;
+  height: 3rem;
+  width: 16rem;
   border-radius: 25px;
-  font-size: 2rem;
+  font-size: 1.8rem;
   background-color: #2a13c273;
 }
