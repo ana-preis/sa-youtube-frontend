@@ -41,7 +41,7 @@ interface Statistics {
 }
 
 interface Items {
-  id: string;
+  id: { videoId: string };
   player?: Player;
   snippet: Snippet;
   statistics?: Statistics;

@@ -2,37 +2,49 @@
 import React, {useState} from "react";
 import { VideoType } from "../../../../types/Video";
 import './styles.css'
+import { Link } from "react-router-dom";
 
 interface VideoListProps {
   videos: VideoType[];
+  text: string | undefined;
+  searchType: string | undefined;
 }
 
 const VideoList = (props: VideoListProps) => {
-  const{ videos } = props;
-  const [searchType, setSearchType] = useState<string>('Videos')
-  const [searchValue, setSearchValue] = useState<string>('React JS')
+  const{ videos, text, searchType } = props;
+
+  const getVideoURL = (id: string) => {
+    return `https://www.youtube.com/watch?v=${id}`
+  }
 
   const renderVideoList : any = (video : VideoType) => {
+    console.log(video)
     return (
-      <div className="flex-row video-container-results">
-        <iframe src={video.url} title="YouTube video player" height="200" width="360" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-        <div className="flex-column video-text">
-          <a className="video-title">{video.title}</a>
-          <div className="flex-row video-details">
-            <span> Publicado em {video.publishedAt}</span>
+      <div className="flex-row video-container-results ai-center">
+        <Link to={`/videos/${video.id}`}>
+          <img src={video.thumbnail}></img>  
+        </Link>      
+        <div className="flex-column video-text_results">
+          <a className="video-title_results">{video.title}</a>
+          <div className="flex-row video-details_results ai-center">
+            <a className="video-channel_results">{video.channelName}</a>
+            <span className="video-publish_results"> Publicado em {video.publishedAt}</span>
           </div>
-          <a className="video-channel">{video.channelName}</a>
-          <span className="video-description">{video.description}</span>
+          <p className="video-description_results">{video.description}</p>
         </div>
       </div>
     )
   }
-  console.log(" dentro do video list, ", videos)
+  
+  const getSuperiorSearchString = () => {
+    if(searchType === "videos") return `Mostrando os vídeos contendo "${text}"`
+    return `Mostrando as categorias contendo "${text}"`
+  }
 
   return (
     <>
       <div className="flex-column video-list">
-        <span className="list-tip">Mostrando resultados para {searchValue} em {searchType} </span>
+        <span className="list-tip">{getSuperiorSearchString()}</span>
         
         { videos ? 
           videos.map((video) => renderVideoList(video))

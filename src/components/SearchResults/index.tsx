@@ -7,14 +7,15 @@ import './styles.css'
 interface SearchResultsProps {
   listType: string;
   data: any;
+  searchText?: string;
 } 
 
 const SearchResults = (props : SearchResultsProps) => {
-  const { listType, data } = props
+  const { listType, data, searchText } = props
 
     return (
       <div className="search-results-container flex-column">
-        {listType === "videos" ? <VideoList videos={data}/> : <CategoryList categories={data}/>}
+        {listType === "videos" ? <VideoList videos={data} text={searchText} searchType={listType}/> : <CategoryList categories={data}/>}
       </div>
     );
 }

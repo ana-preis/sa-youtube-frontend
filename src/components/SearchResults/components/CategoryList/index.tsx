@@ -24,7 +24,7 @@ const CategoryList = (props: CategoryListProps) => {
 
   return (
     <div className="category-list">
-      {categories.length > 0 ?
+      {categories !== undefined && categories.length > 0 ? 
         categories.map(renderCategories)
       :
         <div className="no-category-found">Nenhuma categoria encontrada!</div>}

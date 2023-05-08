@@ -9,13 +9,13 @@ export const videoTransformer = (video: VideoGetType): VideoType => {
     const item = video.items[0];
     const dateFormat = new Date(item.snippet.publishedAt.value);
     const newVideo: VideoType = {
-      id: item.id,
+      id: item.id.videoId,
       title: item.snippet.title,
       channelName: item.snippet.channelTitle,
       description: item.snippet.description,
       publishedAt: dateFormat.toDateString(),
       embedHtml: item.player ? item.player.embedHtml : "",
-      url: videoUrl(item.id),
+      url: videoUrl(item.id.videoId),
       thumbnail: item.snippet.thumbnails.medium.url,
       likeCount: item.statistics ? item.statistics.likeCount : 0,
       viewCount: item.statistics ? item.statistics.viewCount : 0,
@@ -47,7 +47,6 @@ export const videoTransformer = (video: VideoGetType): VideoType => {
 }
 
 export const videoClientTransformer = (response: VideoGetType): VideoType[] => {
-  console.log(response)
   if(response?.items === undefined) {
     const emptyVideo: VideoType[] = [{ id: "", title: "", url: "", publishedAt: "", channelName: "", embedHtml: "" }];
     return emptyVideo;
@@ -55,12 +54,12 @@ export const videoClientTransformer = (response: VideoGetType): VideoType[] => {
   return response.items.map((video) => {
       const dateFormat = new Date(video.snippet.publishedAt.value);
       const newVideo: VideoType = {
-        id: video.id,
+        id: video.id.videoId,
         title: video.snippet.title,
         channelName: video.snippet.channelTitle,
         description: video.snippet.description,
         publishedAt: dateFormat.toDateString(),
-        url: videoUrl(video.id),
+        url: videoUrl(video.id.videoId),
         thumbnail: video.snippet.thumbnails.medium.url,
         tags: video.snippet.tags
       }

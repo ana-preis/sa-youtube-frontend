@@ -5,7 +5,6 @@ import PageBase from './layouts/PageBase';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Homepage from './pages/Homepage'
-import SearchResults from './pages/SearchResults';
 import SignUp from './pages/SignUp';
 import VideoDetails from './pages/VideoDetails';
 import Login from "./pages/Login";
