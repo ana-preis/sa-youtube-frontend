@@ -1,9 +1,11 @@
-export interface Category {
+import { VideoType } from "./Video";
+
+export interface CategoryType {
   id: string;
   name: string;
-  url: string;
-  viewCount: number;
+  viewCount?: number;
   description?: string;
   userCount?: number;
   videoCount?: number;
+  videoList?: VideoType[];
 }

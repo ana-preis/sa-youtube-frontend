@@ -1,28 +1,29 @@
-import { Category } from "../types/Category";
+import { CategoryType } from "../types/Category";
+import { MockVideoList } from "./MockVideoList";
 
-export const MockCategoryList: Category[] = [
+export const MockCategoryList: CategoryType[] = [
   {
     id: "test-id",
     name: "Frontend",
-    url: "https://www.youtube.com/embed/kgx4WGK0oNU",
+    videoList: MockVideoList,
     viewCount: 21989,
   },
   {
     id: "test-id",
     name: "Backend",
-    url: "https://www.youtube.com/embed/kgx4WGK0oNU",
+    videoList: MockVideoList,
     viewCount: 21989,
   },
   {
     id: "test-id",
     name: "Tutoriais",
-    url: "https://www.youtube.com/embed/kgx4WGK0oNU",
+    videoList: MockVideoList,
     viewCount: 21989,
   },
   {
     id: "test-id",
     name: "Inteligencia Artificial",
-    url: "https://www.youtube.com/embed/kgx4WGK0oNU",
+    videoList: MockVideoList,
     viewCount: 21989,
   },
 ];

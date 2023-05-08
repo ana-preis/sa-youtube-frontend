@@ -13,9 +13,8 @@
   margin-bottom: 1.8rem;
 }
 
-.video-container {
+.video-container-results {
   gap: 0.8rem;
-  position: relative;
 }
 
 .video-text span, a {
@@ -47,14 +46,3 @@
   font-size: 1rem;
 }
 
-.playlist-video-side-panel {
-  width: 180px;
-  background-color: rgba(0, 0, 0, 0.767);
-  position: relative;
-  z-index: 10;
-}
-
-iframe {
-  z-index: -10;
-  position: relative;
-}

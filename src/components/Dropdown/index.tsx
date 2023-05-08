@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Filter } from '../../types/Filters';
+import { searchDropdownItems } from "../../helpers/searchDropdownItems";
 import './styles.css'
 
 interface DropdownProps {
-  options: Filter[];
-  onChange: (e:string)=>any;
+  handleOnChangeDropdown: (e:string)=>any;
 }
 
 const Icon = () => {
@@ -17,11 +17,10 @@ const Icon = () => {
 
 const Dropdown = (props : DropdownProps) => {
 
-  const {options, onChange} = props
-
+  const { handleOnChangeDropdown } = props
 
   const [showMenu, setShowMenu] = useState(false);
-  const [selectdFilter, setSelectedFilter] = useState<Filter | null>(options[0]);
+  const [selectdFilter, setSelectedFilter] = useState<Filter | null>(searchDropdownItems[0]);
 
   useEffect(() => {
     const handler = () => setShowMenu(false)
@@ -40,7 +39,7 @@ const Dropdown = (props : DropdownProps) => {
     if (selectdFilter) {
       return selectdFilter.title
     }
-    return options[0].title
+    return searchDropdownItems[0].title
   }
 
   const isSelected = (option: Filter) => {
@@ -50,6 +49,11 @@ const Dropdown = (props : DropdownProps) => {
     return selectdFilter.value === option.value
   }
 
+  const handleClick = (option: Filter) => {
+    setSelectedFilter(option)
+    handleOnChangeDropdown(option.value)
+  }
+  
   return (
     <div className="dropdown-container">
       <div onClick={handleInputClick} className="dropdown-input flex-row">
@@ -60,9 +64,9 @@ const Dropdown = (props : DropdownProps) => {
       </div>
       {showMenu && (
         <div className="dropdown-menu">
-          {options.map((option: any, index: number) => (
+          {searchDropdownItems.map((option: any, index: number) => (
             <div 
-              onClick={() => onChange(option.value)} 
+              onClick={() => handleClick(option)} 
               key={index} 
               className={`dropdown-item ${isSelected(option) && "selected"}`}>
               {option.title}

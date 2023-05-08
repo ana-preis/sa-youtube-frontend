@@ -12,12 +12,12 @@ export const reviewFormTransformer = (video: VideoType, review: ReviewType): Rev
   }
   const videoDTO = {
     id: video.id,
-    title: video.name,
+    title: video.title,
     embedHtml: video.embedHtml,
     description: video.description,
     tags: video.tags,
     publishedAt: date.getTime().toString(),
-    channelName: video.channel,
+    channelName: video.channelName,
     likeCount: video.likeCount,
     viewCount: video.viewCount,
   }

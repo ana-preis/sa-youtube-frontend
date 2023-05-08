@@ -34,10 +34,10 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
       <div className="video_detail width-100">
         <iframe className="video-iframe width-100" src={`//www.youtube.com/embed/${video.id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
-      <h2 className="video-title">{video.name}</h2>
+      <h2 className="video-title">{video.title}</h2>
       <div className="flex-row description">
         <div className="flex-column text-container">
-          <p>Por <a className="channel">{video.channel}</a></p>
+          <p>Por <a className="channel">{video.channelName}</a></p>
           <p>{video.description}</p>
         </div>
         <div className="rating-card flex-column">

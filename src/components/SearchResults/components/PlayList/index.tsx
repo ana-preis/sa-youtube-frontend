@@ -2,7 +2,6 @@
 import React, {useState} from "react";
 import { MockPlayList } from "../../../../mocks/MockPlayList20";
 import { PlayListType } from "../../../../types/PlayList";
-import { VideoType } from "../../../../types/Video";
 import './styles.css'
 
 const PlayList = () => {
@@ -11,7 +10,7 @@ const PlayList = () => {
 
   const renderPlayList : any = (playlist : PlayListType) => {
     return (
-      <div className="flex-row video-container">
+      <div className="flex-row video-container-results">
           <iframe className="video" src={playlist.url} title="YouTube video player" height="200" width="360" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
           </iframe>
         <div className="flex-column video-text">
@@ -20,8 +19,8 @@ const PlayList = () => {
             <span> Publicado em {playlist.publishedAt}</span>
           </div>
           <a className="video-channel">{playlist.channel}</a>
-          <span className="video-description">{playlist.videoList[0]?.name}</span>
-          <span className="video-description">{playlist.videoList[1]?.name}</span>
+          <span className="video-description">{playlist.videoList[0]?.title}</span>
+          <span className="video-description">{playlist.videoList[1]?.title}</span>
         </div>
       </div>
     )

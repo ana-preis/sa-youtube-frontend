@@ -1,31 +1,36 @@
 import "./styles.css";
-import { searchDropdownItems } from "../../helpers/searchDropdownItems";
-import { MouseEventHandler, useState } from "react";
+import { SetStateAction, useState } from "react";
 import Dropdown from "../Dropdown";
 
 interface SearchBarProps {
-  onSearch: (text: string) => MouseEventHandler<HTMLAnchorElement>;
+  setIsFilterActive: React.Dispatch<React.SetStateAction<boolean>>;
+  onClickSearch: (text: any) => any;
   handleOnChangeDropdown: (text: string) => any;
+  listType: string;
 }
 
 const SearchBar = (props: SearchBarProps) => {
 
   const [inputValue, setInputValue] = useState("");
 
-  const { onSearch, handleOnChangeDropdown } = props;
+  const { setIsFilterActive, onClickSearch, handleOnChangeDropdown, listType } = props;
+
+  const handlePesquisar = () => {
+    setIsFilterActive(true)
+    onClickSearch(inputValue)
+  }
 
   return (
     <div className="flex-row search-bar">
       <img src="./log2.svg" alt="logo" className="search-bar-logo" />
       <div className="flex-row search-container">
         <Dropdown
-          options={searchDropdownItems}
-          onChange={handleOnChangeDropdown}
+          handleOnChangeDropdown={handleOnChangeDropdown}
         />
         <div className="flex-row search-input">
           <input className="text" onChange={(e) => setInputValue(e.target.value)}/>
         </div>
-        <a href="" className="btn btn-3" onClick={onSearch(inputValue)}>
+        <a className="btn btn-3" onClick={() => handlePesquisar()}>
           Pesquisar
           <img
             src="./icon-search.svg"

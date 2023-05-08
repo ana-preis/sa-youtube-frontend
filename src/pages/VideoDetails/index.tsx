@@ -18,10 +18,10 @@ const videoId = "6EI1K4qP8YI";
 
 const initialVideo: VideoType = {
   id: "",
-  name: "INITIAL VIDEO",
+  title: "INITIAL VIDEO",
   url: "",
   publishedAt: "",
-  channel: "",
+  channelName: "",
   embedHtml: ""
 }
 

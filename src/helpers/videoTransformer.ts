@@ -1,20 +1,24 @@
 import { VideoGetType, VideoType } from "../types/Video";
 
+export const videoUrl = (id: string) => {
+  return `https://www.youtube.com/embed/${id}`
+}
+
 export const videoTransformer = (video: VideoGetType): VideoType => {
   if(video.items !== undefined) {
     const item = video.items[0];
     const dateFormat = new Date(item.snippet.publishedAt.value);
     const newVideo: VideoType = {
       id: item.id,
-      name: item.snippet.title,
-      channel: item.snippet.channelTitle,
+      title: item.snippet.title,
+      channelName: item.snippet.channelTitle,
       description: item.snippet.description,
       publishedAt: dateFormat.toDateString(),
-      embedHtml: item.player.embedHtml,
-      url: `https://www.youtube.com/embed/${item.id}`,
+      embedHtml: item.player ? item.player.embedHtml : "",
+      url: videoUrl(item.id),
       thumbnail: item.snippet.thumbnails.medium.url,
-      likeCount: item.statistics.likeCount,
-      viewCount: item.statistics.viewCount,
+      likeCount: item.statistics ? item.statistics.likeCount : 0,
+      viewCount: item.statistics ? item.statistics.viewCount : 0,
       tags: item.snippet.tags,
     }
     return newVideo; 
@@ -23,12 +27,12 @@ export const videoTransformer = (video: VideoGetType): VideoType => {
     const dateFormat = new Date(item.publishedAt);
     const newVideo: VideoType = {
       id: item.id,
-      name: item.title,
-      channel: item.channelName,
+      title: item.title,
+      channelName: item.channelName,
       description: item.description,
       publishedAt: dateFormat.toDateString(),
       embedHtml: item.embedHtml,
-      url: `https://www.youtube.com/embed/${item.id}`,
+      url: videoUrl(item.id),
       thumbnail: item.thumbnail ?? "",
       likeCount: item.likeCount,
       viewCount: item.viewCount,
@@ -37,32 +41,29 @@ export const videoTransformer = (video: VideoGetType): VideoType => {
     }
     return newVideo;
   } else {
-    const emptyVideo: VideoType = {id: "", name:"", url:"", publishedAt:"", channel:"", embedHtml:""}
+    const emptyVideo: VideoType = {id: "", title:"", url:"", publishedAt:"", channelName:"", embedHtml:""}
     return emptyVideo;
   }
 }
 
-export const videoListTransformer = (videos: VideoGetType[]): VideoType[] => {
-  return videos.map((video) => {
-    if (video.items !== undefined) {
-      const item = video.items[0];
-      const dateFormat = new Date(item.snippet.publishedAt.value);
-      const newVideo: VideoType = {
-        id: item.id,
-        name: item.snippet.title,
-        channel: item.snippet.channelTitle,
-        description: item.snippet.description,
-        publishedAt: dateFormat.toDateString(),
-        embedHtml: item.player.embedHtml,
-        url: `https://www.youtube.com/embed/${item.id}`,
-        thumbnail: item.snippet.thumbnails.medium.url,
-        likeCount: item.statistics.likeCount,
-        viewCount: item.statistics.viewCount,
-        tags: item.snippet.tags,
-      };
-      return newVideo;
-    } 
-    const emptyVideo: VideoType = { id: "", name: "", url: "", publishedAt: "", channel: "", embedHtml: "" };
+export const videoClientTransformer = (response: VideoGetType): VideoType[] => {
+  console.log(response)
+  if(response?.items === undefined) {
+    const emptyVideo: VideoType[] = [{ id: "", title: "", url: "", publishedAt: "", channelName: "", embedHtml: "" }];
     return emptyVideo;
+  }
+  return response.items.map((video) => {
+      const dateFormat = new Date(video.snippet.publishedAt.value);
+      const newVideo: VideoType = {
+        id: video.id,
+        title: video.snippet.title,
+        channelName: video.snippet.channelTitle,
+        description: video.snippet.description,
+        publishedAt: dateFormat.toDateString(),
+        url: videoUrl(video.id),
+        thumbnail: video.snippet.thumbnails.medium.url,
+        tags: video.snippet.tags
+      }
+      return newVideo;
   });
 }

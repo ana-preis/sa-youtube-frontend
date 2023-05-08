@@ -26,7 +26,6 @@ const router = createBrowserRouter(
       <Route path="videos/:id" element={<VideoDetails />} loader={({ params }) => {
         return handleFetchVideoDetails(params.id)
       }} />
-      <Route path="results" element={<SearchResults />} />
     </Route>
   )
 );

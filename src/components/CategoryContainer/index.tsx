@@ -1,10 +1,11 @@
 import "./styles.css";
 import { MockCategoryList } from "../../mocks/MockCategoryList";
-import { Category } from "../../types/Category";
+import { CategoryType } from "../../types/Category";
 import { truncateVideoCount } from "../../helpers/truncateVideoCount";
+import { videoUrl } from "../../helpers/videoTransformer";
 
 const CategoryContainer = () => {
-  const renderCategory = (category: Category) => {
+  const renderCategory = (category: CategoryType) => {
     const videoCount = truncateVideoCount(category.viewCount);
     return (
       <div className="flex-column">
@@ -14,14 +15,18 @@ const CategoryContainer = () => {
             <img src="./heart.svg" alt="icon-heart" className="icon-heart" />
           </button>
         </div>
-        <iframe
-          className="video"
-          src={category.url}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+        {category.videoList ? 
+          <iframe
+            className="video"
+            src= {videoUrl(category.videoList[0].id)}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+          :
+          <div className="video"></div>
+        }
         <div className="video-footer flex-row">
           <span className="video-footer-text">
             + {videoCount}k visualizacoes

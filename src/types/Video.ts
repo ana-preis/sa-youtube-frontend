@@ -3,11 +3,11 @@ import { ReviewPostType } from "./Review";
 
 export interface VideoType {
   id: string;
-  name: string;
+  title: string;
   url: string;
   publishedAt: string;
-  channel: string;
-  embedHtml: string;
+  channelName: string;
+  embedHtml?: string;
   description?: string;
   viewCount?: number;
   likeCount?: number;
@@ -15,6 +15,7 @@ export interface VideoType {
   rate?: number;
   thumbnail?: string;
   tags?: string[];
+  reviewList?: ReviewPostType[]
 }
 
 interface Player {
@@ -41,14 +42,14 @@ interface Statistics {
 
 interface Items {
   id: string;
-  player: Player;
+  player?: Player;
   snippet: Snippet;
-  statistics: Statistics;
+  statistics?: Statistics;
 }
 
 export interface VideoGetType {
   items?: Items[];
-  videoDTO?: VideoPostType;
+  videoDTO?: VideoType;
   reviewDTOList?: ReviewPostType[];
   averageRating?: number;
   totalReviews?: number;
@@ -58,14 +59,13 @@ export interface VideoGetType {
 export interface VideoPostType {
   id: string;
   title: string;
-  embedHtml: string;
+  embedHtml?: string;
   description?: string;
   tags?: string[];
   publishedAt: string | number;
   channelName: string;
   likeCount?: number;
   viewCount?: number;
-  reviewList?: ReviewPostType[]
   thumbnail?: string;
 }
 
