@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
 import CategoryContainer from "../../components/CategoryContainer";
 import { handleFetchVideos } from "../../services/VideoServices";
-import { handleFetchCategoryByName } from "../../services/CategoryServices";
+import { handleFetchCategoriesByName } from "../../services/CategoryServices";
 import './styles.css'
 import SearchResults from "../../components/SearchResults";
 import { Link } from 'react-router-dom';
@@ -24,9 +24,8 @@ const Homepage = () => {
     let response;
     if(selectedFilter === "videos") {
       handleFetchVideos(text).then((v) => setData(v));
-      setData(response)
     } else {
-      handleFetchCategoryByName(text).then((v) => setData(v))
+      handleFetchCategoriesByName(text).then((v) => setData(v))
     }
     setIsFilterActive(true)
   }

@@ -7,13 +7,14 @@ interface SearchBarProps {
   onClickSearch: (text: any) => any;
   handleOnChangeDropdown: (text: string) => any;
   listType: string;
+  styles?: string;
 }
 
 const SearchBar = (props: SearchBarProps) => {
 
   const [inputValue, setInputValue] = useState("");
 
-  const { setIsFilterActive, onClickSearch, handleOnChangeDropdown, listType } = props;
+  const { setIsFilterActive, onClickSearch, handleOnChangeDropdown, listType, styles } = props;
 
   const handlePesquisar = () => {
     setIsFilterActive(true)
@@ -21,7 +22,7 @@ const SearchBar = (props: SearchBarProps) => {
   }
 
   return (
-    <div className="flex-row search-bar">
+    <div className={`flex-row search-bar ${styles}`}>
       <img src="./log2.svg" alt="logo" className="search-bar-logo" />
       <div className="flex-row search-container">
         <Dropdown
