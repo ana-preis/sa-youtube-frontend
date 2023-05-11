@@ -1,14 +1,13 @@
+import { useEffect, useState } from 'react';
 import './styles.css'
 import { MockVideoList } from "../../mocks/MockVideoList";
 import VideoDetailCard from '../../components/VideoDetailCard';
 import VideoColumnCard from '../../components/VideoColumnCard';
 import ReviewContainer from '../../components/ReviewContainer';
-import { useEffect, useState } from 'react';
 import { api } from '../../api/api';
 import { ReviewSearchType, ReviewType } from '../../types/Review';
 import NewReviewCard from '../../components/NewReviewCard';
-import { VideoType, VideoGetType } from '../../types/Video';
-import { videoTransformer } from '../../helpers/videoTransformer';
+import { VideoType } from '../../types/Video';
 import { reviewGetTransformer } from '../../helpers/reviewGetTranformer';
 import {
   useLoaderData,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import { UserRequest, UserType } from "../../types/User";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { api } from '../../api/api';
 
@@ -20,6 +21,9 @@ const Login = () => {
 		}
 		if (password === "") {
 			setAlertPassword(true)
+		}
+		if (email === "" || password === "") {
+			return true;
 		}
 		if(!emailRegex.test(email)) {
 			setAlertEmailFormat(true)
@@ -68,7 +72,7 @@ const Login = () => {
 			
 			<div className="flex-column">
 				<Button className="btn-cadastro" text="Entrar" onClick={handleSignUp} />
-				<p className="login-redirect">Ainda não é membro? <a className="login-link">Cadastre-se.</a></p>
+				<p className="login-redirect">Ainda não é membro? <Link to="/signup" className="login-link">Cadastre-se.</Link></p>
 			</div>
 		</div>
 	);

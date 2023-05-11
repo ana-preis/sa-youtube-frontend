@@ -4,29 +4,37 @@ import Dropdown from "../Dropdown";
 
 interface SearchBarProps {
   setIsFilterActive: React.Dispatch<React.SetStateAction<boolean>>;
-  onClickSearch: (text: any) => any;
-  handleOnChangeDropdown: (text: string) => any;
+  onClickSearch: (text: any, listType: any) => any;
   listType: string;
+  styles?: string;
+  isDropdownVisible?: boolean;
 }
 
 const SearchBar = (props: SearchBarProps) => {
+  const { setIsFilterActive, onClickSearch, listType, styles, isDropdownVisible } = props;
 
   const [inputValue, setInputValue] = useState("");
+  const [listTypeValue, setListTypeValue] = useState(listType)
 
-  const { setIsFilterActive, onClickSearch, handleOnChangeDropdown, listType } = props;
 
   const handlePesquisar = () => {
     setIsFilterActive(true)
-    onClickSearch(inputValue)
+    onClickSearch(inputValue, listTypeValue)
+  }
+  
+  const handleOnChangeDropdown = (type: string): any => {
+    setListTypeValue(type);
   }
 
   return (
-    <div className="flex-row search-bar">
+    <div className={`flex-row search-bar ${styles}`}>
       <img src="./log2.svg" alt="logo" className="search-bar-logo" />
       <div className="flex-row search-container">
-        <Dropdown
-          handleOnChangeDropdown={handleOnChangeDropdown}
-        />
+        {isDropdownVisible && handleOnChangeDropdown &&
+          <Dropdown
+            handleOnChangeDropdown={handleOnChangeDropdown}
+          />
+        }
         <div className="flex-row search-input">
           <input className="text" onChange={(e) => setInputValue(e.target.value)}/>
         </div>

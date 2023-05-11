@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import { UserRequest, UserType } from "../../types/User";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { api } from '../../api/api';
 
@@ -96,7 +97,7 @@ const SignUp = () => {
 			</div>
 			<div className="flex-column">
 				<Button className="btn-cadastro" text="Cadastre-se" onClick={handleSignUp} />
-				<p className="login-redirect">Já é membro? <a className="login-link">Login.</a></p>
+				<p className="login-redirect">Já é membro? <Link to="/login" className="login-link">Login.</Link></p>
 			</div>
 		</div>
 	);

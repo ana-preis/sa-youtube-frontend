@@ -7,6 +7,15 @@
   column-gap: 3rem;
 }
 
+.cards-category_container {
+  border-radius: 15px;
+  transition: box-shadow 0.25s;
+}
+
+.cards-category_container:hover {
+  box-shadow: 0px 3px 6px var(--card-hover-box-shadow-1), 0px var(--card-hover-box-shadow-2-y) var(--card-hover-box-shadow-2-blur) var(--card-hover-box-shadow-2), 0 0 0 1px var(--card-hover-border-color);
+}
+
 .title {
   font-size: 2rem;
   margin: 2rem 0 0;
@@ -14,6 +23,7 @@
 }
 
 .category-title {
+  color: #000000;
   display: inline-flex;
   align-items: center;
   font-size: 1.2rem;
