@@ -3,12 +3,20 @@ import { MockCategoryList } from "../../mocks/MockCategoryList";
 import { CategoryType } from "../../types/Category";
 import { truncateVideoCount } from "../../helpers/truncateVideoCount";
 import { videoUrl } from "../../helpers/videoTransformer";
+import { Link } from 'react-router-dom';
 
-const CategoryContainer = () => {
+interface CategoryContainerProps {
+  handleOnClickAllCategories: () => any;
+}
+
+const CategoryContainer = (props: CategoryContainerProps) => {
+
+  const { handleOnClickAllCategories } = props;
+
   const renderCategory = (category: CategoryType) => {
     const videoCount = truncateVideoCount(category.viewCount);
     return (
-      <div className="flex-column">
+      <Link to={`/categories/${category.id}`} className="flex-column cards-category_container">
         <div className="category-title flex-row">
           {category.name}
           <button>
@@ -39,7 +47,7 @@ const CategoryContainer = () => {
             />
           </button>
         </div>
-      </div>
+      </Link>
     );
   };
 
@@ -50,7 +58,7 @@ const CategoryContainer = () => {
         {MockCategoryList.map((c) => renderCategory(c))}
       </div>
       <div className="flex-row category-btn-row">
-        <a href="" className="btn category-btn flex-row">
+        <a onClick={handleOnClickAllCategories} className="btn category-btn flex-row">
           Ver todas
           <img src="./more.svg" alt="icon-more" className="icon-more" />
         </a>

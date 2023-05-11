@@ -1,5 +1,6 @@
 import "./styles.css";
 import { CategoryType } from "../../../../types/Category";
+import { Link } from 'react-router-dom';
 
 interface CategoryListProps {
   categories: CategoryType[];
@@ -11,14 +12,14 @@ const CategoryList = (props: CategoryListProps) => {
 
   const renderCategories = (category: CategoryType) => {
     return (
-    <a className="category-results-container">
+    <Link to={`/categories/${category.id}`} className="category-results-container">
       <h2 className="category-title-card">{category.name}</h2>
       <p className="category-description">{category.description}</p>
       <p className="flex-row card-footer">
       <span className="card-footer-text">{category.userCount} inscritos</span>
       <span className="card-footer-text">{category.videoCount} vídeos</span>
       </p>
-    </a>
+    </Link>
     );
   };
 

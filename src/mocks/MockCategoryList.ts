@@ -31,7 +31,7 @@ export const MockCategoryList: CategoryType[] = [
 export const MockCategory: CategoryType = {
   id: "test-id",
   name: "Frontend",
-  description: "Frontend videos for studying",
+  description: "Frontend videos for studying, lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun",
   videoList: MockVideoList,
   viewCount: 21989,
 }

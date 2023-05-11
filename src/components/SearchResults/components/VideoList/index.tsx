@@ -1,5 +1,4 @@
 
-import React, {useState} from "react";
 import { VideoType } from "../../../../types/Video";
 import './styles.css'
 import { Link } from "react-router-dom";
@@ -13,12 +12,7 @@ interface VideoListProps {
 const VideoList = (props: VideoListProps) => {
   const{ videos, text, searchType } = props;
 
-  const getVideoURL = (id: string) => {
-    return `https://www.youtube.com/watch?v=${id}`
-  }
-
   const renderVideoList : any = (video : VideoType) => {
-    console.log(video)
     return (
       <div className="flex-row video-container-results ai-center">
         <Link to={`/videos/${video.id}`}>

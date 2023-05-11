@@ -7,6 +7,10 @@ import { MockCategory } from "../../mocks/MockCategoryList";
 import './styles.css'
 import SearchBar from "../../components/SearchBar";
 import { handleFetchCategoriesByName } from "../../services/CategoryServices";
+import CategoryHeader from "./components/CategoryHeader";
+import BestRatedList from "./components/BestRatedList";
+import MostPopular from "./components/MostPopularList";
+import AllVideosList from "./components/AllVideosList";
 
 const CategoryDetails = () => {
 
@@ -22,13 +26,8 @@ const CategoryDetails = () => {
   const onClickSearch = async (text: any) => {
     setSearchType(selectedFilter)
     setSearchText(text)
-    let response;
     handleFetchCategoriesByName(text).then((v) => setData(v))
     setIsFilterActive(true)
-  }
-
-  const handleOnChangeDropdown = (type: string): any => {
-    setSelectedFilter(type);
   }
 
   return (
@@ -36,9 +35,16 @@ const CategoryDetails = () => {
       <SearchBar 
         setIsFilterActive={setIsFilterActive} 
         onClickSearch={onClickSearch} 
-        handleOnChangeDropdown={handleOnChangeDropdown} 
-        listType={selectedFilter ?? ""} 
+        listType={selectedFilter ?? ""}
+        isDropdownVisible={false}
       />
+      <CategoryHeader category={category} />
+      <hr className="category-details-hr" />
+      <BestRatedList videos={category.videoList} />
+      <hr className="category-details-hr" />
+      <MostPopular videos={category.videoList} />
+      <hr className="category-details-hr" />
+      <AllVideosList videos={category.videoList}/>
     </div>
   )
 }

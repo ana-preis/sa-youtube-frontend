@@ -18,11 +18,10 @@ const Homepage = () => {
   const [data, setData] = useState<any>()
   const [searchText, setSearchText] = useState<string>()
 
-  const onClickSearch = async (text: any) => {
-    setSearchType(selectedFilter)
+  const onClickSearch = async (text: any, listType: string) => {
+    setSearchType(listType)
     setSearchText(text)
-    let response;
-    if(selectedFilter === "videos") {
+    if(listType === "videos") {
       handleFetchVideos(text).then((v) => setData(v));
     } else {
       handleFetchCategoriesByName(text).then((v) => setData(v))
@@ -30,8 +29,8 @@ const Homepage = () => {
     setIsFilterActive(true)
   }
 
-  const handleOnChangeDropdown = (type: string): any => {
-    setSelectedFilter(type);
+  const handleOnClickAllCategories = () => {
+    onClickSearch("", "categories")
   }
 
   return (
@@ -47,12 +46,12 @@ const Homepage = () => {
       <SearchBar 
         setIsFilterActive={setIsFilterActive} 
         onClickSearch={onClickSearch} 
-        handleOnChangeDropdown={handleOnChangeDropdown} 
         listType={selectedFilter ?? ""} 
+        isDropdownVisible={true}
       />
       {!isFilterActive ?
         <>
-          <CategoryContainer />
+          <CategoryContainer handleOnClickAllCategories={handleOnClickAllCategories} />
           <BigLogoCard />
         </>
       :
