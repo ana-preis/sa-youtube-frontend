@@ -8,10 +8,11 @@ interface SearchBarProps {
   listType: string;
   styles?: string;
   isDropdownVisible?: boolean;
+  placeholder?: string;
 }
 
 const SearchBar = (props: SearchBarProps) => {
-  const { setIsFilterActive, onClickSearch, listType, styles, isDropdownVisible } = props;
+  const { setIsFilterActive, onClickSearch, listType, styles, isDropdownVisible, placeholder } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [listTypeValue, setListTypeValue] = useState(listType)
@@ -36,7 +37,7 @@ const SearchBar = (props: SearchBarProps) => {
           />
         }
         <div className="flex-row search-input">
-          <input className="text" onChange={(e) => setInputValue(e.target.value)}/>
+          <input className="text" onChange={(e) => setInputValue(e.target.value)} placeholder={placeholder}/>
         </div>
         <a className="btn btn-3" onClick={() => handlePesquisar()}>
           Pesquisar

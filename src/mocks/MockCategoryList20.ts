@@ -2,7 +2,7 @@ import { CategoryType } from "../types/Category";
 
 export const MockCategoryList20: CategoryType[] = [
   {
-    id: "test-id",
+    id: "1",
     name: "Frontend",
     viewCount: 21989,
     userCount: 34343,
@@ -10,7 +10,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Backend",
     viewCount: 21989,
     userCount: 34343,
@@ -18,7 +18,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Tutoriais",
     viewCount: 21989,
     userCount: 34343,
@@ -26,7 +26,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -34,7 +34,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -42,7 +42,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -50,7 +50,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -58,7 +58,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -66,7 +66,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -74,7 +74,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,
@@ -82,7 +82,7 @@ export const MockCategoryList20: CategoryType[] = [
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
   },
   {
-    id: "test-id",
+    id: "1",
     name: "Inteligencia Artificial",
     viewCount: 21989,
     userCount: 34343,

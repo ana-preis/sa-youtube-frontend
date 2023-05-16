@@ -37,6 +37,7 @@ const CategoryDetails = () => {
         onClickSearch={onClickSearch} 
         listType={selectedFilter ?? ""}
         isDropdownVisible={false}
+        placeholder="Pesquise os vídeos dessa categoria aqui"
       />
       <CategoryHeader category={category} />
       <hr className="category-details-hr" />
