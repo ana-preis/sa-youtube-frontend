@@ -9,7 +9,6 @@ interface AllVideosListProps {
 const AllVideosList = (props: AllVideosListProps) => {
   const { videos } = props;
 
-
   const renderVideos = () => {
     let renderVideos;
     if(videos) {

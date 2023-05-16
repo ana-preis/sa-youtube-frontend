@@ -1,7 +1,6 @@
 import { VideoType } from "../../../../types/Video";
 import { Link } from "react-router-dom";
 
-
 interface BestRatedListProps {
   videos: VideoType[] | undefined;
 }
@@ -9,7 +8,6 @@ interface BestRatedListProps {
 const BestRatedList = (props: BestRatedListProps) => {
 
   const { videos } = props;
-
 
   const renderVideos = () => {
     let renderVideos;

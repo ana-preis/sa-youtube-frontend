@@ -9,7 +9,6 @@ const MostPopular = (props: MostPopularProps) => {
 
   const { videos } = props;
 
-
   const renderVideos = () => {
     let renderVideos;
     if(videos) {

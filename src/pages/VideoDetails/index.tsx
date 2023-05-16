@@ -35,6 +35,9 @@ const VideoDetails = () => {
     }
 
     const now = Date.now()
+
+		// GET USER INFO AND POPULATE NEW REQUEST
+
     const newReview = {
       "rating": Number(rating),
       "text": text,

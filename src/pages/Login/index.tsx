@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './styles.css';
-import { UserRequest, UserType } from "../../types/User";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
-import { api } from '../../api/api';
+import { handleLogin } from "../../services/AuthService";
+import { redirect } from "react-router-dom";
 
 const Login = () => {
 
@@ -33,14 +33,15 @@ const Login = () => {
 	}
 
 	const authUser = async () => {
-		// const body:UserRequest = { 
-		// 	username, 
-		// 	email, 
-		// 	password 
-		// }
-		// const response = await api.post<string, UserType>(`http://localhost:8080/users`, JSON.stringify(body))
-    // alert(`Cadastrado com sucesso :) `)
-    // window.location.href;
+		handleLogin(email, password).then((response) => {
+
+			//SAVE TOKEN AND USER INFO
+
+			alert(`Bem vindo :) `)
+			redirect("/home")
+
+		})
+    
 	}
 
 	const handleSignUp = () => {

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './styles.css';
-import { UserRequest, UserType } from "../../types/User";
-import { Link } from "react-router-dom";
+import { UserType } from "../../types/User";
+import { Link, redirect } from "react-router-dom";
 import Button from "../../components/Button";
-import { api } from '../../api/api';
+import { handleSaveNewUser } from "../../services/UserService";
 
 const SignUp = () => {
 
@@ -43,15 +43,20 @@ const SignUp = () => {
 		return false;
 	}
 
-	const postUser = async () => {
-		const body:UserRequest = { 
+	const postUser = () => {
+		const body: UserType = { 
 			username, 
 			email, 
-			password 
+			password
 		}
-		const response = await api.post<string, UserType>(`http://localhost:8080/users`, JSON.stringify(body))
-    alert(`Cadastrado com sucesso :) `)
-    window.location.href;
+		handleSaveNewUser(body).then((response) => {
+
+			// USE RESPONSE TO SOMETHING
+
+			alert(`Cadastrado com sucesso :) `)
+			redirect("/login")
+		})
+    
 	}
 
 	const handleSignUp = () => {
