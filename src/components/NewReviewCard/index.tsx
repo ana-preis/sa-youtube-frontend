@@ -1,54 +1,22 @@
 import { useState } from 'react';
-import { reviewFormTransformer } from '../../helpers/reviewFormTransformer';
-import { 
-  ReviewDTO 
-} from '../../types/Review';
 import { 
   VideoType
  } from '../../types/Video';
 import Button from '../Button';
 import './styles.css'
-import { api } from '../../api/api';
-import { UserType } from "../../types/User";
-
-// user ID : d2e83590-fb49-47b1-a301-027c0b5657bd
 
 interface NewReviewCardProps {
   video: VideoType;
+  onSaveReview: (rating: number | undefined, text: string) => void;
 }
 
 const NewReviewCard = ( 
   props : NewReviewCardProps 
   ) => {
 
-  const { video } = props
+  const { video, onSaveReview } = props
   const [rating, setRating] = useState<number>();
   const [reviewText, setReviewText] = useState<string>("");
-
-  const handleSendNewReview = async () => {
-    if (!rating) {
-      alert("Preencha o campo da nota!")
-      return
-    }
-    if(rating > 10 || rating < 0) {
-      alert("A nota deve ser entre 0 e 10!")
-      return
-    }
-
-    const now = Date.now()
-    const newReview = {
-      "rating": Number(rating),
-      "text": reviewText,
-      "userID": "d2e83590-fb49-47b1-a301-027c0b5657bd",
-      "user": "Ana Preis",
-      "publishedAt": now.toString(),
-      "videoId": video.id,
-    }
-    const body = reviewFormTransformer(video, newReview)
-    const response = await api.post<string, ReviewDTO>(`http://localhost:8080/reviews`, JSON.stringify(body))
-    alert(`Sucesso ${response.userID}, sua nota foi enviada :) `)
-    window.location.reload();
-  }
 
   return (
     <div className="new-review-main-container">
@@ -86,7 +54,7 @@ const NewReviewCard = (
         <Button 
         text="Enviar" 
         className="send-review-btn" 
-        onClick={handleSendNewReview}
+        onClick={() => onSaveReview(rating, reviewText)}
         />
       </div>
     </div>
