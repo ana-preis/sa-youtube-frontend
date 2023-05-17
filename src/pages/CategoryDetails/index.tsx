@@ -17,13 +17,13 @@ const CategoryDetails = () => {
   const categoryLoader: CategoryType = useLoaderData() as CategoryType;
 
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
-  const [category, setCategory] = useState<CategoryType>(MockCategory)
+  const [category] = useState<CategoryType>(categoryLoader)
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
   const [searchType, setSearchType] = useState<string>("")
   const [data, setData] = useState<any>()
   const [searchText, setSearchText] = useState<string>()
 
-  const onClickSearch = async (text: any) => {
+  const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
     setSearchText(text)
     handleFetchCategoriesByName(text).then((v) => setData(v))

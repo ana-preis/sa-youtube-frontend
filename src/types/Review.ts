@@ -1,9 +1,8 @@
 import { UserType } from "./User";
-import { VideoPostType, VideoReviewDTO } from "./Video";
+import { VideoReviewDTO } from "./Video";
 
 export interface ReviewType {
   id?: string;
-  user: string;
   publishedAt: string;
   rating: number;
   videoId: string;
@@ -12,16 +11,12 @@ export interface ReviewType {
   likeCount?: number;
 }
 
-export interface ReviewDTO {
-  rating: Number;
-  text?: string;
-  userID: string;
-  publishedAt: string;
-}
-
-export interface ReviewPostType {
-  review: ReviewDTO;
-  video: VideoPostType;
+export interface ReviewPostDTO {
+  userId: string;
+  videoId: string;
+  rating: number;
+  text: string;
+  publishedAt: number;
 }
 
 export interface ReviewGetType {
@@ -39,5 +34,6 @@ export interface ReviewSearchType {
   userId: string;
   userName: string;
   rating: number;
-  publishedAt: string;
+  publishedAt: number;
+  publishedAtString?: string
 }

@@ -10,6 +10,12 @@ export interface UserType {
   messageList?: string[];
 }
 
+export interface UserOutDTO {
+  id: string;
+  username: string;
+  email: string;
+}
+
 export interface UserAuth {
   email: string;
   password: string;

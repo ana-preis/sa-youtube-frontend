@@ -1,8 +1,8 @@
 import "./styles.css"
-import { ReviewType } from "../../types/Review"
+import { ReviewSearchType } from "../../types/Review"
 
 interface ReviewCardProps {
-	review: ReviewType;
+	review: ReviewSearchType;
 }
 
 const ReviewCard = (props : ReviewCardProps) => {
@@ -12,7 +12,7 @@ const ReviewCard = (props : ReviewCardProps) => {
 		<div className="card flex-row">
 			<div className="review flex-column">
 				<div className="flex-row review-header">
-					<h2 className="user">{review.user}</h2>
+					<h2 className="user">{review.userName}</h2>
 				</div>
 				<div className="review-comment">{review.text}</div>
 				<div className="review-footer flex-row">

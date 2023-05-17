@@ -1,5 +1,3 @@
-
-import React from "react";
 import VideoList from "./components/VideoList";
 import CategoryList from "./components/CategoryList";
 import './styles.css'

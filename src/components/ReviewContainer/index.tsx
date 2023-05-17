@@ -1,15 +1,15 @@
 import "./styles.css"
 import ReviewCard from "../ReviewCard";
-import { ReviewType } from "../../types/Review";
+import { ReviewSearchType } from "../../types/Review";
 
 interface ReviewContainerProps {
-	reviewList: ReviewType[];
+	reviewList: ReviewSearchType[];
 }
 
 const ReviewContainer = (props: ReviewContainerProps) => {
 	const {reviewList} = props
 
-	const renderReview = (review : ReviewType) => {
+	const renderReview = (review : ReviewSearchType) => {
 		return (
 			<div className="main-container flex-column">
 				<ReviewCard review={review}/>

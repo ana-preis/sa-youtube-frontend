@@ -51,7 +51,7 @@ const SignUp = () => {
 		}
 		handleSaveNewUser(body).then((response) => {
 
-			// USE RESPONSE TO SOMETHING
+			// USE RESPONSE TO SOMETHING (UserOutDTO)
 
 			alert(`Cadastrado com sucesso :) `)
 			redirect("/login")

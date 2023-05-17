@@ -1,11 +1,21 @@
 import { VideoType } from "./Video";
+import { UserType } from "./User";
 
 export interface CategoryType {
   id: string;
   name: string;
-  viewCount?: number;
   description?: string;
   userCount?: number;
   videoCount?: number;
+  viewCount?: number;
+  videoList?: VideoType[];
+}
+
+export interface CategorySearchType {
+  id: string;
+  name: string;
+  description?: string;
+  userList?: UserType[];
+  viewCount?: number;
   videoList?: VideoType[];
 }

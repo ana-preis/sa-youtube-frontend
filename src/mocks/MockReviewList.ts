@@ -1,22 +1,20 @@
-import { ReviewType } from "../types/Review";
+import { ReviewSearchType } from "../types/Review";
 
-export const MockReviewList: ReviewType[] = [
+export const MockReviewList: ReviewSearchType[] = [
   {
     id: "1234",
-    user: "Ana",
-    userID: "1234",
-    publishedAt: "25/07/22",
+    userName: "Ana",
+    userId: "1234",
+    publishedAt: Date.now(),
     rating: 6.7,
-    videoId: "1234",
     text: "Muito top"
   },
   {
     id: "1234",
-    user: "Ana",
-    userID: "1234",
-    publishedAt: "25/07/22",
+    userName: "Ana",
+    userId: "1234",
+    publishedAt: Date.now(),
     rating: 6.7,
-    videoId: "1234",
     text: "Muito top"
   }
 ]

@@ -27,11 +27,11 @@ const router = createBrowserRouter(
       <Route path="videos/:id" element={<VideoDetails />} loader={({ params }) => {
         return handleFetchVideoDetails(params.id)
       }} />
-      <Route path="categories/1" 
+      <Route path="categories/:id" 
         element={<CategoryDetails />} 
-        // loader={({ params }) => {
-        //   return handleFetchCategoryByID(params.id)
-        // }} 
+        loader={({ params }) => {
+          return handleFetchCategoryByID(params.id)
+        }} 
       />
     </Route>
   )
