@@ -13,7 +13,7 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 		return (
 			<>
 				<a className="width-100 flex-column ai-center video-thumbnail-container">
-					<img className="video-thumbnail" src={video.thumbnail}></img>
+					<img className="video-thumbnail" src={video.thumbnailUrl}></img>
 				</a>
 				<h3 className="related-video-title">{video.title}</h3>
 			</>

@@ -19,7 +19,7 @@ const MostPopular = (props: MostPopularProps) => {
           <div className="flex-column">
             <h3 className="title-video-row_details">{video.title}</h3>
             <Link className="a-row_details" to={`/videos/${video.id}`}>
-              <img  className="img-row_details" src={video.thumbnail} />
+              <img  className="img-row_details" src={video.thumbnailUrl} />
             </Link>
             <div className="row-footer-text_details">{video.viewCount} views</div>
           </div>

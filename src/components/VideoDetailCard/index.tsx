@@ -37,21 +37,21 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
       <h2 className="video-title">{video.title}</h2>
       <div className="flex-row description">
         <div className="flex-column text-container">
-          <p>Por <a className="channel">{video.channelName}</a></p>
+          <p>Por <a className="channel">{video.channelTitle}</a></p>
           <p>{video.description}</p>
         </div>
         <div className="rating-card flex-column">
           <h3>Média de avaliações</h3>
-          {!video.rate ? (
+          {!video.averageRating ? (
             <div className="first-review-msg">
               <p>Este vídeo ainda não foi avaliado.</p>
               <p>Seja o primeiro a avaliar clicando no botão abaixo:</p>
             </div>
           ) : (
             <div>
-              <p className="rate">{video.rate.toFixed(1)}</p>
+              <p className="rate">{video.averageRating.toFixed(1)}</p>
               <div className="flex-row stars">
-                {getNumberOfStars(video.rate)}
+                {getNumberOfStars(video.averageRating)}
               </div>
             </div>
           )}

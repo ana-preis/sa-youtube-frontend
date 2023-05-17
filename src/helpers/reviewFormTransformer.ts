@@ -8,7 +8,7 @@ export const reviewFormTransformer = (video: VideoType, review: ReviewType): Rev
     rating: review.rating,
     text: review.text,
     userID: review.userID,
-    publishedAt: review.publishedAt
+    publishedAt: now.toString()
   }
   const videoDTO = {
     id: video.id,
@@ -17,7 +17,7 @@ export const reviewFormTransformer = (video: VideoType, review: ReviewType): Rev
     description: video.description,
     tags: video.tags,
     publishedAt: date.getTime().toString(),
-    channelName: video.channelName,
+    channelTitle: video.channelTitle,
     likeCount: video.likeCount,
     viewCount: video.viewCount,
   }

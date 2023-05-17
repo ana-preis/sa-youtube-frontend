@@ -12,16 +12,16 @@ const BestRatedList = (props: BestRatedListProps) => {
   const renderVideos = () => {
     let renderVideos;
     if(videos) {
-      renderVideos = videos.sort((a,b) => Number(b.rate) - Number(a.rate));
+      renderVideos = videos.sort((a,b) => Number(b.averageRating) - Number(a.averageRating));
       renderVideos = renderVideos.slice(0,4);
       return renderVideos.map((video) => {
         return (
           <div className="flex-column">
             <h3 className="title-video-row_details">{video.title}</h3>
             <Link className="a-row_details" to={`/videos/${video.id}`}>
-              <img  className="img-row_details" src={video.thumbnail} />
+              <img  className="img-row_details" src={video.thumbnailUrl} />
             </Link>
-            <div className="row-footer-text_details">Média de avaliações: {video.rate}</div>
+            <div className="row-footer-text_details">Média de avaliações: {video.averageRating}</div>
           </div>
         )
       })

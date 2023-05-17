@@ -4,56 +4,18 @@ import { ReviewPostType } from "./Review";
 export interface VideoType {
   id: string;
   title: string;
-  url: string;
-  publishedAt: string;
-  channelName: string;
-  embedHtml?: string;
-  description?: string;
-  viewCount?: number;
-  likeCount?: number;
-  dislikeCount?: number;
-  rate?: number;
-  thumbnail?: string;
-  tags?: string[];
-  reviewList?: ReviewPostType[]
-}
-
-interface Player {
   embedHtml: string;
-}
-
-interface Thumbnails {
-  medium: { url: string };
-}
-
-interface Snippet {
-  channelTitle: string;
-  title: string;
+  thumbnailUrl: string;
   description: string;
-  publishedAt: { value: number };
-  tags: string[];
-  thumbnails: Thumbnails;
-}
-
-interface Statistics {
+  tags?: string[];
+  publishedAt: string;
+  channelTitle: string;
   likeCount: number;
   viewCount: number;
-}
-
-interface Items {
-  id: { videoId: string };
-  player?: Player;
-  snippet: Snippet;
-  statistics?: Statistics;
-}
-
-export interface VideoGetType {
-  items?: Items[];
-  videoDTO?: VideoType;
-  reviewDTOList?: ReviewPostType[];
+  reviewCount?: number;
   averageRating?: number;
-  totalReviews?: number;
-
+  reviews?: ReviewPostType[]
+  url?: string;
 }
 
 export interface VideoPostType {
@@ -63,7 +25,7 @@ export interface VideoPostType {
   description?: string;
   tags?: string[];
   publishedAt: string | number;
-  channelName: string;
+  channelTitle: string;
   likeCount?: number;
   viewCount?: number;
   thumbnail?: string;
@@ -77,7 +39,7 @@ export interface VideoReviewDTO {
   description: string;
   tags: string[];
   publishedAt: {value: number};
-  channelName: string;
+  channelTitle: string;
   likeCount: number;
   viewCount: number;
   userToWatch?: VideoType[];
