@@ -10,6 +10,7 @@ export const addVideoURL = (video: VideoType): VideoType => {
 }
 
 export const addVideoURLToList = (response: VideoType[]): VideoType[] => {
+  console.log(response)
   response.map((video) => {
       video.url = videoUrl(video.id)
   });

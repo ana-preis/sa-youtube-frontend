@@ -15,12 +15,14 @@ const AllVideosList = (props: AllVideosListProps) => {
       renderVideos = videos.sort((a,b) => Number(b.averageRating) - Number(a.averageRating));
       return renderVideos.map((video) => {
         return (
-          <div className="flex-column">
-            <h3 className="title-video-row_details">{video.title}</h3>
-            <Link className="a-row_details" to={`/videos/${video.id}`}>
-              <img className="img-row_details" src={video.thumbnailUrl} />
-            </Link>
-            <div className="row-footer-text_details">{video.viewCount} views</div>
+          <div className="all-videos-row_details">
+            <div className="flex-column">
+              <h3 className="title-video-row_details">{video.title}</h3>
+              <Link className="a-row_details" to={`/videos/${video.id}`}>
+                <img className="img-row_details" src={video.thumbnailUrl} />
+              </Link>
+              <div className="row-footer-text_details">{video.viewCount} views</div>
+            </div>
           </div>
         )
       })
@@ -36,9 +38,7 @@ const AllVideosList = (props: AllVideosListProps) => {
     <div className="width-100">
       <h2 className="title-row_details">Todos</h2>
       <div className="flex-row jc-center">
-        <div className="all-videos-row_details">
-          {renderVideos()}
-        </div>
+        {renderVideos()}
       </div>
     </div>
   )
