@@ -2,7 +2,7 @@ import { VideoType } from "../../../../types/Video";
 import { Link } from "react-router-dom";
 
 interface MostPopularProps {
-  videos: VideoType[] | undefined;
+  videos: VideoType[];
 }
 
 const MostPopular = (props: MostPopularProps) => {
@@ -11,7 +11,7 @@ const MostPopular = (props: MostPopularProps) => {
 
   const renderVideos = () => {
     let renderVideos;
-    if(videos) {
+    if(videos.length > 0) {
       renderVideos = videos.sort((a,b) => Number(b.viewCount) - Number(a.viewCount));
       renderVideos = renderVideos.slice(0,4);
       return renderVideos.map((video) => {

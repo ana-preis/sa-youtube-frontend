@@ -2,7 +2,7 @@ import { VideoType } from "../../../../types/Video";
 import { Link } from "react-router-dom";
 
 interface BestRatedListProps {
-  videos: VideoType[] | undefined;
+  videos: VideoType[];
 }
 
 const BestRatedList = (props: BestRatedListProps) => {
@@ -11,7 +11,7 @@ const BestRatedList = (props: BestRatedListProps) => {
 
   const renderVideos = () => {
     let renderVideos;
-    if(videos) {
+    if(videos.length > 0) {
       renderVideos = videos.sort((a,b) => Number(b.averageRating) - Number(a.averageRating));
       renderVideos = renderVideos.slice(0,4);
       return renderVideos.map((video) => {

@@ -1,19 +1,20 @@
 import "./styles.css";
-import { MockCategoryList } from "../../mocks/MockCategoryList";
-import { CategoryType } from "../../types/Category";
+import { CategorySearchType } from "../../types/Category";
 import { truncateVideoCount } from "../../helpers/truncateVideoCount";
 import { videoUrl } from "../../helpers/videoTransformer";
 import { Link } from 'react-router-dom';
 
 interface CategoryContainerProps {
   handleOnClickAllCategories: () => any;
+  categories: CategorySearchType[];
 }
+// VER PROBLEMA AQUI
 
 const CategoryContainer = (props: CategoryContainerProps) => {
 
-  const { handleOnClickAllCategories } = props;
+  const { handleOnClickAllCategories, categories } = props;
 
-  const renderCategory = (category: CategoryType) => {
+  const renderCategory = (category: CategorySearchType) => {
     const videoCount = truncateVideoCount(category.viewCount);
     return (
       <Link to={`/categories/${category.id}`} className="flex-column cards-category_container">
@@ -37,7 +38,7 @@ const CategoryContainer = (props: CategoryContainerProps) => {
         }
         <div className="video-footer flex-row">
           <span className="video-footer-text">
-            + {videoCount}k visualizacoes
+            + {videoCount}k visualizações
           </span>
           <button className="arrow-left_btn">
             <img
@@ -55,7 +56,7 @@ const CategoryContainer = (props: CategoryContainerProps) => {
     <div className="flex-column width-100 ai-center">
       <div className="title">Categorias:</div>
       <div className="category-container">
-        {MockCategoryList.map((c) => renderCategory(c))}
+        {categories.map((c) => renderCategory(c))}
       </div>
       <div className="flex-row category-btn-row">
         <a onClick={handleOnClickAllCategories} className="btn category-btn flex-row">

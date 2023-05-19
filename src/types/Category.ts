@@ -8,14 +8,14 @@ export interface CategoryType {
   userCount?: number;
   videoCount?: number;
   viewCount?: number;
-  videoList?: VideoType[];
+  videoDTOList: VideoType[];
 }
 
 export interface CategorySearchType {
   id: string;
   name: string;
   description?: string;
-  userList?: UserType[];
+  userList: UserType[];
   viewCount?: number;
-  videoList?: VideoType[];
+  videoList: VideoType[];
 }

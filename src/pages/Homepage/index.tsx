@@ -9,9 +9,11 @@ import { handleFetchCategoriesByName } from "../../services/CategoryServices";
 import './styles.css'
 import SearchResults from "../../components/SearchResults";
 import { Link } from 'react-router-dom';
+import { useLoaderData } from "react-router-dom";
+import { CategorySearchType } from "../../types/Category";
 
 const Homepage = () => {
-
+  const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [searchType, setSearchType] = useState<string>("")
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
@@ -22,11 +24,17 @@ const Homepage = () => {
     setSearchType(listType)
     setSearchText(text)
     if(listType === "videos") {
-      handleFetchVideos(text).then((v) => setData(v));
+      handleFetchVideos(text).then((v) => {
+        setData(v)
+        setIsFilterActive(true)
+      });
     } else {
-      handleFetchCategoriesByName(text).then((v) => setData(v))
+      handleFetchCategoriesByName(text).then((v) => {
+        setData(v)
+        setIsFilterActive(true)
+      })
     }
-    setIsFilterActive(true)
+    
   }
 
   const handleOnClickAllCategories = () => {
@@ -44,14 +52,13 @@ const Homepage = () => {
       </div>
       <img src="./img-home-bg.svg" alt="icon-search" className="img-home-bg"/>
       <SearchBar 
-        setIsFilterActive={setIsFilterActive} 
         onClickSearch={onClickSearch} 
         listType={selectedFilter ?? ""} 
         isDropdownVisible={true}
       />
       {!isFilterActive ?
         <>
-          <CategoryContainer handleOnClickAllCategories={handleOnClickAllCategories} />
+          <CategoryContainer categories={categoryLoader.slice(0,4)} handleOnClickAllCategories={handleOnClickAllCategories} />
           <BigLogoCard />
         </>
       :

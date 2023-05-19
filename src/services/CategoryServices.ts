@@ -10,3 +10,8 @@ export const handleFetchCategoryByID = async (id: string | undefined) => {
   const response = await api.get<CategoryType>(`http://localhost:8080/categories/${id}`)
   return response;
 }
+
+export const handleFetchCategories = async () => {
+  const response = await api.get<CategoryType[]>(`http://localhost:8080/categories`)
+  return response;
+}

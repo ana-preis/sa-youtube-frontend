@@ -16,12 +16,17 @@ import {
   Route
 } from "react-router-dom";
 import CategoryDetails from "./pages/CategoryDetails";
-import { handleFetchCategoryByID } from "./services/CategoryServices";
+import { handleFetchCategoryByID, handleFetchCategories } from "./services/CategoryServices";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<PageBase />}>
-      <Route path="home" element={<Homepage />} />
+      <Route path="home" 
+        element={<Homepage />} 
+        loader={() => {
+          return handleFetchCategories()
+        }} 
+      />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
       <Route path="videos/:id" element={<VideoDetails />} loader={({ params }) => {

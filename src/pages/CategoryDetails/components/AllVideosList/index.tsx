@@ -3,19 +3,20 @@ import { Link } from "react-router-dom";
 import './styles.css'
 
 interface AllVideosListProps {
-  videos: VideoType[] | undefined;
+  videos: VideoType[];
+  title?: string;
 }
 
 const AllVideosList = (props: AllVideosListProps) => {
-  const { videos } = props;
+  const { videos, title } = props;
 
   const renderVideos = () => {
     let renderVideos;
-    if(videos) {
+    console.log(videos)
+    if(videos.length > 0) {
       renderVideos = videos.sort((a,b) => Number(b.averageRating) - Number(a.averageRating));
       return renderVideos.map((video) => {
         return (
-          <div className="all-videos-row_details">
             <div className="flex-column">
               <h3 className="title-video-row_details">{video.title}</h3>
               <Link className="a-row_details" to={`/videos/${video.id}`}>
@@ -23,7 +24,6 @@ const AllVideosList = (props: AllVideosListProps) => {
               </Link>
               <div className="row-footer-text_details">{video.viewCount} views</div>
             </div>
-          </div>
         )
       })
     }
@@ -36,8 +36,8 @@ const AllVideosList = (props: AllVideosListProps) => {
 
   return (
     <div className="width-100">
-      <h2 className="title-row_details">Todos</h2>
-      <div className="flex-row jc-center">
+      <h2 className="title-row_details">{title ?? "Todos"}</h2>
+      <div className="all-videos-row_details">
         {renderVideos()}
       </div>
     </div>

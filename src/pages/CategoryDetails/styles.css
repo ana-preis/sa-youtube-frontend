@@ -25,6 +25,7 @@
 .title-video-row_details {
   margin: 0 0 0.5rem 0;
   font-size: 1rem;
+  width: 320px;
 }
 
 .img-row_details {
@@ -49,4 +50,5 @@
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  align-items: flex-end;
 }

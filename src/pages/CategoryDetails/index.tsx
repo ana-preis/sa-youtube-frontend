@@ -3,10 +3,9 @@ import { CategoryType } from "../../types/Category";
 import {
   useLoaderData,
 } from "react-router-dom";
-import { MockCategory } from "../../mocks/MockCategoryList";
 import './styles.css'
 import SearchBar from "../../components/SearchBar";
-import { handleFetchCategoriesByName } from "../../services/CategoryServices";
+import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
 import CategoryHeader from "./components/CategoryHeader";
 import BestRatedList from "./components/BestRatedList";
 import MostPopular from "./components/MostPopularList";
@@ -26,26 +25,43 @@ const CategoryDetails = () => {
   const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
     setSearchText(text)
-    handleFetchCategoriesByName(text).then((v) => setData(v))
-    setIsFilterActive(true)
+    handleFetchVideosByCategoryID(text, category.id).then((v) => {
+      setData(v)
+      setIsFilterActive(true)
+    })
+    
+  }
+
+  const renderDefaultContainers = () => {
+    return (
+      <>
+        <CategoryHeader category={category} />
+        <hr className="category-details-hr" />
+        <BestRatedList videos={category.videoDTOList} />
+        <hr className="category-details-hr" />
+        <MostPopular videos={category.videoDTOList} />
+        <hr className="category-details-hr" />
+        <AllVideosList videos={category.videoDTOList}/>
+      </>
+    )
+  }
+
+  const renderVideoSearchList = () => {
+    console.log("render , ", data)
+    return (
+      <AllVideosList videos={data} title="" />
+    )
   }
 
   return (
     <div className="width-100 flex-column category-details-container">
       <SearchBar 
-        setIsFilterActive={setIsFilterActive} 
         onClickSearch={onClickSearch} 
         listType={selectedFilter ?? ""}
         isDropdownVisible={false}
         placeholder="Pesquise os vídeos dessa categoria aqui"
       />
-      <CategoryHeader category={category} />
-      <hr className="category-details-hr" />
-      <BestRatedList videos={category.videoList} />
-      <hr className="category-details-hr" />
-      <MostPopular videos={category.videoList} />
-      <hr className="category-details-hr" />
-      <AllVideosList videos={category.videoList}/>
+      {isFilterActive ? renderVideoSearchList() : renderDefaultContainers()}
     </div>
   )
 }

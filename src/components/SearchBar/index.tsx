@@ -3,7 +3,6 @@ import { SetStateAction, useState } from "react";
 import Dropdown from "../Dropdown";
 
 interface SearchBarProps {
-  setIsFilterActive: React.Dispatch<React.SetStateAction<boolean>>;
   onClickSearch: (text: any, listType: any) => any;
   listType: string;
   styles?: string;
@@ -12,14 +11,13 @@ interface SearchBarProps {
 }
 
 const SearchBar = (props: SearchBarProps) => {
-  const { setIsFilterActive, onClickSearch, listType, styles, isDropdownVisible, placeholder } = props;
+  const { onClickSearch, listType, styles, isDropdownVisible, placeholder } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [listTypeValue, setListTypeValue] = useState(listType)
 
 
   const handlePesquisar = () => {
-    setIsFilterActive(true)
     onClickSearch(inputValue, listTypeValue)
   }
   

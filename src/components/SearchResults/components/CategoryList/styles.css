@@ -34,6 +34,9 @@ body {
     0 0 0 1px var(--card-border-color);
   border-radius: 15px;
   transition: box-shadow 0.25s;
+  height: 15rem;
+  overflow-y: hidden;
+  justify-content: space-between;
 }
 
 .category-results-container:hover {
@@ -56,6 +59,8 @@ body {
   font-size: 14px;
   line-height: 1.7;
   border-bottom: 1px solid rgba(204, 204, 204, 0.37);
+  height: 7rem;
+  overflow-y: hidden;
 }
 
 .card-footer {

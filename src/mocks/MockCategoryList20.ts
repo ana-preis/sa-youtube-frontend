@@ -8,6 +8,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -16,6 +17,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -24,6 +26,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -32,6 +35,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -40,6 +44,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -48,6 +53,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -56,6 +62,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -64,6 +71,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -72,6 +80,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -80,6 +89,7 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 434,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -88,5 +98,6 @@ export const MockCategoryList20: CategoryType[] = [
     userCount: 34343,
     videoCount: 321,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoDTOList: []  
   }
 ];

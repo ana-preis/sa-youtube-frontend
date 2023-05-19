@@ -5,25 +5,25 @@ export const MockCategoryList: CategoryType[] = [
   {
     id: "test-id",
     name: "Frontend",
-    videoList: MockVideoList,
+    videoDTOList: MockVideoList,
     viewCount: 21989,
   },
   {
     id: "test-id",
     name: "Backend",
-    videoList: MockVideoList,
+    videoDTOList: MockVideoList,
     viewCount: 21989,
   },
   {
     id: "test-id",
     name: "Tutoriais",
-    videoList: MockVideoList,
+    videoDTOList: MockVideoList,
     viewCount: 21989,
   },
   {
     id: "test-id",
     name: "Inteligencia Artificial",
-    videoList: MockVideoList,
+    videoDTOList: MockVideoList,
     viewCount: 21989,
   },
 ];
@@ -32,6 +32,6 @@ export const MockCategory: CategoryType = {
   id: "test-id",
   name: "Frontend",
   description: "Frontend videos for studying, lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun lorem ipsun",
-  videoList: MockVideoList,
+  videoDTOList: MockVideoList,
   viewCount: 21989,
 }
