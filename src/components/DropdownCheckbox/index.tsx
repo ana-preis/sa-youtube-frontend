@@ -3,31 +3,40 @@ import { CategoryType } from "../../types/Category";
 import './styles.css'
 
 interface DropdownCheckboxProps {
-  options: CategoryType[]
-  setCategory: React.Dispatch<React.SetStateAction<string[]>>
+  options: CategoryType[];
+  setCategory: React.Dispatch<React.SetStateAction<string[]>>;
+  savedCategories: CategoryType[];
 }
 
 const DropdownCheckbox = (props: DropdownCheckboxProps) => {
-  const { options } = props;
+  const { options, setCategory, savedCategories } = props;
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
 
   const mountList = (): {key: string, value: string}[] => {
     let categories: {key: string, value: string}[] = [];
     options.map((category) => {
       categories = categories.concat( { key: category.id, value: category.name } )
     })
+    if(savedCategories.length > 0) {
+      // implementar checked 
+    }
     return categories;
   }
 
   const [list, setList] = useState(mountList());
-  const [checkedItems, setCheckedItems] = useState<string[]>([]);
+
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
     if (checked) {
       setCheckedItems((prevCheckedItems) => [...prevCheckedItems, value]);
+      setCategory((prevCheckedItems) => [...prevCheckedItems, value])
     } else {
       setCheckedItems((prevCheckedItems) =>
         prevCheckedItems.filter((item) => item !== value)
+      );
+      setCategory((prevCheckedItems) =>
+      prevCheckedItems.filter((item) => item !== value)
       );
     }
   };
@@ -42,8 +51,8 @@ const DropdownCheckbox = (props: DropdownCheckboxProps) => {
             <input
               type="checkbox"
               name="dropdown-group"
-              value={item.value}
-              checked={checkedItems.includes(item.value)}
+              value={item.key}
+              checked={checkedItems.includes(item.key)}
               onChange={handleCheckboxChange}
               className="checkbox"
             />

@@ -14,19 +14,19 @@ const VideoList = (props: VideoListProps) => {
 
   const renderVideoList : any = (video : VideoType) => {
     return (
-      <div className="flex-row video-container-results ai-center">
-        <Link to={`/videos/${video.id}`}>
+      <Link to={`/videos/${video.id}`}>
+        <div className="flex-row video-container-results ai-center">
           <img src={video.thumbnailUrl}></img>  
-        </Link>      
-        <div className="flex-column video-text_results">
-          <a className="video-title_results">{video.title}</a>
-          <div className="flex-row video-details_results ai-center">
-            <a className="video-channel_results">{video.channelTitle}</a>
-            <span className="video-publish_results"> Publicado em {video.publishedAt}</span>
+          <div className="flex-column video-text_results">
+            <a className="video-title_results">{video.title}</a>
+            <div className="flex-row video-details_results ai-center">
+              <a className="video-channel_results">{video.channelTitle}</a>
+              <span className="video-publish_results"> Publicado em {video.publishedAt}</span>
+            </div>
+            <p className="video-description_results">{video.description}</p>
           </div>
-          <p className="video-description_results">{video.description}</p>
         </div>
-      </div>
+      </Link>
     )
   }
   

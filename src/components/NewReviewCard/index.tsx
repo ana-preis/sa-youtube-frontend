@@ -60,8 +60,7 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 					(categoryList.length > 0) ?
 						<>
 							<h2 className="new-review-title">Escolha uma categoria para o vídeo:</h2>
-							<span className="optional" >(opcional)</span>
-							<DropdownCheckbox options={categoryList} setCategory={setCategory}/>
+							<DropdownCheckbox options={categoryList} setCategory={setCategory} savedCategories={[]}/>
 						</>
 					:
 					<></>

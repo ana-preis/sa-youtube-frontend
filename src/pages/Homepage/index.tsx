@@ -41,6 +41,13 @@ const Homepage = () => {
     onClickSearch("", "categories")
   }
 
+  const sortCategoryList = (): CategorySearchType[] => {
+    let list = [];
+    list = categoryLoader.sort((a,b) => b.videoList.length - a.videoList.length)
+    console.log(list)
+    return list.slice(0,4)
+  }
+
   return (
     <>
       <div className="flex-column home-main-text">
@@ -58,7 +65,7 @@ const Homepage = () => {
       />
       {!isFilterActive ?
         <>
-          <CategoryContainer categories={categoryLoader.slice(0,4)} handleOnClickAllCategories={handleOnClickAllCategories} />
+          <CategoryContainer categories={sortCategoryList()} handleOnClickAllCategories={handleOnClickAllCategories} />
           <BigLogoCard />
         </>
       :

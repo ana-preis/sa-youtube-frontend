@@ -30,6 +30,10 @@ const VideoDetails = () => {
       alert("A nota deve ser entre 0 e 10!")
       return
     }
+		if(category.length === 0) {
+			alert("Deve haver pelo menos uma categoria selecionada!")
+      return
+		}
 
     const now = Date.now()
 
@@ -38,11 +42,12 @@ const VideoDetails = () => {
     const newReview: ReviewPostDTO = {
       rating: Number(rating),
       text,
-      userId: "d2e83590-fb49-47b1-a301-027c0b5657bd",
+      userId: "181d4695-6bc6-4958-8528-4a45de31d26f",
       publishedAt: now,
       videoId: video.id,
 			categoryIdList: category
     }
+		
 		handleSaveNewReview(video, newReview).then((response) => {
 			alert(`Sua avaliação foi enviada :) `)
 			window.location.reload();
