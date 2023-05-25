@@ -47,7 +47,6 @@ const CategoryDetails = () => {
   }
 
   const renderVideoSearchList = () => {
-    console.log("render , ", data)
     return (
       <AllVideosList videos={data} title="" />
     )

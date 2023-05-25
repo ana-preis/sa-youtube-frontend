@@ -12,6 +12,13 @@ export const addVideoURL = (video: VideoType): VideoType => {
 export const addVideoURLToList = (response: VideoType[]): VideoType[] => {
   response.map((video) => {
       video.url = videoUrl(video.id)
+      video.title = decodeHtml(video.title)
   });
   return response;
+}
+
+const decodeHtml = (html: string) => {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
 }

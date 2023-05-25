@@ -25,6 +25,13 @@ const SearchBar = (props: SearchBarProps) => {
     setListTypeValue(type);
   }
 
+  
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      onClickSearch(inputValue, listTypeValue)
+    }
+  };
+
   return (
     <div className={`flex-row search-bar ${styles}`}>
       <img src="./log2.svg" alt="logo" className="search-bar-logo" />
@@ -35,7 +42,12 @@ const SearchBar = (props: SearchBarProps) => {
           />
         }
         <div className="flex-row search-input">
-          <input className="text" onChange={(e) => setInputValue(e.target.value)} placeholder={placeholder}/>
+          <input 
+            className="text"
+            onChange={(e) => setInputValue(e.target.value)} 
+            placeholder={placeholder} 
+            onKeyDown={handleKeyDown}
+          />
         </div>
         <a className="btn btn-3" onClick={() => handlePesquisar()}>
           Pesquisar

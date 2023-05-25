@@ -17,6 +17,7 @@ export interface ReviewPostDTO {
   rating: number;
   text: string;
   publishedAt: number;
+  categoryIdList: string[]
 }
 
 export interface ReviewGetType {

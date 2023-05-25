@@ -18,7 +18,6 @@ const CategoryList = (props: CategoryListProps) => {
   }
 
   const renderCategories = (category: CategorySearchType) => {
-    console.log(category)
     return (
     <Link to={`/categories/${category.id}`} className="category-results-container flex-column">
       <h2 className="category-title-card">{category.name}</h2>

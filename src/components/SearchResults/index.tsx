@@ -10,7 +10,6 @@ interface SearchResultsProps {
 
 const SearchResults = (props : SearchResultsProps) => {
   const { listType, data, searchText } = props
-
     return (
       <div className="search-results-container flex-column">
         {listType === "videos" ? <VideoList videos={data} text={searchText} searchType={listType}/> : <CategoryList categories={data}/>}

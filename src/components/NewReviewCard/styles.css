@@ -3,8 +3,7 @@
 }
 
 .new-review-card {
-	height: 22rem;
-	background: #fff;
+	background: rgba(253, 67, 157, 0.146);
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	border-radius: 25px;
 	padding: 2rem 2rem;
@@ -14,6 +13,7 @@
 .new-review-title {
   font-weight: 400;
   color: #000;
+  margin-bottom: 0;
 }
 
 .review-header {
@@ -88,9 +88,8 @@
 }
 
 .optional {
-  color: #ccc;
+  color: rgb(149, 149, 149);
   font-size: 1rem;
-  padding-left: 20px;
 }
 
 .new-category-input {

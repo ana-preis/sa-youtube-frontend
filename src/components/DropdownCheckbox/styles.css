@@ -1,0 +1,24 @@
+.check-all {
+  color: rgb(253, 67, 157);
+}
+
+.check-all:hover {
+  text-decoration: underline;
+}
+
+.dropdown-checkbox {
+  margin: 1rem 0 2rem 0;
+}
+
+.dropdown-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.dropdown-option {
+  margin-bottom: 1rem;
+}
+
+.checkbox {
+  margin-right: 0.8rem;
+}

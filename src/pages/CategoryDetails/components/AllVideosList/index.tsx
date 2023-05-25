@@ -12,7 +12,6 @@ const AllVideosList = (props: AllVideosListProps) => {
 
   const renderVideos = () => {
     let renderVideos;
-    console.log(videos)
     if(videos.length > 0) {
       renderVideos = videos.sort((a,b) => Number(b.averageRating) - Number(a.averageRating));
       return renderVideos.map((video) => {

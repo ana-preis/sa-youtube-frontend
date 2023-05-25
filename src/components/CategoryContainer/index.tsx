@@ -8,7 +8,6 @@ interface CategoryContainerProps {
   handleOnClickAllCategories: () => any;
   categories: CategorySearchType[];
 }
-// VER PROBLEMA AQUI
 
 const CategoryContainer = (props: CategoryContainerProps) => {
 
@@ -24,7 +23,7 @@ const CategoryContainer = (props: CategoryContainerProps) => {
             <img src="./heart.svg" alt="icon-heart" className="icon-heart" />
           </button>
         </div>
-        {category.videoList ? 
+        {category.videoList.length > 0 ? 
           <iframe
             className="video"
             src= {videoUrl(category.videoList[0].id)}
@@ -34,12 +33,17 @@ const CategoryContainer = (props: CategoryContainerProps) => {
             allowFullScreen
           ></iframe>
           :
-          <div className="video"></div>
+          <div className="video flex-column jc-center">
+            <span className="no-videos">Ainda não há vídeos nessa categoria</span>
+          </div>
         }
         <div className="video-footer flex-row">
-          <span className="video-footer-text">
-            + {videoCount}k visualizações
-          </span>
+          {
+            category.videoList.length > 0 ??
+              <span className="video-footer-text">
+                + {videoCount}k visualizações
+              </span>
+          }
           <button className="arrow-left_btn">
             <img
               src="./arrow-left.svg"

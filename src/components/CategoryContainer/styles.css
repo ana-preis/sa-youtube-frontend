@@ -68,7 +68,7 @@
 
 .video-footer {
   margin-top: 0.5rem;
-  justify-content: space-between;
+  justify-content: end;
 }
 
 .category-btn-row{
@@ -98,4 +98,9 @@
 .icon-more {
   justify-content: end;
   align-items: center;
+}
+
+.no-videos {
+  color: #505050;
+  font-size: 0.8rem;
 }

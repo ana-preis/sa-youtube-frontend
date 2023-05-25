@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './styles.css'
 import { MockVideoList } from "../../mocks/MockVideoList";
 import VideoDetailCard from '../../components/VideoDetailCard';
@@ -16,11 +16,12 @@ const VideoDetails = () => {
 	const [showNewReview, setShowNewReview] = useState(false);
   const [video, setVideo] = useState<VideoType>(videoLoader);
 
+
 	const renderNewReviewModal = () => {
 		setShowNewReview(true)
 	}
 
-	const handleSaveReview = (rating: number | undefined, text: string) => {
+	const handleSaveReview = (rating: number | undefined, text: string, category: string[]) => {
 		if (!rating) {
       alert("Preencha o campo da nota!")
       return
@@ -40,9 +41,10 @@ const VideoDetails = () => {
       userId: "d2e83590-fb49-47b1-a301-027c0b5657bd",
       publishedAt: now,
       videoId: video.id,
+			categoryIdList: category
     }
 		handleSaveNewReview(video, newReview).then((response) => {
-			alert(`Sua nota foi enviada :) `)
+			alert(`Sua avaliação foi enviada :) `)
 			window.location.reload();
 		})
 	}
