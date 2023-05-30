@@ -14,7 +14,8 @@ export interface VideoType {
   viewCount: number;
   reviewCount?: number;
   averageRating?: number;
-  reviews?: ReviewSearchType[]
+  reviews?: ReviewSearchType[];
+  categoryIDList?: string[];
   url?: string;
 }
 

@@ -1,25 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CategoryType } from "../../types/Category";
 import './styles.css'
 
 interface DropdownCheckboxProps {
   options: CategoryType[];
   setCategory: React.Dispatch<React.SetStateAction<string[]>>;
-  savedCategories: CategoryType[];
+  savedCategories: string[];
 }
 
 const DropdownCheckbox = (props: DropdownCheckboxProps) => {
   const { options, setCategory, savedCategories } = props;
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
+  const [disabledItems, setDisabledItems] = useState<string[]>([])
+
+
+  useEffect(() => {
+    if(savedCategories.length > 0) {
+      setCheckedItems(savedCategories)
+      setCategory(savedCategories)
+      setDisabledItems(savedCategories)
+    }
+  }, [])
 
   const mountList = (): {key: string, value: string}[] => {
     let categories: {key: string, value: string}[] = [];
     options.map((category) => {
       categories = categories.concat( { key: category.id, value: category.name } )
     })
-    if(savedCategories.length > 0) {
-      // implementar checked 
-    }
     return categories;
   }
 
@@ -55,6 +62,7 @@ const DropdownCheckbox = (props: DropdownCheckboxProps) => {
               checked={checkedItems.includes(item.key)}
               onChange={handleCheckboxChange}
               className="checkbox"
+              disabled={disabledItems.includes(item.key)}
             />
             {item.value}
           </label>

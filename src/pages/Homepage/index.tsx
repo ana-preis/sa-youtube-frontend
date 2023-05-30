@@ -44,7 +44,6 @@ const Homepage = () => {
   const sortCategoryList = (): CategorySearchType[] => {
     let list = [];
     list = categoryLoader.sort((a,b) => b.videoList.length - a.videoList.length)
-    console.log(list)
     return list.slice(0,4)
   }
 
