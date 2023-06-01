@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 import CategoryDetails from "./pages/CategoryDetails";
 import { handleFetchCategoryByID, handleFetchCategories } from "./services/CategoryServices";
+import UserDetails from "./pages/UserDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,12 @@ const router = createBrowserRouter(
       }} />
       <Route path="categories/:id" 
         element={<CategoryDetails />} 
+        loader={({ params }) => {
+          return handleFetchCategoryByID(params.id)
+        }} 
+      />
+      <Route path="users/1" 
+        element={<UserDetails />} 
         loader={({ params }) => {
           return handleFetchCategoryByID(params.id)
         }} 

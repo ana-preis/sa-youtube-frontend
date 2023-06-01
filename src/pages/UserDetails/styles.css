@@ -1,0 +1,75 @@
+.user-detail {
+  max-height: 68rem;
+	width: 100%;
+	margin: 2rem 0;
+	justify-content: center;
+	gap: 3rem;
+}
+
+.user-container {
+  background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
+	border-radius: 25px;
+	width: 53%;
+	justify-content: center;
+	max-height: 73rem;
+}
+
+.user-categories-container{
+	width: 22%;
+	background: linear-gradient(180deg, #7402E5 0%, rgba(0, 0, 0, 0) 100%), #3B1BFF;
+	border-radius: 25px;
+  min-height: 53rem;
+}
+
+.user-categories-title {
+  color: #000;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.user-detail-title {
+  color: #000;
+  text-align: center;
+}
+
+.user-detail_text-container {
+	margin: 4rem 4rem 0;
+	gap: 2rem;
+}
+
+.user-detail_text-title {
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.user-detail_text {
+	font-size: 1rem;
+	margin-left: 1rem;
+}
+
+.username-edit {
+	justify-content: space-between;
+}
+
+.user-detail-edit_button {
+	height: 3rem;
+	width: 10rem;
+	font-size: 1rem;
+  background: rgb(253, 67, 157);
+  border: 1px solid rgb(253, 67, 157);
+  box-shadow: 0px 2px 0 rgba(226, 44, 132, 0.658), 2px 4px 6px rgb(255, 22, 135);
+  transition: all 150ms linear;
+}
+
+.user-detail-edit_button:hover {
+	background: rgb(230, 52, 138);
+  border: 1px solid rgba(226, 44, 132, 0.658);
+  box-shadow: 1px 1px 2px rgba(#fff, 0.2);
+  color: rgba(255, 255, 255, 0.788);
+  transition: all 250ms linear;
+}
+
+.input-username {
+	font-size: 1rem;
+	background-color: #EEE;
+}

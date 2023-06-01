@@ -1,3 +1,5 @@
+import { CategorySearchType, CategoryType } from "./Category";
+import { ReviewSearchType, ReviewType } from "./Review";
 import { VideoType } from "./Video";
 
 export interface UserType {
@@ -14,6 +16,8 @@ export interface UserOutDTO {
   id: string;
   username: string;
   email: string;
+  reviewList?: ReviewSearchType[];
+  categoryList?: CategorySearchType[]
 }
 
 export interface UserAuth {

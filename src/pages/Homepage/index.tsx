@@ -50,7 +50,7 @@ const Homepage = () => {
   return (
     <>
       <div className="flex-column home-main-text">
-        <h2>Acesse avaliações de conteúdos educativos do Youtube</h2>
+        <h2 className="t1">Acesse avaliações de conteúdos educativos do Youtube</h2>
         <span className="text-span">Encontre milhares de avaliações, vídeos em alta  e grupos perfeitos para você - tudo a um click de distância. </span>
         <Link to="/signup">
           <Button className="sign-up-btn" text="Cadastre-se" />
