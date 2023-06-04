@@ -28,6 +28,13 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
 		}
 		return emptyStars;
 	}
+  const formatDescription = () => {
+    const stringList = video.description.split("\n")
+    return stringList.map((f) => {
+      return <p className="description-line">{f}</p>
+    })
+  }
+
 
   return (
     <div className="video-container flex-column">
@@ -38,7 +45,7 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
       <div className="flex-row description">
         <div className="flex-column text-container">
           <p>Por <a className="channel">{video.channelTitle}</a></p>
-          <p>{video.description}</p>
+          {formatDescription()}
         </div>
         <div className="rating-card flex-column">
           <h3>Média de avaliações</h3>

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './styles.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleLogin } from "../../services/AuthService";
-import { redirect } from "react-router-dom";
 
 const Login = () => {
 
+  const navigate = useNavigate();
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [alertEmail, setAlertEmail] = useState(false);
@@ -38,7 +38,7 @@ const Login = () => {
 			//SAVE TOKEN AND USER INFO
 
 			alert(`Bem vindo :) `)
-			redirect("/home")
+			navigate("/home")
 
 		})
     

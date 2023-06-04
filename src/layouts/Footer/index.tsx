@@ -6,8 +6,10 @@ const Footer = () => {
     <footer id="footer">
       <div className="logo">ComuniTube</div>
       <div>
-        &copy; Todos os direitos reservados. (CNPJ: 000000000000) Rua Santa
-        Ricota, av. Tulipa, Florianópolis, Sc cep 000000. Telefone: 48 3333-333
+        <p>
+           Endereço: Rua Santa Ricota, av. Tulipa, Florianópolis, Sc cep 000000. Telefone: 48 3333-333. (CNPJ: 000000000000) .
+        </p>
+        <p>Por Ana Rute Preis e Silva e Rafael do Nascimento Pereira. &copy; Todos os direitos reservados.</p>
       </div>
       <div className="contacts link-contacts">
         <a className="">Instagram</a>

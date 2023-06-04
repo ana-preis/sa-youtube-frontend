@@ -1,4 +1,4 @@
-import { CategoryType } from "../types/Category";
+import { CategorySearchType, CategoryType } from "../types/Category";
 
 export const MockCategoryList20: CategoryType[] = [
   {
@@ -99,5 +99,97 @@ export const MockCategoryList20: CategoryType[] = [
     videoCount: 321,
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
     videoDTOList: []  
+  }
+];
+
+
+export const MockCategorySearchList20: CategorySearchType[] = [
+  {
+    id: "1",
+    name: "Frontend",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Backend",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Tutoriais",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
+  },
+  {
+    id: "1",
+    name: "Inteligencia Artificial",
+    viewCount: 21989,
+    userList: [],
+    description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
+    videoList: []  
   }
 ];

@@ -1,5 +1,4 @@
 import VideoList from "./components/VideoList";
-import CategoryList from "./components/CategoryList";
 import CategoryListV2 from "./components/CategoryListV2";
 import './styles.css'
 import { CategorySearchType } from "../../types/Category";

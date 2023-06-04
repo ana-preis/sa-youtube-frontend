@@ -13,6 +13,13 @@ export const api = {
       headers: { "Content-type": "application/json;charset=UTF-8"},
       mode: 'cors',
       body }),
+    
+  put: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
+  request<TResponse>(url, { 
+    method: 'PUT',
+    headers: { "Content-type": "application/json;charset=UTF-8"},
+    mode: 'cors',
+    body }),
 }
 
 async function request<TResponse>(

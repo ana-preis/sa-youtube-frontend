@@ -56,7 +56,7 @@ const Homepage = () => {
           <Button className="sign-up-btn" text="Cadastre-se" />
         </Link>
       </div>
-      <img src="./img-home-bg.svg" alt="icon-search" className="img-home-bg"/>
+      <img src="./img-home-bg2.png" alt="icon-search" className="img-home-bg"/>
       <SearchBar 
         onClickSearch={onClickSearch} 
         listType={selectedFilter ?? ""} 

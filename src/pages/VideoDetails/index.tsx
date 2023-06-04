@@ -16,7 +16,6 @@ const VideoDetails = () => {
 	const [showNewReview, setShowNewReview] = useState(false);
   const [video, setVideo] = useState<VideoType>(videoLoader);
 
-
 	const renderNewReviewModal = () => {
 		setShowNewReview(true)
 	}

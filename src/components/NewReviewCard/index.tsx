@@ -57,13 +57,11 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 					</div>
 				</div>
 				{
-					(categoryList.length > 0) ?
+					(categoryList.length > 0) &&
 						<>
 							<h2 className="new-review-title">Escolha uma categoria para o vídeo:</h2>
 							<DropdownCheckbox options={categoryList} setCategory={setCategory} savedCategories={video.categoryIDList ?? []}/>
 						</>
-					:
-					<></>
 				}
 				<Button 
 				text="Enviar" 

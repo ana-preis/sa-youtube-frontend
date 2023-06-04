@@ -71,5 +71,35 @@
 
 .input-username {
 	font-size: 1rem;
-	background-color: #EEE;
+	background-color: #eeeeee6c;
+  margin-left: 1rem;
+  border-radius: 15px;
 }
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.278);
+  display: flex;
+}
+
+.modal-save-user {
+  margin: auto;
+  width: 90%;
+  max-width: 40rem;
+  background-color: white;
+  border-radius: 1.5rem;
+  border-radius: 25px;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding-bottom: 2rem;
+}
+
+.modal-input{
+  margin-bottom: 1rem;
+}
+

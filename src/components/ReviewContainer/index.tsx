@@ -18,10 +18,14 @@ const ReviewContainer = (props: ReviewContainerProps) => {
 	}
 
 	return (
-		<>
+		<div className="review-list-container flex-column ai-center">
 			<h2 className="review-title">Avaliações</h2>
-			{reviewList.map(renderReview)}
-		</>
+			{reviewList.length > 0 
+        ? 
+          reviewList.map(renderReview)
+        :
+          "Ainda não há avaliações aqui!"}
+		</div>
 	)
 }
 
