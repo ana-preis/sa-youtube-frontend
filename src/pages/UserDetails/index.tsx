@@ -8,6 +8,7 @@ import UserDetailCard from "./components/UserDetailCard";
 import UserCategoriesColumnCard from "./components/UserCategoriesColumnCard";
 import Button from "../../components/Button";
 import { handleUpdateUser } from "../../services/UserService";
+import { errors } from "../../services/ErrorHandler";
 
 const UserDetails = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -24,11 +25,15 @@ const UserDetails = () => {
     }
     // checkpassword
     // if(password !== userLoader) return alert("senha incorreta!")
-    handleUpdateUser(userInDTO, userLoader.id).then((r) => {
+    handleUpdateUser(userInDTO, userLoader.id)
+    .then((r) => {
       alert("Novo username salvo com sucesso!")
       setShowModal(false)
       redirect(`/users/1`)
-    })
+    }).catch((error) => {
+			console.error(errors.ERR_UPDATE_USERNAME, error);
+			alert(`${errors.ERR_UPDATE_USERNAME}${error}`)
+		});
   }
 
 	return (

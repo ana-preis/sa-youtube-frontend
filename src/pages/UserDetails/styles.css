@@ -71,9 +71,10 @@
 
 .input-username {
 	font-size: 1rem;
-	background-color: #eeeeee6c;
+	background-color: #fff;
   margin-left: 1rem;
   border-radius: 15px;
+  border: 1px solid rgba(85, 85, 85, 0.658);
 }
 
 .modal-container {

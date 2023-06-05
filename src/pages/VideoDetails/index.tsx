@@ -9,6 +9,7 @@ import NewReviewCard from '../../components/NewReviewCard';
 import { VideoType } from '../../types/Video';
 import { handleSaveNewReview } from "../../services/ReviewService";
 import { useLoaderData } from "react-router-dom";
+import { errors } from "../../services/ErrorHandler";
 
 const VideoDetails = () => {
 	const videoLoader: VideoType = useLoaderData() as VideoType;
@@ -47,10 +48,14 @@ const VideoDetails = () => {
 			categoryIdList: category
     }
 		
-		handleSaveNewReview(video, newReview).then((response) => {
+		handleSaveNewReview(video, newReview)
+		.then((response) => {
 			alert(`Sua avaliação foi enviada :) `)
 			window.location.reload();
-		})
+		}).catch((error) => {
+			console.error(errors.ERR_SAVE_REVIEW, error);
+			alert(`${errors.ERR_SAVE_REVIEW}${error}`)
+		});
 	}
 
 	return (

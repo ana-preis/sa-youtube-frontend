@@ -4,6 +4,7 @@ import {
   useLoaderData,
 } from "react-router-dom";
 import './styles.css'
+import { errors } from "../../services/ErrorHandler";
 import SearchBar from "../../components/SearchBar";
 import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
 import CategoryHeader from "./components/CategoryHeader";
@@ -25,10 +26,14 @@ const CategoryDetails = () => {
   const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
     setSearchText(text)
-    handleFetchVideosByCategoryID(text, category.id).then((v) => {
+    handleFetchVideosByCategoryID(text, category.id)
+    .then((v) => {
       setData(v)
       setIsFilterActive(true)
-    })
+    }).catch((error) => {
+      console.error(errors.ERR_SEARCH_VIDEOS_BY_CATEGORY, error);
+			alert(`${errors.ERR_SEARCH_VIDEOS_BY_CATEGORY}${category.id}. error: ${error}`)
+    });
     
   }
 

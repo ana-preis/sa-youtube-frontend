@@ -3,6 +3,7 @@ import './styles.css';
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleLogin } from "../../services/AuthService";
+import { errors } from "../../services/ErrorHandler";
 
 const Login = () => {
 
@@ -33,14 +34,18 @@ const Login = () => {
 	}
 
 	const authUser = async () => {
-		handleLogin(email, password).then((response) => {
+		handleLogin(email, password)
+		.then((response) => {
 
 			//SAVE TOKEN AND USER INFO
 
 			alert(`Bem vindo :) `)
 			navigate("/home")
 
-		})
+		}).catch((error) => {
+			console.error(errors.ERR_LOGIN, error);
+			alert(`${errors.ERR_LOGIN}${error}`)
+		});
     
 	}
 

@@ -4,6 +4,7 @@ import { UserType } from "../../types/User";
 import { Link, redirect } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleSaveNewUser } from "../../services/UserService";
+import { errors } from "../../services/ErrorHandler";
 
 const SignUp = () => {
 
@@ -49,13 +50,17 @@ const SignUp = () => {
 			email, 
 			password
 		}
-		handleSaveNewUser(body).then((response) => {
+		handleSaveNewUser(body)
+		.then((response) => {
 
 			// USE RESPONSE TO SOMETHING (UserOutDTO)
 
 			alert(`Cadastrado com sucesso :) `)
 			redirect("/login")
-		})
+		}).catch((error) => {
+			console.error(errors.ERR_SIGNUP, error);
+			alert(`${errors.ERR_SIGNUP}${error}`)
+		});
     
 	}
 

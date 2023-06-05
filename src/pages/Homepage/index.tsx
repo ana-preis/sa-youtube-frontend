@@ -7,6 +7,7 @@ import CategoryContainer from "../../components/CategoryContainer";
 import { handleFetchVideos } from "../../services/VideoServices";
 import { handleFetchCategoriesByName } from "../../services/CategoryServices";
 import './styles.css'
+import { errors } from "../../services/ErrorHandler";
 import SearchResults from "../../components/SearchResults";
 import { Link } from 'react-router-dom';
 import { useLoaderData } from "react-router-dom";
@@ -24,15 +25,23 @@ const Homepage = () => {
     setSearchType(listType)
     setSearchText(text)
     if(listType === "videos") {
-      handleFetchVideos(text).then((v) => {
+      handleFetchVideos(text)
+      .then((v) => {
         setData(v)
         setIsFilterActive(true)
+      }).catch((error) => {
+        console.error(errors.ERR_SEARCH_VIDEOS_BY_TEXT, error);
+        alert(`${errors.ERR_SEARCH_VIDEOS_BY_TEXT}${text}. error: ${error}`)
       });
     } else {
-      handleFetchCategoriesByName(text).then((v) => {
+      handleFetchCategoriesByName(text)
+      .then((v) => {
         setData(v)
         setIsFilterActive(true)
-      })
+      }).catch((error) => {
+        console.error(errors.ERR_SEARCH_CATEGORIES_BY_TEXT, error);
+        alert(`${errors.ERR_SEARCH_CATEGORIES_BY_TEXT}${text}. error: ${error}`)
+      });
     }
     
   }

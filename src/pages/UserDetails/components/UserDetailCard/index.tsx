@@ -28,6 +28,7 @@ const UserDetailCard = (props: UserDetailCardProps) => {
 
   const handleSaveUsername = () => {
     setShowModal(true)
+    setIsEditingUsername(false)
   }
 
   return (

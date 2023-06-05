@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { handleFetchCategories } from "../../services/CategoryServices";
 import { CategoryType } from "../../types/Category";
-import { 
-	VideoType
- } from '../../types/Video';
+import { VideoType } from '../../types/Video';
+import { errors } from "../../services/ErrorHandler";
 import Button from '../Button';
 import DropdownCheckbox from "../DropdownCheckbox";
 import './styles.css'
@@ -21,9 +20,13 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 	const [categoryList, setCategoryList] = useState<CategoryType[]>([])
 
 	useEffect(() => {
-    handleFetchCategories().then((v) => {
+    handleFetchCategories()
+		.then((v) => {
 			if(v) setCategoryList(v)
-    })
+    }).catch((error) => {
+      console.error(errors.ERR_GET_CATEGORIES, error);
+			alert(`${errors.ERR_GET_CATEGORIES}${error}`)
+    });
   },[])
 
 	return (
