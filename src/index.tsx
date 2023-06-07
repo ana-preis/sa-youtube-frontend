@@ -18,11 +18,12 @@ import {
 import CategoryDetails from "./pages/CategoryDetails";
 import { handleFetchCategoryByID, handleFetchCategories } from "./services/CategoryServices";
 import UserDetails from "./pages/UserDetails";
+import UserProvider from "./contexts/UserContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<PageBase />}>
-      <Route path="home" 
+    <Route path="" element={<PageBase />}>
+      <Route path="/" 
         element={<Homepage />} 
         loader={() => {
           return handleFetchCategories()

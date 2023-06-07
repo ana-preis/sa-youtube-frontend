@@ -40,7 +40,7 @@ const Login = () => {
 			//SAVE TOKEN AND USER INFO
 
 			alert(`Bem vindo :) `)
-			navigate("/home")
+			navigate("/")
 
 		}).catch((error) => {
 			console.error(errors.ERR_LOGIN, error);

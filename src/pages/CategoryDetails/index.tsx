@@ -11,6 +11,7 @@ import CategoryHeader from "./components/CategoryHeader";
 import BestRatedList from "./components/BestRatedList";
 import MostPopular from "./components/MostPopularList";
 import AllVideosList from "./components/AllVideosList";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const CategoryDetails = () => {
 
@@ -59,6 +60,7 @@ const CategoryDetails = () => {
 
   return (
     <div className="width-100 flex-column category-details-container">
+      <Breadcrumbs className="breadcrumb-category" breadcrumbPage={category.name}/>
       <SearchBar 
         onClickSearch={onClickSearch} 
         listType={selectedFilter ?? ""}

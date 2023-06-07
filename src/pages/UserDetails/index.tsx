@@ -9,6 +9,7 @@ import UserCategoriesColumnCard from "./components/UserCategoriesColumnCard";
 import Button from "../../components/Button";
 import { handleUpdateUser } from "../../services/UserService";
 import { errors } from "../../services/ErrorHandler";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const UserDetails = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -38,9 +39,7 @@ const UserDetails = () => {
 
 	return (
 		<>
-			<div className="breadcrumb">
-				Breadcrumb - Breadcrumb
-			</div>
+			<Breadcrumbs />
 			<div className="user-detail flex-row">
 				<UserDetailCard user={userLoader} setShowModal={setShowModal} setUserName={setUserName}/>
 				<UserCategoriesColumnCard caetgoryList={userLoader.categoryList ?? []} />

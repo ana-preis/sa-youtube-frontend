@@ -1,0 +1,23 @@
+.breadcrumb-not-active {
+  color: #cccccc;
+}
+
+.breadcrumb-active {
+  color: #ffffff;
+}
+
+.breadcrumb-font>span {
+  font-size: 1rem;
+}
+
+.breadcrumb-under>span:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-category {
+  background: linear-gradient(
+		rgba(2,66,229,1) 0%,
+		rgb(2, 59, 202) 35%
+	);
+  text-align: center;
+}

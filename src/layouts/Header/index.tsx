@@ -19,12 +19,12 @@ const Header = () => {
 
   const handleLogout = () => {
     // logout
-    navigate("/home")
+    navigate("/")
   }
 
 	return (
 		<div className="header-container">
-			<Link to="/home" className="link_header">
+			<Link to="/" className="link_header">
 				<a className="logo-container">
 						<img src="./log2.svg" alt="logo" className="logo-image"></img>
 						<div className="logo-text">ComuniTube</div>

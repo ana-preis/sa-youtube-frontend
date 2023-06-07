@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css'
 import { MockVideoList } from "../../mocks/MockVideoList";
 import VideoDetailCard from '../../components/VideoDetailCard';
@@ -10,15 +10,29 @@ import { VideoType } from '../../types/Video';
 import { handleSaveNewReview } from "../../services/ReviewService";
 import { useLoaderData } from "react-router-dom";
 import { errors } from "../../services/ErrorHandler";
+import { handleFetchVideos } from "../../services/VideoServices";
 
 const VideoDetails = () => {
 	const videoLoader: VideoType = useLoaderData() as VideoType;
 	const [reviewList] = useState<ReviewSearchType[]>(videoLoader.reviews ?? [])
 	const [showNewReview, setShowNewReview] = useState(false);
   const [video, setVideo] = useState<VideoType>(videoLoader);
+	const [relatedVideos, setRelatedVideos] = useState<VideoType[]>()
+
+	useEffect(() => {
+		// console.log(videoLoader.title.split(" ")[5])
+		// handleFetchVideos(videoLoader.title.split(" ")[5]).then((response) => {
+		// 	setRelatedVideos(response)
+		// }).catch(() => {
+		// 	handleFetchVideos(videoLoader.channelTitle).then((response) => {
+		// 		setRelatedVideos(response)
+		// 	})
+		// })
+	})
 
 	const renderNewReviewModal = () => {
 		setShowNewReview(true)
+		console.log(relatedVideos)
 	}
 
 	const handleSaveReview = (rating: number | undefined, text: string, category: string[]) => {
@@ -49,7 +63,7 @@ const VideoDetails = () => {
     }
 		
 		handleSaveNewReview(video, newReview)
-		.then((response) => {
+		.then(() => {
 			alert(`Sua avaliação foi enviada :) `)
 			window.location.reload();
 		}).catch((error) => {
@@ -65,7 +79,7 @@ const VideoDetails = () => {
 			</div>
 			<div className="video-detail flex-row">
 				<VideoDetailCard video={video} renderNewReviewModal={renderNewReviewModal}/>
-				<VideoColumnCard videoList={MockVideoList} />
+				<VideoColumnCard videoList={relatedVideos ?? []} />
 			</div>
 			{showNewReview && 
 			<NewReviewCard video={video} onSaveReview={handleSaveReview} />}
