@@ -4,7 +4,6 @@ import { VideoType } from "../types/Video"
 
 export const handleFetchVideoDetails = async (videoId: string | undefined) => {
   const response = await api.get<VideoType>(`http://localhost:8080/videos/${videoId}`)
-  console.log(response)
   return addVideoURL(response);
 }
 

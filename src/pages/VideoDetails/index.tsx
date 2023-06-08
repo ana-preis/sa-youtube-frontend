@@ -32,7 +32,6 @@ const VideoDetails = () => {
 
 	const renderNewReviewModal = () => {
 		setShowNewReview(true)
-		console.log(relatedVideos)
 	}
 
 	const handleSaveReview = (rating: number | undefined, text: string, category: string[]) => {

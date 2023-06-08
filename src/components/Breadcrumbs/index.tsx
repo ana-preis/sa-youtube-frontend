@@ -25,7 +25,6 @@ const Breadcrumbs = (props: BreadcrumbsProps) => {
   ];
 
   const breadcrumbs = useBreadcrumbs(routes);
-  console.log(breadcrumbs)
 
   return (
     <nav className={className}>

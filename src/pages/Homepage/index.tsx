@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import BigLogoCard from "../../components/BigLogoCard";
 import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
@@ -9,12 +9,17 @@ import { handleFetchCategoriesByName } from "../../services/CategoryServices";
 import './styles.css'
 import { errors } from "../../services/ErrorHandler";
 import SearchResults from "../../components/SearchResults";
-import { Link } from 'react-router-dom';
-import { useLoaderData } from "react-router-dom";
+import { Link, useNavigate, useLoaderData } from 'react-router-dom';
+import {  } from "react-router-dom";
 import { CategorySearchType } from "../../types/Category";
+import { UserContext } from "../../contexts/UserContext";
+import { useUser } from "../../layouts/PageBase";
 
 const Homepage = () => {
   const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
+  const navigate = useNavigate();
+
+  // const {user} = useUser();
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [searchType, setSearchType] = useState<string>("")
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
@@ -47,7 +52,7 @@ const Homepage = () => {
   }
 
   const handleOnClickAllCategories = () => {
-    onClickSearch("", "categories")
+    navigate("/categories")
   }
 
   const sortCategoryList = (): CategorySearchType[] => {

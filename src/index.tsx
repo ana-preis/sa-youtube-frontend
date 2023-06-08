@@ -19,33 +19,43 @@ import CategoryDetails from "./pages/CategoryDetails";
 import { handleFetchCategoryByID, handleFetchCategories } from "./services/CategoryServices";
 import UserDetails from "./pages/UserDetails";
 import UserProvider from "./contexts/UserContext";
+import Categories from './pages/Categories';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<PageBase />}>
-      <Route path="/" 
+      <Route 
+        path="/" 
         element={<Homepage />} 
         loader={() => {
           return handleFetchCategories()
-        }} 
-      />
+        }} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
-      <Route path="videos/:id" element={<VideoDetails />} loader={({ params }) => {
+      <Route 
+        path="/categories" 
+        element={<Categories />} 
+        loader={() => {
+          return handleFetchCategories()
+        }} />
+      <Route 
+        path="videos/:id" 
+        element={<VideoDetails />} 
+        loader={({ params }) => {
         return handleFetchVideoDetails(params.id)
       }} />
-      <Route path="categories/:id" 
+      <Route 
+        path="categories/:id" 
         element={<CategoryDetails />} 
         loader={({ params }) => {
           return handleFetchCategoryByID(params.id)
-        }} 
-      />
-      <Route path="users/1" 
+        }} />
+      <Route 
+        path="users/1" 
         element={<UserDetails />} 
         loader={({ params }) => {
           return handleFetchCategoryByID(params.id)
-        }} 
-      />
+        }} />
     </Route>
   )
 );
@@ -56,7 +66,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </React.StrictMode>
 );
 
