@@ -1,5 +1,5 @@
 
-import React, {useContext, useState} from "react";
+import { useState } from "react";
 import BigLogoCard from "../../components/BigLogoCard";
 import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
@@ -10,16 +10,17 @@ import './styles.css'
 import { errors } from "../../services/ErrorHandler";
 import SearchResults from "../../components/SearchResults";
 import { Link, useNavigate, useLoaderData } from 'react-router-dom';
-import {  } from "react-router-dom";
-import { CategorySearchType } from "../../types/Category";
-import { UserContext } from "../../contexts/UserContext";
+import { CategorySearchType, CategoryType } from "../../types/Category";
 import { useUser } from "../../layouts/PageBase";
+import { UserType } from "../../types/User";
+import { handleDeleteCategoryToUser, handleSaveCategoryToUser } from "../../services/UserService";
 
 const Homepage = () => {
   const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
   const navigate = useNavigate();
 
-  // const {user} = useUser();
+  const { user } = useUser();
+  const [userState, setUSerState] = useState<UserType | null>(user)
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [searchType, setSearchType] = useState<string>("")
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
@@ -55,6 +56,34 @@ const Homepage = () => {
     navigate("/categories")
   }
 
+  const handleOnClickSubscribe = (category: CategorySearchType) => {
+
+    if(userState && userState.id && userState?.subscriptions) {
+      const list = userState.subscriptions.filter((c) => {
+        c.id === category.id
+      })
+
+      if (list.length === 0) {
+        handleSaveCategoryToUser(userState.id, category.id).then(() => {
+          alert("Nova categoria salva com sucesso!")
+        }).catch((error) => {
+          console.error(errors.ERR_SUBSCRIBE, error);
+          alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`)
+        })
+
+      } else {
+        handleDeleteCategoryToUser(userState.id, category.id).then(() => {
+          alert("Categoria removida do usuario com sucesso!")
+        }).catch((error => {
+          console.error(errors.ERR_UNSUBSCRIBE, error);
+          alert(`${errors.ERR_UNSUBSCRIBE}${category.name}. error: ${error}`)
+        }))
+      }
+
+      navigate("/")
+    }
+  }
+
   const sortCategoryList = (): CategorySearchType[] => {
     let list = [];
     list = categoryLoader.sort((a,b) => b.videoList.length - a.videoList.length)
@@ -78,7 +107,7 @@ const Homepage = () => {
       />
       {!isFilterActive ?
         <>
-          <CategoryContainer categories={sortCategoryList()} handleOnClickAllCategories={handleOnClickAllCategories} />
+          <CategoryContainer categories={sortCategoryList()} handleOnClickAllCategories={handleOnClickAllCategories} onClickSubscribe={handleOnClickSubscribe}/>
           <BigLogoCard />
         </>
       :

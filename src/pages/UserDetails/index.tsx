@@ -20,6 +20,7 @@ const UserDetails = () => {
 
   const handleSaveUser = () => {
     const userInDTO: UserType = {
+      id: userLoader.id,
       email: userLoader.email,
       username: userName,
       password: password

@@ -5,13 +5,14 @@ import Header from "../Header";
 
 import "./styles.css";
 import { UserType } from "../../types/User";
+import { MockUserType } from "../../mocks/MockUser";
 
 interface ContextType { 
   user: UserType | null;
 }
 
 const PageBase = () => {
-  const [user, setUser] = useState<UserType | null>(null)
+  const [user, setUser] = useState<UserType | null>(MockUserType)
 
   return (
     <div className="page-base">

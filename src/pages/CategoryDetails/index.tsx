@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { CategoryType } from "../../types/Category";
 import {
   useLoaderData,
+  useNavigate
 } from "react-router-dom";
+import { useUser } from "../../layouts/PageBase";
 import './styles.css'
 import { errors } from "../../services/ErrorHandler";
 import SearchBar from "../../components/SearchBar";
@@ -12,6 +14,9 @@ import BestRatedList from "./components/BestRatedList";
 import MostPopular from "./components/MostPopularList";
 import AllVideosList from "./components/AllVideosList";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import { handleUpdateUser } from '../../services/UserService';
+import { UserType } from '../../types/User';
+import { MockUserType } from '../../mocks/MockUser';
 
 const CategoryDetails = () => {
 
@@ -23,6 +28,9 @@ const CategoryDetails = () => {
   const [searchType, setSearchType] = useState<string>("")
   const [data, setData] = useState<any>()
   const [searchText, setSearchText] = useState<string>()
+  // const { user } = useUser();
+  const [userState, setUserState] = useState<UserType | null>(MockUserType)
+  const navigate = useNavigate();
 
   const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
@@ -35,13 +43,33 @@ const CategoryDetails = () => {
       console.error(errors.ERR_SEARCH_VIDEOS_BY_CATEGORY, error);
 			alert(`${errors.ERR_SEARCH_VIDEOS_BY_CATEGORY}${category.id}. error: ${error}`)
     });
-    
+  }
+
+  const handleOnSubscribe = () => {
+    if (userState && userState.id) {
+      let subscriptionList: CategoryType[] | undefined;
+      if (userState.subscriptions) {
+        subscriptionList = userState.subscriptions;
+      } else {
+        subscriptionList = []
+      }
+      subscriptionList.push(category)
+      userState.subscriptions = subscriptionList
+
+      handleUpdateUser(userState, userState.id).then(() => {
+        alert(`Inscricao feita com sucesso!`)
+        navigate(`/categories/${category.id}`)
+      }).catch((error) => {
+        console.error(errors.ERR_SUBSCRIBE, error);
+        alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`)
+      });
+    }
   }
 
   const renderDefaultContainers = () => {
     return (
       <>
-        <CategoryHeader category={category} />
+        <CategoryHeader category={category} onSubscribe={handleOnSubscribe}/>
         <hr className="category-details-hr" />
         <BestRatedList videos={category.videoDTOList} />
         <hr className="category-details-hr" />

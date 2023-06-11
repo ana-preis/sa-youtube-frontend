@@ -60,7 +60,7 @@ const UserDetailCard = (props: UserDetailCardProps) => {
               <span className="user-detail_text">{verifyLength("avaliação", userMock.reviewList?.length ?? 0)}</span>
             </div>
             <div>
-              <span className="user-detail_text-title">Categorias nais quais você se inscreve: </span>
+              <span className="user-detail_text-title">Categorias inscritas: </span>
               <span className="user-detail_text">{verifyLength("categoria", userMock.categoryList?.length ?? 0)}</span>
             </div>
           </div>

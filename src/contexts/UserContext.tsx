@@ -1,4 +1,6 @@
 import { useState, createContext, ReactNode } from 'react';
+import { MockUserType } from '../mocks/MockUser';
+import { UserType } from '../types/User';
 
 export const UserContext = createContext({});
 
@@ -8,10 +10,10 @@ interface Props {
 
 const UserProvider = ( props : Props) => {
   const { children } = props;
-  const [user, setUser] = useState<string>();
+  const [user, setUser] = useState<UserType>();
   const [token, setToken] = useState();
 
-  setUser("oie");
+  setUser(MockUserType);
 
   return (
     <UserContext.Provider value={{ user, token}}>

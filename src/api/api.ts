@@ -20,6 +20,13 @@ export const api = {
     headers: { "Content-type": "application/json;charset=UTF-8"},
     mode: 'cors',
     body }),
+
+  delete: (url: string) => 
+  request (url, { 
+    method: 'DELETE',
+    headers: { "Content-type": "application/json;charset=UTF-8"},
+    mode: 'cors'
+  }),
 }
 
 async function request<TResponse>(

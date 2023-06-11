@@ -10,6 +10,7 @@ export interface UserType {
   toWatchList?: VideoType[];
   finishedList?: VideoType[];
   messageList?: string[];
+  subscriptions?: CategoryType[];
 }
 
 export interface UserOutDTO {
