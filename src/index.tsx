@@ -18,7 +18,6 @@ import {
 import CategoryDetails from "./pages/CategoryDetails";
 import { handleFetchCategoryByID, handleFetchCategories } from "./services/CategoryServices";
 import UserDetails from "./pages/UserDetails";
-import UserProvider from "./contexts/UserContext";
 import Categories from './pages/Categories';
 
 const router = createBrowserRouter(

@@ -5,6 +5,7 @@ import { VideoType } from '../../types/Video';
 import { errors } from "../../services/ErrorHandler";
 import Button from '../Button';
 import DropdownCheckbox from "../DropdownCheckbox";
+import { useNavigate } from "react-router-dom";
 import './styles.css'
 
 interface NewReviewCardProps {
@@ -13,6 +14,8 @@ interface NewReviewCardProps {
 }
 
 const NewReviewCard = ( props : NewReviewCardProps ) => {
+	
+	const navigate = useNavigate();
 	const { video, onSaveReview } = props
 	const [rating, setRating] = useState<number>();
 	const [reviewText, setReviewText] = useState<string>("");
@@ -26,6 +29,7 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
     }).catch((error) => {
       console.error(errors.ERR_GET_CATEGORIES, error);
 			alert(`${errors.ERR_GET_CATEGORIES}${error}`)
+			navigate(`/videos/${video.id}`)
     });
   },[])
 

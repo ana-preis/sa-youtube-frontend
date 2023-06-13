@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleLogin } from "../../services/AuthService";
 import { errors } from "../../services/ErrorHandler";
+import { useUser } from "../../layouts/PageBase";
+import { handleMe } from "../../services/UserService";
 
 const Login = () => {
 
   const navigate = useNavigate();
+	const { setUser, setAccessToken } = useUser();
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [alertEmail, setAlertEmail] = useState(false);
@@ -36,8 +39,15 @@ const Login = () => {
 	const authUser = async () => {
 		handleLogin(email, password)
 		.then((response) => {
-
-			//SAVE TOKEN AND USER INFO
+			setAccessToken(response.accessToken)
+			
+			handleMe()
+				.then((response => {setUser(response)}))
+				.catch((error) => {
+					console.error(errors.ERR_LOGIN, error);
+					alert(`${errors.ERR_LOGIN}${error}`)
+					navigate("/login")
+				})
 
 			alert(`Bem vindo :) `)
 			navigate("/")
@@ -45,6 +55,7 @@ const Login = () => {
 		}).catch((error) => {
 			console.error(errors.ERR_LOGIN, error);
 			alert(`${errors.ERR_LOGIN}${error}`)
+			navigate("/login")
 		});
     
 	}

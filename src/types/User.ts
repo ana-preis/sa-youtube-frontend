@@ -27,5 +27,8 @@ export interface UserAuth {
 }
 
 export interface TokenAuth {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
+  email: string;
+  id: string;
 }

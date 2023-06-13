@@ -21,7 +21,7 @@ import { MockUserType } from '../../mocks/MockUser';
 const CategoryDetails = () => {
 
   const categoryLoader: CategoryType = useLoaderData() as CategoryType;
-
+  const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [category] = useState<CategoryType>(categoryLoader)
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
@@ -30,7 +30,6 @@ const CategoryDetails = () => {
   const [searchText, setSearchText] = useState<string>()
   // const { user } = useUser();
   const [userState, setUserState] = useState<UserType | null>(MockUserType)
-  const navigate = useNavigate();
 
   const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
@@ -42,6 +41,7 @@ const CategoryDetails = () => {
     }).catch((error) => {
       console.error(errors.ERR_SEARCH_VIDEOS_BY_CATEGORY, error);
 			alert(`${errors.ERR_SEARCH_VIDEOS_BY_CATEGORY}${category.id}. error: ${error}`)
+      navigate(`/categories/${category.id}`)
     });
   }
 

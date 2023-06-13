@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import { useLocation, Link, useNavigate } from 'react-router-dom'
-
+import { useUser } from "../PageBase";
 import './styles.css';
-import { UserType } from '../../types/User';
-import { MockUser } from '../../mocks/MockUser';
 
 const Header = () => {
-  const [userLogged, setUserLogged] = useState<boolean>(true)
-  const [user, setUser] = useState<UserType>()
+
+  const { isAuth, setIsAuth, user, setUser, setAccessToken } = useUser();
 	const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // check if user is logged in
-    //setUserLogged(true)
-  },[])
-
   const handleLogout = () => {
-    // logout
+    setIsAuth(false);
+    setUser(null);
+    setAccessToken("");
+    alert("Logout realizado com sucesso!")
     navigate("/")
   }
 
@@ -30,11 +25,10 @@ const Header = () => {
 						<div className="logo-text">ComuniTube</div>
 				</a>
 			</Link>
-      {userLogged
-        &&
+      {isAuth && user &&
         <>
-          <Link to={`/users/1`}>
-            <Button  className="login-button" text={MockUser.username} />
+          <Link to={`/users/${user.id}`}>
+            <Button  className="login-button" text={user.username} />
           </Link>
           <Button className="login-button" text="Sair" onClick={handleLogout}/>
         </>

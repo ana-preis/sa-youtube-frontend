@@ -2,7 +2,7 @@ import { useState } from "react";
 import { UserOutDTO, UserType } from "../../types/User";
 import { useLoaderData } from "react-router-dom";
 import './styles.css'
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReviewContainer from "../../components/ReviewContainer";
 import UserDetailCard from "./components/UserDetailCard";
 import UserCategoriesColumnCard from "./components/UserCategoriesColumnCard";
@@ -12,11 +12,13 @@ import { errors } from "../../services/ErrorHandler";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
 const UserDetails = () => {
+
   const [showModal, setShowModal] = useState<boolean>(false)
   const [userName, setUserName] = useState<string>("")
   const [password, setPassword] = useState<string>("")
 
   const userLoader: UserOutDTO = useLoaderData() as UserOutDTO;
+  const navigate = useNavigate();
 
   const handleSaveUser = () => {
     const userInDTO: UserType = {
@@ -31,10 +33,11 @@ const UserDetails = () => {
     .then((r) => {
       alert("Novo username salvo com sucesso!")
       setShowModal(false)
-      redirect(`/users/1`)
+      navigate(`/users/${userLoader.id}`)
     }).catch((error) => {
 			console.error(errors.ERR_UPDATE_USERNAME, error);
 			alert(`${errors.ERR_UPDATE_USERNAME}${error}`)
+      navigate(`/users/${userLoader.id}`)
 		});
   }
 

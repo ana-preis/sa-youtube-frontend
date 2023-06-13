@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import './styles.css';
 import { UserType } from "../../types/User";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleSaveNewUser } from "../../services/UserService";
 import { errors } from "../../services/ErrorHandler";
 
 const SignUp = () => {
 
+	const navigate = useNavigate();
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
@@ -51,15 +52,13 @@ const SignUp = () => {
 			password
 		}
 		handleSaveNewUser(body)
-		.then((response) => {
-
-			// USE RESPONSE TO SOMETHING (UserOutDTO)
-
+		.then(() => {
 			alert(`Cadastrado com sucesso :) `)
-			redirect("/login")
+			navigate("/login")
 		}).catch((error) => {
 			console.error(errors.ERR_SIGNUP, error);
 			alert(`${errors.ERR_SIGNUP}${error}`)
+			navigate("/signup")
 		});
     
 	}

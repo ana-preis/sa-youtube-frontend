@@ -8,11 +8,13 @@ import { ReviewPostDTO, ReviewSearchType } from '../../types/Review';
 import NewReviewCard from '../../components/NewReviewCard';
 import { VideoType } from '../../types/Video';
 import { handleSaveNewReview } from "../../services/ReviewService";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { errors } from "../../services/ErrorHandler";
 import { handleFetchVideos } from "../../services/VideoServices";
 
 const VideoDetails = () => {
+
+	const navigate = useNavigate();
 	const videoLoader: VideoType = useLoaderData() as VideoType;
 	const [reviewList] = useState<ReviewSearchType[]>(videoLoader.reviews ?? [])
 	const [showNewReview, setShowNewReview] = useState(false);
@@ -68,6 +70,7 @@ const VideoDetails = () => {
 		}).catch((error) => {
 			console.error(errors.ERR_SAVE_REVIEW, error);
 			alert(`${errors.ERR_SAVE_REVIEW}${error}`)
+			navigate(`/videos/${video.id}`)
 		});
 	}
 

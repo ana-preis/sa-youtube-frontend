@@ -10,14 +10,15 @@ import './styles.css'
 import { errors } from "../../services/ErrorHandler";
 import SearchResults from "../../components/SearchResults";
 import { Link, useNavigate, useLoaderData } from 'react-router-dom';
-import { CategorySearchType, CategoryType } from "../../types/Category";
+import { CategorySearchType } from "../../types/Category";
 import { useUser } from "../../layouts/PageBase";
 import { UserType } from "../../types/User";
 import { handleDeleteCategoryToUser, handleSaveCategoryToUser } from "../../services/UserService";
 
 const Homepage = () => {
-  const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
+
   const navigate = useNavigate();
+  const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
 
   const { user } = useUser();
   const [userState, setUSerState] = useState<UserType | null>(user)
@@ -38,6 +39,7 @@ const Homepage = () => {
       }).catch((error) => {
         console.error(errors.ERR_SEARCH_VIDEOS_BY_TEXT, error);
         alert(`${errors.ERR_SEARCH_VIDEOS_BY_TEXT}${text}. error: ${error}`)
+        navigate("/")
       });
     } else {
       handleFetchCategoriesByName(text)
@@ -47,6 +49,7 @@ const Homepage = () => {
       }).catch((error) => {
         console.error(errors.ERR_SEARCH_CATEGORIES_BY_TEXT, error);
         alert(`${errors.ERR_SEARCH_CATEGORIES_BY_TEXT}${text}. error: ${error}`)
+        navigate("/")
       });
     }
     
