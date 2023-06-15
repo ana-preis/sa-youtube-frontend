@@ -12,6 +12,7 @@ const CategoryListV2 = (props: CategoryListV2Props) => {
   const { categories } = props;
 
   const renderCategory = (category: CategorySearchType) => {
+    if(!category.videoDTOList) category.videoDTOList = [];
     const videoCount = truncateVideoCount(category.viewCount);
     return (
       <Link to={`/categories/${category.id}`} className="flex-column cards-category_containerv2">
@@ -21,10 +22,10 @@ const CategoryListV2 = (props: CategoryListV2Props) => {
             <img src="./heart.svg" alt="icon-heart" className="icon-heartv2" />
           </button>
         </div>
-        {category.videoList.length > 0 ? 
+        {category.videoDTOList?.length > 0 ? 
           <iframe
             className="videov2"
-            src= {videoUrl(category.videoList[0].id)}
+            src= {videoUrl(category.videoDTOList[0]?.id)}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -37,7 +38,7 @@ const CategoryListV2 = (props: CategoryListV2Props) => {
         }
         <div className="video-footerv2 flex-row">
           {
-            category.videoList.length > 0 ??
+            category.videoDTOList?.length > 0 ??
               <span className="video-footer-textv2">
                 + {videoCount}k visualizações
               </span>

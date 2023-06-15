@@ -10,7 +10,9 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "jsx-quotes": ["error", "prefer-double"]
+        "jsx-quotes": ["error", "prefer-double"],
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off"
     },
     "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
     

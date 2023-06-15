@@ -1,18 +1,29 @@
 import Button from '../../components/Button';
-import { useLocation, Link, useNavigate } from 'react-router-dom'
-import { useUser } from "../PageBase";
+import { useLocation, Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { ContextType, useUser } from "../PageBase";
 import './styles.css';
+import { useContext, useEffect, useState } from 'react';
+import { UserType } from '../../types/User';
+import { waitFor } from '@testing-library/react';
+import { UserContext } from '../PageBase';
 
 const Header = () => {
 
-  const { isAuth, setIsAuth, user, setUser, setAccessToken } = useUser();
+  const context = useContext(UserContext);
+  const { 
+    userContext
+  } = context || {};
+  const [isAuth, setIsAuth] = useState<boolean>()
+  const [user, setUser] = useState(userContext[0] ?? null)
+
+
 	const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setIsAuth(false);
-    setUser(null);
-    setAccessToken("");
+    // setIsAuth(false);
+    // setUser(null);
+    // setAccessToken("");
     alert("Logout realizado com sucesso!")
     navigate("/")
   }
@@ -25,7 +36,9 @@ const Header = () => {
 						<div className="logo-text">ComuniTube</div>
 				</a>
 			</Link>
-      {isAuth && user &&
+      { 
+        isAuth && user 
+          &&
         <>
           <Link to={`/users/${user.id}`}>
             <Button  className="login-button" text={user.username} />

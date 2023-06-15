@@ -1,16 +1,23 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './styles.css';
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleLogin } from "../../services/AuthService";
 import { errors } from "../../services/ErrorHandler";
-import { useUser } from "../../layouts/PageBase";
+import { UserContext, useUser } from "../../layouts/PageBase";
 import { handleMe } from "../../services/UserService";
 
 const Login = () => {
 
   const navigate = useNavigate();
-	const { setUser, setAccessToken } = useUser();
+
+  const context = useContext(UserContext);
+  const { 
+    userContext,
+    accessTokenContext
+  } = context || {};
+  const updateUser = userContext[1]
+  const updateAccessToken = accessTokenContext[1]
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [alertEmail, setAlertEmail] = useState(false);
@@ -39,10 +46,12 @@ const Login = () => {
 	const authUser = async () => {
 		handleLogin(email, password)
 		.then((response) => {
-			setAccessToken(response.accessToken)
+			updateAccessToken(response.accessToken)
 			
 			handleMe()
-				.then((response => {setUser(response)}))
+				.then((response => {
+          updateUser(response)
+        }))
 				.catch((error) => {
 					console.error(errors.ERR_LOGIN, error);
 					alert(`${errors.ERR_LOGIN}${error}`)

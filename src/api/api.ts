@@ -1,6 +1,6 @@
 import { useUser } from "../layouts/PageBase";
 
-const { accessToken } = useUser();
+// const { accessToken } = useUser();
 
 export const api = {
   get: <TResponse>(url: string) => 
@@ -8,7 +8,7 @@ export const api = {
       method: 'GET', 
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
-        "Authentication": `Bearer ${accessToken}`
+        // "Authentication": `Bearer ${accessToken}`
       },
       mode: 'cors' 
     }),
@@ -18,7 +18,7 @@ export const api = {
       method: 'POST',
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
-        "Authentication": `Bearer ${accessToken}`
+        // "Authentication": `Bearer ${accessToken}`
       },
       mode: 'cors',
       body }),
@@ -28,7 +28,7 @@ export const api = {
     method: 'PUT',
     headers: { 
       "Content-type": "application/json;charset=UTF-8",
-      "Authentication": `Bearer ${accessToken}`
+      // "Authentication": `Bearer ${accessToken}`
     },
     mode: 'cors',
     body }),
@@ -38,7 +38,7 @@ export const api = {
     method: 'DELETE',
     headers: { 
       "Content-type": "application/json;charset=UTF-8",
-      "Authentication": `Bearer ${accessToken}`
+      // "Authentication": `Bearer ${accessToken}`
     },
     mode: 'cors'
   }),

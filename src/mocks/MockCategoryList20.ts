@@ -110,7 +110,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -118,7 +118,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -126,7 +126,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -134,7 +134,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -142,7 +142,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -150,7 +150,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -158,7 +158,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -166,7 +166,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -174,7 +174,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -182,7 +182,7 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   },
   {
     id: "1",
@@ -190,6 +190,6 @@ export const MockCategorySearchList20: CategorySearchType[] = [
     viewCount: 21989,
     userList: [],
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ",
-    videoList: []  
+    videoDTOList: []  
   }
 ];

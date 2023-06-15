@@ -17,7 +17,7 @@ export interface CategorySearchType {
   description?: string;
   userList: UserOutDTO[];
   viewCount?: number;
-  videoList: VideoType[];
+  videoDTOList?: VideoType[];
 }
 
 // const toCategoryType = (categorySearch: CategorySearchType): CategoryType => {

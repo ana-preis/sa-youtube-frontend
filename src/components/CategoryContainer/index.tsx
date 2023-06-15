@@ -30,6 +30,7 @@ const CategoryContainer = (props: CategoryContainerProps) => {
   }
 
   const renderCategory = (category: CategorySearchType) => {
+    if(!category.videoDTOList) category.videoDTOList = [];
     const videoCount = truncateVideoCount(category.viewCount);
     return (
       <div  className="flex-column cards-category_container">
@@ -45,10 +46,10 @@ const CategoryContainer = (props: CategoryContainerProps) => {
           </button>
         </div>
         <Link to={`/categories/${category.id}`}>
-          {category.videoList.length > 0 ? 
+          { category.videoDTOList.length > 0 ? 
             <iframe
               className="video"
-              src= {videoUrl(category.videoList[0].id)}
+              src= {videoUrl(category.videoDTOList[0].id)}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -61,7 +62,7 @@ const CategoryContainer = (props: CategoryContainerProps) => {
           }
           <div className="video-footer flex-row">
             {
-              category.videoList.length > 0 ??
+              category.videoDTOList.length > 0 ??
                 <span className="video-footer-text">
                   + {videoCount}k visualizações
                 </span>

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import BigLogoCard from "../../components/BigLogoCard";
 import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
@@ -11,17 +11,22 @@ import { errors } from "../../services/ErrorHandler";
 import SearchResults from "../../components/SearchResults";
 import { Link, useNavigate, useLoaderData } from 'react-router-dom';
 import { CategorySearchType } from "../../types/Category";
-import { useUser } from "../../layouts/PageBase";
+import { UserContext, useUser } from "../../layouts/PageBase";
 import { UserType } from "../../types/User";
 import { handleDeleteCategoryToUser, handleSaveCategoryToUser } from "../../services/UserService";
+import { handleSortVideoList } from "../../helpers/videoTransformer";
 
 const Homepage = () => {
 
   const navigate = useNavigate();
   const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
 
-  const { user } = useUser();
-  const [userState, setUSerState] = useState<UserType | null>(user)
+  const context = useContext(UserContext);
+  const { 
+    userContext
+  } = context || {};
+
+  const [userState, setUSerState] = useState<UserType | null>(userContext[0] ?? null)
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [searchType, setSearchType] = useState<string>("")
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
@@ -89,7 +94,7 @@ const Homepage = () => {
 
   const sortCategoryList = (): CategorySearchType[] => {
     let list = [];
-    list = categoryLoader.sort((a,b) => b.videoList.length - a.videoList.length)
+    list = categoryLoader.sort((a,b) => handleSortVideoList(a,b) )
     return list.slice(0,4)
   }
 
