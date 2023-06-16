@@ -6,18 +6,18 @@ import { handleLogin } from "../../services/AuthService";
 import { errors } from "../../services/ErrorHandler";
 import { UserContext, useUser } from "../../layouts/PageBase";
 import { handleMe } from "../../services/UserService";
+import { setCookie, getCookie } from "../../services/cookies/CookieService";
 
 const Login = () => {
 
   const navigate = useNavigate();
 
   const context = useContext(UserContext);
-  const { 
-    userContext,
-    accessTokenContext
-  } = context || {};
+  const { userContext, isAuthContext } = context || {};
+
   const updateUser = userContext[1]
-  const updateAccessToken = accessTokenContext[1]
+	const setIsAuth = isAuthContext[1]
+
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [alertEmail, setAlertEmail] = useState(false);
@@ -46,11 +46,15 @@ const Login = () => {
 	const authUser = async () => {
 		handleLogin(email, password)
 		.then((response) => {
-			updateAccessToken(response.accessToken)
+			console.log(response)
+			setCookie("acessToken", response.accessToken, 7)
+			setCookie("refreshToken", response.refreshToken, 7)
 			
 			handleMe()
 				.then((response => {
           updateUser(response)
+					setIsAuth(true)
+					console.log(response)
         }))
 				.catch((error) => {
 					console.error(errors.ERR_LOGIN, error);
@@ -64,9 +68,12 @@ const Login = () => {
 		}).catch((error) => {
 			console.error(errors.ERR_LOGIN, error);
 			alert(`${errors.ERR_LOGIN}${error}`)
-			navigate("/login")
+			// navigate("/login")
+			setEmail("")
+			setPassword("")
 		});
-    
+   
+		console.log(getCookie("accessToken"))
 	}
 
 	const handleSignUp = () => {
@@ -80,7 +87,7 @@ const Login = () => {
 			<div className="flex-column signup-fields jc-center">
       <div className="flex-column signup-field signup-field_login">
 					<div>Email:</div>
-					<input className="input-login" onChange={e => setEmail(e.target.value)} />
+					<input className="input-login" onChange={e => setEmail(e.target.value)} value={email} />
 					{alertEmail &&
 					<span className="alert-text_login">Email não pode ficar vazio!</span>}
 					{alertEmailFormat &&
@@ -88,7 +95,7 @@ const Login = () => {
 				</div>
 				<div className="flex-column signup-field">
 					<div>Senha:</div>
-					<input className="input-login" type="password" onChange={e => setPassword(e.target.value)} />
+					<input className="input-login" type="password" onChange={e => setPassword(e.target.value)} value={password} />
 					<div className="flex-row password-msgs-login">
 						{alertPassword && 
 						<span className="alert-text_login">Senha não pode ficar vazia!</span>}

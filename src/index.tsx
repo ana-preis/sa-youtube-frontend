@@ -50,6 +50,7 @@ const router = createBrowserRouter(
           return handleFetchCategoryByID(params.id)
         }} />
       <Route 
+      //corrigir o /1
         path="users/1" 
         element={<UserDetails />} 
         loader={({ params }) => {

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { CategoryType } from "../../types/Category";
 import {
   useLoaderData,
   useNavigate
 } from "react-router-dom";
-import { useUser } from "../../layouts/PageBase";
+import { UserContext, useUser } from "../../layouts/PageBase";
 import './styles.css'
 import { errors } from "../../services/ErrorHandler";
 import SearchBar from "../../components/SearchBar";
@@ -28,7 +28,7 @@ const CategoryDetails = () => {
   const [searchType, setSearchType] = useState<string>("")
   const [data, setData] = useState<any>()
   const [searchText, setSearchText] = useState<string>()
-  // const { user } = useUser();
+  //corrigir
   const [userState, setUserState] = useState<UserType | null>(MockUserType)
 
   const onClickSearch = async (text: string) => {

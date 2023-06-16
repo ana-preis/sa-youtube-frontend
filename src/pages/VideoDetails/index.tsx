@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './styles.css'
 import { MockVideoList } from "../../mocks/MockVideoList";
 import VideoDetailCard from '../../components/VideoDetailCard';
@@ -11,6 +11,7 @@ import { handleSaveNewReview } from "../../services/ReviewService";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { errors } from "../../services/ErrorHandler";
 import { handleFetchVideos } from "../../services/VideoServices";
+import { UserContext } from "../../layouts/PageBase";
 
 const VideoDetails = () => {
 

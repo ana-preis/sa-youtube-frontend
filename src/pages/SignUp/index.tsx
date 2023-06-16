@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './styles.css';
 import { UserType } from "../../types/User";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleSaveNewUser } from "../../services/UserService";
 import { errors } from "../../services/ErrorHandler";
+import { UserContext } from "../../layouts/PageBase";
 
 const SignUp = () => {
-
+	
 	const navigate = useNavigate();
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");

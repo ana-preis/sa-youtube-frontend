@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { UserOutDTO, UserType } from "../../types/User";
 import { useLoaderData } from "react-router-dom";
 import './styles.css'
@@ -10,9 +10,10 @@ import Button from "../../components/Button";
 import { handleUpdateUser } from "../../services/UserService";
 import { errors } from "../../services/ErrorHandler";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import { UserContext } from "../../layouts/PageBase";
 
 const UserDetails = () => {
-
+  
   const [showModal, setShowModal] = useState<boolean>(false)
   const [userName, setUserName] = useState<string>("")
   const [password, setPassword] = useState<string>("")
