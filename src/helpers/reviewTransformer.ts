@@ -1,6 +1,8 @@
+import { ResponseType } from "../types/Http";
 import { ReviewPostDTO, ReviewSearchType, ReviewType } from "../types/Review";
 
-export const reviewTransformer = (review: ReviewPostDTO): ReviewType => {
+export const reviewTransformer = (response: ResponseType, review: ReviewPostDTO): ReviewType => {
+  if (response.status !== 201) return response.data as ReviewType;
   const date = new Date(review.publishedAt)
   const newReview: ReviewType = {
     userID: review.userId,

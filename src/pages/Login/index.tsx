@@ -4,88 +4,114 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleLogin } from "../../services/AuthService";
 import { errors } from "../../services/ErrorHandler";
-import { UserContext, useUser } from "../../layouts/PageBase";
-import { handleMe } from "../../services/UserService";
+import { UserContext } from "../../layouts/PageBase";
 import { setCookie, getCookie } from "../../services/cookies/CookieService";
+import { TokenAuth, UserType } from '../../types/User';
+import { isResponseError400 } from '../../services/ErrorHandler';
+import { api } from '../../api/api';
+import { ResponseType } from '../../types/Http';
 
 const Login = () => {
 
   const navigate = useNavigate();
 
   const context = useContext(UserContext);
-  const { userContext, isAuthContext } = context || {};
+  const { userContext } = context || {};
 
-  const updateUser = userContext[1]
-	const setIsAuth = isAuthContext[1]
+  const updateUser = userContext[1];
 
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [alertEmail, setAlertEmail] = useState(false);
 	const [alertEmailFormat, setAlertEmailFormat] = useState(false);
 	const [alertPassword, setAlertPassword] = useState(false);
+  const [inputType, setInputType] = useState("password");
 
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
+  const toggleInputType = () => {
+    if (inputType == "password") setInputType("text");
+    else setInputType("password");
+  }
+
 	const validateInputs = () => {
 		if (email === "") {
-			setAlertEmail(true)
+			setAlertEmail(true);
 		}
 		if (password === "") {
-			setAlertPassword(true)
+			setAlertPassword(true);
 		}
 		if (email === "" || password === "") {
 			return true;
 		}
 		if(!emailRegex.test(email)) {
 			setAlertEmailFormat(true)
-			return true
+			return true;
 		}
 		return false;
 	}
 
-	const authUser = async () => {
+	const login = async () => {
 		handleLogin(email, password)
 		.then((response) => {
-			console.log(response)
-			setCookie("acessToken", response.accessToken, 7)
-			setCookie("refreshToken", response.refreshToken, 7)
-			
-			handleMe()
-				.then((response => {
-          updateUser(response)
-					setIsAuth(true)
-					console.log(response)
-        }))
-				.catch((error) => {
-					console.error(errors.ERR_LOGIN, error);
-					alert(`${errors.ERR_LOGIN}${error}`)
-					navigate("/login")
-				})
-
-			alert(`Bem vindo :) `)
-			navigate("/")
-
-		}).catch((error) => {
+      console.log(response)
+      if (isResponseError400(errors.ERR_LOGIN, response)) return;
+      return response.data as TokenAuth;
+		}).then((tokens) => {
+			if (!tokens) throw new Error("Erro ao obter tokens de acesso")
+      setCookie("accessToken", tokens.accessToken, 7);
+			setCookie("refreshToken", tokens.refreshToken, 7);
+		})
+    .catch((error) => {
 			console.error(errors.ERR_LOGIN, error);
-			alert(`${errors.ERR_LOGIN}${error}`)
-			// navigate("/login")
-			setEmail("")
-			setPassword("")
+			alert(`${errors.ERR_LOGIN}${error}`);
+			setEmail("");
+			setPassword("");
+			// window.location.reload();
 		});
-   
-		console.log(getCookie("accessToken"))
 	}
 
-	const handleSignUp = () => {
+  const getUser = async () => {
+    try {
+      const response = await api.get<ResponseType>(`http://localhost:8080/me`)
+      console.log("entrou then, response: ", response)
+      if (!response && isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
+      if (response) {
+        const data = response.data as UserType;
+        console.log( " sucesso ", data)
+        updateUser(data);
+        setCookie("userID", data.id, 7);
+      }
+    } catch (error) {
+			console.error(errors.ERR_LOGIN, error);
+			alert(`${errors.ERR_LOGIN}${error}`);
+			setEmail("");
+			setPassword("");
+			// window.location.reload();
+		}
+  }
+
+	const handleSignUp = async () => {
 		if (validateInputs()) return;
-		authUser();
+    try {
+      await login();
+      alert(`Bem vindo :) `);
+      await getUser();
+      // navigate("/");
+    } catch (error) {
+      console.error(errors.ERR_LOGIN, error);
+      alert(`${errors.ERR_LOGIN}${error}`);
+      // navigate("/login");
+      setEmail("");
+      setPassword("");
+    }
 	}
 
 	return (
 		<div className="flex-column login-card">
 			<h2 className="title">Login</h2>
 			<div className="flex-column signup-fields jc-center">
-      <div className="flex-column signup-field signup-field_login">
+        <div className="flex-column signup-field_login">
 					<div>Email:</div>
 					<input className="input-login" onChange={e => setEmail(e.target.value)} value={email} />
 					{alertEmail &&
@@ -93,9 +119,14 @@ const Login = () => {
 					{alertEmailFormat &&
 					<span className="alert-text_login">Email inválido!</span>}
 				</div>
-				<div className="flex-column signup-field">
+				<div className="flex-column signup-field_login">
 					<div>Senha:</div>
-					<input className="input-login" type="password" onChange={e => setPassword(e.target.value)} value={password} />
+          <div className="flex-row">
+            <input className="input-login" type={inputType} onChange={e => setPassword(e.target.value)} value={password} />
+            <a onClick={() => toggleInputType()}>
+              <img src="./eye.svg" alt="show-password"/>  
+            </a>
+          </div>
 					<div className="flex-row password-msgs-login">
 						{alertPassword && 
 						<span className="alert-text_login">Senha não pode ficar vazia!</span>}

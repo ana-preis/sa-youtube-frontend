@@ -6,7 +6,7 @@ export interface UserType {
   username: string;
   email: string;
   password: string;
-  id?: string;
+  id: string;
   toWatchList?: VideoType[];
   finishedList?: VideoType[];
   messageList?: string[];
@@ -18,17 +18,18 @@ export interface UserOutDTO {
   username: string;
   email: string;
   reviewList?: ReviewSearchType[];
-  categoryList?: CategorySearchType[]
+  categoryList?: CategorySearchType[];
+  subscriptionIDs?: CategoryType[];
 }
 
 export interface UserAuth {
   email: string;
   password: string;
+  username?: string;
 }
 
 export interface TokenAuth {
   accessToken: string;
   refreshToken: string;
   email: string;
-  id: string;
 }

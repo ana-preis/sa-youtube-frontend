@@ -9,13 +9,8 @@
 	padding: 1rem 5rem;
 }
 
-.signup-fields {
-  flex-wrap: wrap;
-	gap: 1.5rem;
-	min-height: 8rem;
-}
-
 .signup-field_login {
+  margin-bottom: 1rem;
   min-height: 7rem;
 }
 
@@ -28,4 +23,8 @@
 
 .password-msgs-login {
 	justify-content: space-between;
+}
+
+.signup-fields {
+  margin-top: 2rem;
 }
