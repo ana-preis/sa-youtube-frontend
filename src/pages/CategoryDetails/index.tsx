@@ -17,6 +17,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import { handleUpdateUser } from '../../services/UserService';
 import { UserType } from '../../types/User';
 import { MockUserType } from '../../mocks/MockUser';
+import { VideoType } from '../../types/Video';
 
 const CategoryDetails = () => {
 
@@ -36,7 +37,7 @@ const CategoryDetails = () => {
     setSearchText(text)
     handleFetchVideosByCategoryID(text, category.id)
     .then((v) => {
-      setData(v)
+      setData(v.data)
       setIsFilterActive(true)
     }).catch((error) => {
       console.error(errors.ERR_SEARCH_VIDEOS_BY_CATEGORY, error);
@@ -82,7 +83,7 @@ const CategoryDetails = () => {
 
   const renderVideoSearchList = () => {
     return (
-      <AllVideosList videos={data} title="" />
+      <AllVideosList videos={data as VideoType[]} title="" />
     )
   }
 

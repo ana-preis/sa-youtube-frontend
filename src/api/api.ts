@@ -1,13 +1,15 @@
+import { resolve } from "path";
 import { getCookie, setCookie } from "../services/cookies/CookieService";
+import { ResponseType } from "../types/Http";
 
 const getAuthorizationToken = () => {
   const accessToken = getCookie("accessToken")
-  if(accessToken) return `Bearer ${accessToken}`
+  if(accessToken && accessToken !== "") return `Bearer ${accessToken}`
   return null
 }
 
 export const api = {
-  get: <TResponse>(url: string) => 
+    get: <TResponse>(url: string) => 
     request<TResponse>(url, { 
       method: 'GET', 
       headers: { 
@@ -16,6 +18,7 @@ export const api = {
       },
       mode: 'cors' 
     }),
+  
   
   post: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
     request<TResponse>(url, { 
@@ -48,16 +51,35 @@ export const api = {
   }),
 }
 
-async function request<TResponse>(
-  url: string,
-  config: RequestInit = {}
-): Promise<TResponse> {
-  return fetch(url, config)
-    .then(response => response.json())
-    .then(data => {
-      return data
-    })
-    .catch(error => {
-      console.log(error);
-    })
+//transformar o response no type
+// async function requestWithThen<TResponse>(
+//   url: string,
+//   config: RequestInit = {}
+// ): Promise<TResponse> {
+//   return fetch(url, config)
+//     .then(response =>  response.json())
+//     .then(data => console.log("  api data ", data))
+//     .catch(error => {
+//       console.log(error);
+//       return error;
+//     })
+// }
+
+// a request retorna vazia do backend no endpoint /m (no postman retorna normal)
+
+async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
+  try {
+    const response = await fetch(url, config);
+    const status = response.status
+    const data = await response.json();
+    const result : ResponseType =  {
+      status,
+      data,
+    }
+    console.log(" result ", result)
+    return result;
+  } catch (error) {
+    console.log(" error: ", error)
+    throw new Error('Erro na requisição HTTP');
+  }
 }

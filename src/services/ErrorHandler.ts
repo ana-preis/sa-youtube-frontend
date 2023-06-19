@@ -1,3 +1,5 @@
+import { ErrorResponse, ResponseType } from "../types/Http";
+
 export const errors = {
   ERR_GET_CATEGORIES: "Ocorreu um erro ao obter as categorias: ",
   ERR_SEARCH_VIDEOS_BY_CATEGORY: "Ocorreu um erro ao obter os vídeos pela categoria de id: ",
@@ -11,3 +13,22 @@ export const errors = {
   ERR_UNSUBSCRIBE: "Ocorreu um erro ao remover a inscricao na categoria: "
 }
 
+export const isResponseError400 = (ErrTag: string, response: ResponseType) => {
+  if (response.status === 401) {
+    console.error(ErrTag, "Nao autorizado");
+    alert(`${ErrTag} `)
+    return true
+  }
+  if (response.status === 403) {
+    console.error(ErrTag, "Proibido");
+    alert(`${ErrTag} `)
+    return true
+  }
+  if (response.status === 400) {
+    console.log(response)
+    const error = response.data as ErrorResponse
+    console.error(ErrTag, error.msg);
+    alert(`${ErrTag}${error.msg}`)
+    return true
+  }
+}

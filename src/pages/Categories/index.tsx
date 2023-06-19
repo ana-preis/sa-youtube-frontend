@@ -9,20 +9,22 @@ import SearchBar from "../../components/SearchBar";
 import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CategoryListV2 from './components/CategoryListV2';
+import { ResponseType } from '../../types/Http';
 
 const Categories = () => {
 
-  const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
+  const categoryLoader: ResponseType = useLoaderData() as ResponseType;
+  const categoriesData = categoryLoader.data as CategorySearchType[]
 
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
-  const [categories, setCategories] = useState<CategorySearchType[]>(categoryLoader)
+  const [categories, setCategories] = useState<CategorySearchType[]>(categoriesData)
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
   const [searchType, setSearchType] = useState<string>("")
-  const [data, setData] = useState<CategorySearchType[]>(categoryLoader)
+  const [data, setData] = useState<CategorySearchType[]>(categoriesData)
   const [searchText, setSearchText] = useState<string>()
 
   const onClickSearch = async (text: string) => {
-    if (text === "" || text === undefined) setData(categoryLoader);
+    if (text === "" || text === undefined) setData(categoriesData);
     const listByName = categories.filter((c) => {
       return c.name.toLowerCase().includes(text.toLowerCase())
     })

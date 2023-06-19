@@ -1,5 +1,6 @@
 
 export const getCookie = (name: string) => {
+  if (document.cookie === "") return "";
 	const value = `; ${document.cookie}`;
 	const parts = value.split(`; ${name}=`);
   if (parts[0] === value) return null;

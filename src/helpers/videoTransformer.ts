@@ -1,21 +1,29 @@
 import { CategorySearchType } from "../types/Category";
 import { VideoType } from "../types/Video";
+import { ResponseType } from "../types/Http";
 
 export const videoUrl = (id: string) => {
   return `https://www.youtube.com/embed/${id}`
 }
 
-export const addVideoURL = (video: VideoType): VideoType => {
-  video.url = videoUrl(video.id);
-  return video;
+export const addVideoURL = (res: ResponseType): ResponseType => {
+  if(res.status === 200) {
+    let data = res.data as VideoType
+    data.url = videoUrl(data.id);
+  }
+  return res;
 }
 
-export const addVideoURLToList = (response: VideoType[]): VideoType[] => {
-  response.map((video) => {
-      video.url = videoUrl(video.id)
-      video.title = decodeHtml(video.title)
-  });
-  return response;
+export const addVideoURLToList = (res: ResponseType): ResponseType => {
+  if(res.status === 200) {
+    let data = res.data as VideoType[]
+    data.map((video) => {
+        video.url = videoUrl(video.id)
+        video.title = decodeHtml(video.title)
+    });
+    return res;
+  }
+  return res;
 }
 
 const decodeHtml = (html: string) => {

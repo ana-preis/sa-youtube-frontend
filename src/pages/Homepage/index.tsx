@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BigLogoCard from "../../components/BigLogoCard";
 import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
@@ -15,23 +15,31 @@ import { UserContext } from "../../layouts/PageBase";
 import { UserType } from "../../types/User";
 import { handleDeleteCategoryToUser, handleSaveCategoryToUser } from "../../services/UserService";
 import { handleSortVideoList } from "../../helpers/videoTransformer";
+import { ResponseType } from "../../types/Http";
+import { getCookie } from "../../services/cookies/CookieService";
 
 const Homepage = () => {
 
   const navigate = useNavigate();
-  const categoryLoader: CategorySearchType[] = useLoaderData() as CategorySearchType[];
+  const categoryLoader: ResponseType = useLoaderData() as ResponseType;
 
   const context = useContext(UserContext);
   const { 
-    userContext,
+    userContext
   } = context || {};
 
-  const [userState, setUSerState] = useState<UserType | null>(userContext[0] ?? null)
-  const [selectedFilter, setSelectedFilter] = useState<string>("videos")
-  const [searchType, setSearchType] = useState<string>("")
-  const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
-  const [data, setData] = useState<any>()
-  const [searchText, setSearchText] = useState<string>()
+  const [userState, setUSerState] = useState<UserType | null>(userContext[0] ?? null);
+  const [selectedFilter, setSelectedFilter] = useState<string>("videos");
+  const [searchType, setSearchType] = useState<string>("");
+  const [isFilterActive, setIsFilterActive] = useState<boolean>(false);
+  const [data, setData] = useState<any>();
+  const [searchText, setSearchText] = useState<string>();
+  const [isAuth, setIsAuth] = useState<boolean>();
+
+  useEffect(() => {
+    const accessToken = getCookie("accessToken");
+    accessToken === "" ? setIsAuth(false) : setIsAuth(true);
+  }, [isAuth])
 
   const onClickSearch = async (text: any, listType: string) => {
     setSearchType(listType)
@@ -39,7 +47,7 @@ const Homepage = () => {
     if(listType === "videos") {
       handleFetchVideos(text)
       .then((v) => {
-        setData(v)
+        setData(v.data)
         setIsFilterActive(true)
       }).catch((error) => {
         console.error(errors.ERR_SEARCH_VIDEOS_BY_TEXT, error);
@@ -49,7 +57,7 @@ const Homepage = () => {
     } else {
       handleFetchCategoriesByName(text)
       .then((v) => {
-        setData(v)
+        setData(v.data)
         setIsFilterActive(true)
       }).catch((error) => {
         console.error(errors.ERR_SEARCH_CATEGORIES_BY_TEXT, error);
@@ -87,14 +95,14 @@ const Homepage = () => {
           alert(`${errors.ERR_UNSUBSCRIBE}${category.name}. error: ${error}`)
         }))
       }
-
       navigate("/")
     }
   }
 
   const sortCategoryList = (): CategorySearchType[] => {
     let list = [];
-    list = categoryLoader.sort((a,b) => handleSortVideoList(a,b) )
+    const categories = categoryLoader.data as CategorySearchType[]
+    list = categories.sort((a,b) => handleSortVideoList(a,b) )
     return list.slice(0,4)
   }
 
@@ -103,9 +111,10 @@ const Homepage = () => {
       <div className="flex-column home-main-text">
         <h2 className="t1">Acesse avaliações de conteúdos educativos do Youtube</h2>
         <span className="text-span">Encontre milhares de avaliações, vídeos em alta  e grupos perfeitos para você - tudo a um click de distância. </span>
-        <Link to="/signup">
-          <Button className="sign-up-btn" text="Cadastre-se" />
-        </Link>
+        { !isAuth &&
+          <Link to="/signup">
+            <Button className="sign-up-btn" text="Cadastre-se" />
+          </Link> }
       </div>
       <img src="./img-home-bg2.png" alt="icon-search" className="img-home-bg"/>
       <SearchBar 

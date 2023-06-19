@@ -1,10 +1,9 @@
 import { api } from "../api/api"
-import { UserAuth, TokenAuth } from "../types/User";
+import { UserAuth } from "../types/User";
+import { ResponseType } from "../types/Http"
 
 export const handleLogin = async (email: string, password: string) => {
-  console.log(" email ", email)
-  console.log(" password ", password)
   const body: UserAuth = { email, password }
-  const response = await api.post<string, TokenAuth>(`http://localhost:8080/login`, JSON.stringify(body))
+  const response = await api.post<string, ResponseType>(`http://localhost:8080/login`, JSON.stringify(body))
   return response;
 }
