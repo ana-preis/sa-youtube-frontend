@@ -6,7 +6,7 @@ import { handleLogin } from "../../services/AuthService";
 import { errors } from "../../services/ErrorHandler";
 import { UserContext } from "../../layouts/PageBase";
 import { setCookie, getCookie } from "../../services/cookies/CookieService";
-import { TokenAuth, UserType } from '../../types/User';
+import { TokenAuth, UserAuth, UserType } from '../../types/User';
 import { isResponseError400 } from '../../services/ErrorHandler';
 import { api } from '../../api/api';
 import { ResponseType } from '../../types/Http';
@@ -14,10 +14,8 @@ import { ResponseType } from '../../types/Http';
 const Login = () => {
 
   const navigate = useNavigate();
-
   const context = useContext(UserContext);
   const { userContext } = context || {};
-
   const updateUser = userContext[1];
 
 	const [password, setPassword] = useState("");
@@ -26,7 +24,6 @@ const Login = () => {
 	const [alertEmailFormat, setAlertEmailFormat] = useState(false);
 	const [alertPassword, setAlertPassword] = useState(false);
   const [inputType, setInputType] = useState("password");
-
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
   const toggleInputType = () => {
@@ -52,31 +49,27 @@ const Login = () => {
 	}
 
 	const login = async () => {
-		handleLogin(email, password)
-		.then((response) => {
-      console.log(response)
+    try {
+      // const body: UserAuth = { email, password }
+      const response = await handleLogin(email, password)
       if (isResponseError400(errors.ERR_LOGIN, response)) return;
       const tokens = response.data as TokenAuth;
       setCookie("accessToken", tokens.accessToken, 7);
-			setCookie("refreshToken", tokens.refreshToken, 7);
-		})
-    .catch((error) => {
-			console.error(errors.ERR_LOGIN, error);
+      setCookie("refreshToken", tokens.refreshToken, 7);
+    } catch(error) {
 			alert(`${errors.ERR_LOGIN}${error}`);
 			setEmail("");
 			setPassword("");
-			// window.location.reload();
-		});
+			window.location.reload();
+		}
 	}
 
   const getUser = async () => {
     try {
       const response = await api.get<ResponseType>(`http://localhost:8080/me`)
-      console.log("entrou then, response: ", response)
       if (!response && isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
       if (response) {
         const data = response.data as UserType;
-        console.log( " sucesso ", data)
         updateUser(data);
         setCookie("userID", data.id, 7);
       }
@@ -85,7 +78,7 @@ const Login = () => {
 			alert(`${errors.ERR_LOGIN}${error}`);
 			setEmail("");
 			setPassword("");
-			// window.location.reload();
+			window.location.reload();
 		}
   }
 
@@ -95,11 +88,11 @@ const Login = () => {
       await login();
       alert(`Bem vindo :) `);
       await getUser();
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error(errors.ERR_LOGIN, error);
       alert(`${errors.ERR_LOGIN}${error}`);
-      // navigate("/login");
+      navigate("/login");
       setEmail("");
       setPassword("");
     }
@@ -137,7 +130,7 @@ const Login = () => {
 				<p className="login-redirect">Ainda não é membro? <Link to="/signup" className="login-link">Cadastre-se.</Link></p>
 			</div>
 		</div>
-	);
+	)
 }
 
 export default Login;

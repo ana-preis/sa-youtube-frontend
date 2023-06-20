@@ -21,3 +21,8 @@ export const handleDeleteCategoryToUser = async (userID: string, categoryID: str
   const response = await api.delete(`http://localhost:8080/users/${userID}/categories/${categoryID}`);
   return response;
 }
+
+export const handleMe = async () => {
+  const response = await api.get<ResponseType>(`http://localhost:8080/me`);
+  return response;
+}

@@ -51,22 +51,6 @@ export const api = {
   }),
 }
 
-//transformar o response no type
-// async function requestWithThen<TResponse>(
-//   url: string,
-//   config: RequestInit = {}
-// ): Promise<TResponse> {
-//   return fetch(url, config)
-//     .then(response =>  response.json())
-//     .then(data => console.log("  api data ", data))
-//     .catch(error => {
-//       console.log(error);
-//       return error;
-//     })
-// }
-
-// a request retorna vazia do backend no endpoint /m (no postman retorna normal)
-
 async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
   try {
     const response = await fetch(url, config);
@@ -76,7 +60,6 @@ async function request<T>(url: string, config: RequestInit): Promise<ResponseTyp
       status,
       data,
     }
-    console.log(" result ", result)
     return result;
   } catch (error) {
     console.log(" error: ", error)

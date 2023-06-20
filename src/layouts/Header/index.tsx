@@ -8,6 +8,7 @@ import { errors, isResponseError400 } from '../../services/ErrorHandler';
 import { UserType } from '../../types/User';
 import { api } from '../../api/api';
 import { ResponseType } from '../../types/Http';
+import { handleRevoke } from '../../services/AuthService';
 
 const Header = () => {
   const context = useContext(UserContext);
@@ -24,20 +25,23 @@ const Header = () => {
   const navigate = useNavigate();
 
   const getUser = async (userID: string) => {
-    await api.get<ResponseType>(`http://localhost:8080/me`)
-    .then((response) => {
+    try {
+      const response = await api.get<ResponseType>(`http://localhost:8080/me`)
       if (!response && isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
       if (response) {
         const data = response.data as UserType;
         setUser(data);
         setShouldRenderProfileName(true);
       }
-    })
-    .catch((error) => {
+    } catch(error) {
+      setShouldRenderProfileName(true);
+      setCookie("accessToken", "", 7);
+      setCookie("refreshToken", "", 7);
+      setCookie("userID", "", 7);
+      setUser(null);
       console.error(errors.ERR_LOGIN, error);
-      alert(`${errors.ERR_LOGIN}"Ocorreu um erro ao buscar o usuario de id: ${userID}`);
       window.location.reload();
-    });
+    }
   }
 
   const willRenderLogin = (isAuth: boolean) => {
@@ -60,20 +64,28 @@ const Header = () => {
     willRenderLogin(isAuth);
     willRenderLogout(isAuth);
     
-    console.log(userID)
     const fetchData = async () => {
-      if (!userID) setShouldRenderProfileName(false);
+      if (!userID) {
+        setShouldRenderProfileName(false);
+        return;
+      }
       if (userID && !user) {
         await getUser(userID);
         setShouldRenderProfileName(true);
+        return;
       }
-      if(user && isAuth && location.pathname !== `/users/${userID}`) setShouldRenderProfileName(true);
+      if (user && isAuth && location.pathname !== `/users/${userID}`) {
+        setShouldRenderProfileName(true);
+        return
+      }
       setShouldRenderProfileName(false);
+      return;
     }
     fetchData();
   }, [user, location.pathname])
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await handleRevoke();
     setCookie("accessToken", "", 7);
     setCookie("refreshToken", "", 7);
     setCookie("userID", "", 7);

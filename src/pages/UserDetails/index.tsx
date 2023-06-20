@@ -8,48 +8,57 @@ import UserDetailCard from "./components/UserDetailCard";
 import UserCategoriesColumnCard from "./components/UserCategoriesColumnCard";
 import Button from "../../components/Button";
 import { handleUpdateUser } from "../../services/UserService";
-import { errors } from "../../services/ErrorHandler";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { UserContext } from "../../layouts/PageBase";
+import { ResponseType } from "../../types/Http";
 
 const UserDetails = () => {
   
   const [showModal, setShowModal] = useState<boolean>(false)
   const [userName, setUserName] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const [inputType, setInputType] = useState("password");
 
-  const userLoader: UserOutDTO = useLoaderData() as UserOutDTO;
-  const navigate = useNavigate();
+  const userLoader: ResponseType = useLoaderData() as ResponseType;
+  const user = userLoader.data as UserOutDTO;
 
-  const handleSaveUser = () => {
+  const toggleInputType = () => {
+    if (inputType == "password") setInputType("text");
+    else setInputType("password");
+  }
+
+  const handleSaveUser = async () => {
+    
     const userInDTO: UserType = {
-      id: userLoader.id,
-      email: userLoader.email,
+      id: user.id,
+      email: user.email,
       username: userName,
       password: password
     }
     // checkpassword
     // if(password !== userLoader) return alert("senha incorreta!")
-    handleUpdateUser(userInDTO, userLoader.id)
-    .then((r) => {
+    try {
+      const response = await handleUpdateUser(userInDTO, user.id)
+      if (isResponseError400(errors.ERR_LOGIN, response)) return;
       alert("Novo username salvo com sucesso!")
       setShowModal(false)
-      navigate(`/users/${userLoader.id}`)
-    }).catch((error) => {
+      window.location.reload();
+    } catch(error) {
 			console.error(errors.ERR_UPDATE_USERNAME, error);
 			alert(`${errors.ERR_UPDATE_USERNAME}${error}`)
-      navigate(`/users/${userLoader.id}`)
-		});
+      window.location.reload();
+		}
   }
 
 	return (
 		<>
 			<Breadcrumbs />
 			<div className="user-detail flex-row">
-				<UserDetailCard user={userLoader} setShowModal={setShowModal} setUserName={setUserName}/>
-				<UserCategoriesColumnCard caetgoryList={userLoader.categoryList ?? []} />
+				<UserDetailCard user={user} setShowModal={setShowModal} setUserName={setUserName}/>
+				<UserCategoriesColumnCard categoryList={user.categoryList ?? []} />
 			</div>
-			<ReviewContainer reviewList={userLoader.reviewList ?? []}/>
+			<ReviewContainer reviewList={user.reviewList ?? []}/>
       {showModal 
         &&
           <div className="modal-container">
@@ -59,7 +68,12 @@ const UserDetails = () => {
                 <p>
                   Digite sua senha para confirmar a mudança do seu username:
                 </p>
-                <input className="input-username modal-input" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                <div className="flex-row">
+                  <input className="input-username modal-input" type={inputType} onChange={(e) => setPassword(e.target.value)} value={password}></input>
+                  <a onClick={() => toggleInputType()}>
+                    <img src="./eye.svg" alt="show-password"/>  
+                  </a>
+                </div>
                 <Button text="Salvar" className="user-detail-edit_button" onClick={handleSaveUser}/>
               </div>
             </div>

@@ -8,7 +8,7 @@ export const videoUrl = (id: string) => {
 
 export const addVideoURL = (res: ResponseType): ResponseType => {
   if(res.status === 200) {
-    let data = res.data as VideoType
+    const data = res.data as VideoType
     data.url = videoUrl(data.id);
   }
   return res;
@@ -16,7 +16,7 @@ export const addVideoURL = (res: ResponseType): ResponseType => {
 
 export const addVideoURLToList = (res: ResponseType): ResponseType => {
   if(res.status === 200) {
-    let data = res.data as VideoType[]
+    const data = res.data as VideoType[]
     data.map((video) => {
         video.url = videoUrl(video.id)
         video.title = decodeHtml(video.title)

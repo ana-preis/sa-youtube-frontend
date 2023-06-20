@@ -4,9 +4,8 @@ import {
   useLoaderData,
   useNavigate
 } from "react-router-dom";
-import { UserContext, useUser } from "../../layouts/PageBase";
 import './styles.css'
-import { errors } from "../../services/ErrorHandler";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import SearchBar from "../../components/SearchBar";
 import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
 import CategoryHeader from "./components/CategoryHeader";
@@ -14,23 +13,28 @@ import BestRatedList from "./components/BestRatedList";
 import MostPopular from "./components/MostPopularList";
 import AllVideosList from "./components/AllVideosList";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { handleUpdateUser } from '../../services/UserService';
+import { handleSaveCategoryToUser, handleUpdateUser } from '../../services/UserService';
 import { UserType } from '../../types/User';
 import { MockUserType } from '../../mocks/MockUser';
 import { VideoType } from '../../types/Video';
+import { ResponseType } from '../../types/Http';
+import { UserContext } from '../../layouts/PageBase';
 
 const CategoryDetails = () => {
 
-  const categoryLoader: CategoryType = useLoaderData() as CategoryType;
+  const categoryLoader: ResponseType = useLoaderData() as ResponseType;
+  const context = useContext(UserContext);
+  const { userContext } = context || {};
+  const user = userContext[0];
+
   const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
-  const [category] = useState<CategoryType>(categoryLoader)
+  const [category] = useState<CategoryType>(categoryLoader.data as CategoryType)
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
   const [searchType, setSearchType] = useState<string>("")
   const [data, setData] = useState<any>()
   const [searchText, setSearchText] = useState<string>()
-  //corrigir
-  const [userState, setUserState] = useState<UserType | null>(MockUserType)
+  const [userState, setUserState] = useState<UserType | null>(user)
 
   const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
@@ -46,24 +50,16 @@ const CategoryDetails = () => {
     });
   }
 
-  const handleOnSubscribe = () => {
-    if (userState && userState.id) {
-      let subscriptionList: CategoryType[] | undefined;
-      if (userState.subscriptions) {
-        subscriptionList = userState.subscriptions;
-      } else {
-        subscriptionList = []
-      }
-      subscriptionList.push(category)
-      userState.subscriptions = subscriptionList
-
-      handleUpdateUser(userState, userState.id).then(() => {
-        alert(`Inscricao feita com sucesso!`)
-        navigate(`/categories/${category.id}`)
-      }).catch((error) => {
-        console.error(errors.ERR_SUBSCRIBE, error);
-        alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`)
-      });
+  const handleOnSubscribe = async () => {
+    try {
+      if (!userState) throw new Error("Erro ao cadastrar categoria ao usuario");
+      const response = await handleSaveCategoryToUser(userState.id, category.id);
+      if (isResponseError400(errors.ERR_LOGIN, response)) return;
+      alert(`Inscricao feita com sucesso!`);
+      window.location.reload();
+    } catch(error) {
+      console.error(errors.ERR_SUBSCRIBE, error);
+      alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`);
     }
   }
 
@@ -72,11 +68,11 @@ const CategoryDetails = () => {
       <>
         <CategoryHeader category={category} onSubscribe={handleOnSubscribe}/>
         <hr className="category-details-hr" />
-        <BestRatedList videos={category.videoDTOList} />
+        <BestRatedList videos={category.videoDTOList ?? []} />
         <hr className="category-details-hr" />
-        <MostPopular videos={category.videoDTOList} />
+        <MostPopular videos={category.videoDTOList ?? []} />
         <hr className="category-details-hr" />
-        <AllVideosList videos={category.videoDTOList}/>
+        <AllVideosList videos={category.videoDTOList ?? []}/>
       </>
     )
   }

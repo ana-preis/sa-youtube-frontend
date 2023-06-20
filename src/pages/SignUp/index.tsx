@@ -18,6 +18,7 @@ const SignUp = () => {
 	const [alertEmail, setAlertEmail] = useState(false);
 	const [alertEmailFormat, setAlertEmailFormat] = useState(false);
 	const [alertPassword, setAlertPassword] = useState(false);
+	const [alertPasswordMin, setAlertPasswordMin] = useState(false);
 	const [alertPasswordConfirm, setAlertPasswordConfirm] = useState(false);
   const [inputType1, setInputType1] = useState("password")
   const [inputType2, setInputType2] = useState("password")
@@ -45,6 +46,10 @@ const SignUp = () => {
 		}
 		if (username === "" || email === "" || password === "") {
 			return true;
+		}
+		console.log(password.length)
+		if (password.length < 8) {
+			setAlertPasswordMin(true)
 		}
 		if(!emailRegex.test(email)) {
 			setAlertEmailFormat(true)
@@ -101,6 +106,8 @@ const SignUp = () => {
 					<div className="flex-row password-msgs">
 						{alertPassword && 
 						<span className="alert-text-password">Senha não pode ficar vazia!</span>}
+						{alertPasswordMin && 
+						<span className="alert-text-password">Senha não ter menos que 8 caracteres!</span>}
 						<span className="min-caract">Mínimo de 8 caracteres</span>
 					</div>
 				</div>

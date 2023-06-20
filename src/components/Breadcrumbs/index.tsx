@@ -2,22 +2,21 @@ import { Link } from 'react-router-dom'
 import useBreadcrumbs from 'use-react-router-breadcrumbs'
 import './styles.css'
 
-const userName = "Exemplo"
-
-const DynamicUserBreadcrumb = () => (
-  <span>{userName}</span>
+const DynamicUserBreadcrumb = (username: string) => (
+  <span>{username}</span>
 );
 
 interface BreadcrumbsProps {
   className?: string;
-  breadcrumbPage?:string;
+  breadcrumbPage?: string;
 }
 
 const Breadcrumbs = (props: BreadcrumbsProps) => {
+  
   const { className, breadcrumbPage } = props
 
   const routes = [
-    { path: "/users/:userId", breadcrumb: DynamicUserBreadcrumb },
+    { path: "/users/:userId", breadcrumb: "Meu Perfil" },
     { path: "/users", breadcrumb: null },
     // ajustar a pagina de lista de categorias
     { path: "/categories", breadcrumb: "Categorias" },

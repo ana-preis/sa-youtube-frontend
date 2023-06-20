@@ -5,10 +5,10 @@ export interface CategoryType {
   id: string;
   name: string;
   description?: string;
-  userCount?: number;
-  videoCount?: number;
-  viewCount?: number;
-  videoDTOList: VideoType[];
+  userCount?: number | null;
+  videoCount?: number | null;
+  viewCount?: number | null;
+  videoDTOList: VideoType[] | null;
 }
 
 export interface CategorySearchType {
