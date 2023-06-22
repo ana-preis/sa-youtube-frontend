@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './styles.css'
 import { MockVideoList } from "../../mocks/MockVideoList";
 import VideoDetailCard from '../../components/VideoDetailCard';
@@ -11,14 +11,17 @@ import { handleSaveNewReview } from "../../services/ReviewService";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { errors } from "../../services/ErrorHandler";
 import { handleFetchVideos } from "../../services/VideoServices";
+import { UserContext } from "../../layouts/PageBase";
+import { ResponseType } from '../../types/Http';
 
 const VideoDetails = () => {
 
 	const navigate = useNavigate();
-	const videoLoader: VideoType = useLoaderData() as VideoType;
-	const [reviewList] = useState<ReviewSearchType[]>(videoLoader.reviews ?? [])
+	const videoLoader: ResponseType = useLoaderData() as ResponseType;
+  const videosData = videoLoader.data as VideoType
+	const [reviewList] = useState<ReviewSearchType[]>(videosData.reviews ?? [])
 	const [showNewReview, setShowNewReview] = useState(false);
-  const [video, setVideo] = useState<VideoType>(videoLoader);
+  const [video, setVideo] = useState<VideoType>(videosData);
 	const [relatedVideos, setRelatedVideos] = useState<VideoType[]>()
 
 	useEffect(() => {

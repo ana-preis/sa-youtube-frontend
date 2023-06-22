@@ -1,24 +1,31 @@
-import { useUser } from "../layouts/PageBase";
+import { resolve } from "path";
+import { getCookie, setCookie } from "../services/cookies/CookieService";
+import { ResponseType } from "../types/Http";
 
-// const { accessToken } = useUser();
+const getAuthorizationToken = () => {
+  const accessToken = getCookie("accessToken")
+  if(accessToken && accessToken !== "") return `Bearer ${accessToken}`
+  return null
+}
 
 export const api = {
-  get: <TResponse>(url: string) => 
+    get: <TResponse>(url: string) => 
     request<TResponse>(url, { 
       method: 'GET', 
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
-        // "Authentication": `Bearer ${accessToken}`
+        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
       },
       mode: 'cors' 
     }),
+  
   
   post: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
     request<TResponse>(url, { 
       method: 'POST',
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
-        // "Authentication": `Bearer ${accessToken}`
+        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
       },
       mode: 'cors',
       body }),
@@ -28,7 +35,7 @@ export const api = {
     method: 'PUT',
     headers: { 
       "Content-type": "application/json;charset=UTF-8",
-      // "Authentication": `Bearer ${accessToken}`
+      ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
     },
     mode: 'cors',
     body }),
@@ -38,22 +45,24 @@ export const api = {
     method: 'DELETE',
     headers: { 
       "Content-type": "application/json;charset=UTF-8",
-      // "Authentication": `Bearer ${accessToken}`
+      ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
     },
     mode: 'cors'
   }),
 }
 
-async function request<TResponse>(
-  url: string,
-  config: RequestInit = {}
-): Promise<TResponse> {
-  return fetch(url, config)
-    .then(response => response.json())
-    .then(data => {
-      return data
-    })
-    .catch(error => {
-      console.log(error);
-    })
+async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
+  try {
+    const response = await fetch(url, config);
+    const status = response.status
+    const data = await response.json();
+    const result : ResponseType =  {
+      status,
+      data,
+    }
+    return result;
+  } catch (error) {
+    console.log(" error: ", error)
+    throw new Error('Erro na requisição HTTP');
+  }
 }

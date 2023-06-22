@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './styles.css';
-import { UserType } from "../../types/User";
+import { UserType, UserAuth } from "../../types/User";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleSaveNewUser } from "../../services/UserService";
-import { errors } from "../../services/ErrorHandler";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
+import { UserContext } from "../../layouts/PageBase";
 
 const SignUp = () => {
-
+	
 	const navigate = useNavigate();
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
@@ -17,9 +18,21 @@ const SignUp = () => {
 	const [alertEmail, setAlertEmail] = useState(false);
 	const [alertEmailFormat, setAlertEmailFormat] = useState(false);
 	const [alertPassword, setAlertPassword] = useState(false);
+	const [alertPasswordMin, setAlertPasswordMin] = useState(false);
 	const [alertPasswordConfirm, setAlertPasswordConfirm] = useState(false);
+  const [inputType1, setInputType1] = useState("password")
+  const [inputType2, setInputType2] = useState("password")
 
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
+  const toggleInputType1 = () => {
+    if(inputType1 == "password") setInputType1("text")
+    else setInputType1("password")
+  }
+  const toggleInputType2 = () => {
+    if(inputType2 == "password") setInputType2("text")
+    else setInputType2("password")
+  }
 
 	const validateInputs = () => {
 		if (username === "") {
@@ -34,6 +47,10 @@ const SignUp = () => {
 		if (username === "" || email === "" || password === "") {
 			return true;
 		}
+		console.log(password.length)
+		if (password.length < 8) {
+			setAlertPasswordMin(true)
+		}
 		if(!emailRegex.test(email)) {
 			setAlertEmailFormat(true)
 			return true
@@ -46,21 +63,21 @@ const SignUp = () => {
 	}
 
 	const postUser = () => {
-		const body: UserType = { 
+		const body: UserAuth = { 
 			username, 
 			email, 
 			password
 		}
 		handleSaveNewUser(body)
-		.then(() => {
+		.then((response) => {
+      if (isResponseError400(errors.ERR_SIGNUP, response)) return;
 			alert(`Cadastrado com sucesso :) `)
 			navigate("/login")
 		}).catch((error) => {
 			console.error(errors.ERR_SIGNUP, error);
 			alert(`${errors.ERR_SIGNUP}${error}`)
-			navigate("/signup")
+			window.location.reload();
 		});
-    
 	}
 
 	const handleSignUp = () => {
@@ -80,10 +97,17 @@ const SignUp = () => {
 				</div>
 				<div className="flex-column signup-field">
 					<div>Digite uma senha</div>
-					<input className="input-login" type="password" onChange={e => setPassword(e.target.value)} />
+          <div className="flex-row">
+            <input className="input-login" type={inputType1} onChange={e => setPassword(e.target.value)} />
+            <a onClick={(e) => toggleInputType1()}>
+              <img src="./eye.svg" alt="show-password" className=""/>  
+            </a>
+          </div>
 					<div className="flex-row password-msgs">
 						{alertPassword && 
 						<span className="alert-text-password">Senha não pode ficar vazia!</span>}
+						{alertPasswordMin && 
+						<span className="alert-text-password">Senha não ter menos que 8 caracteres!</span>}
 						<span className="min-caract">Mínimo de 8 caracteres</span>
 					</div>
 				</div>
@@ -99,7 +123,12 @@ const SignUp = () => {
 				</div>
 				<div className="flex-column signup-field">
 					<div>Confirme a senha</div>
-					<input className="input-login" type="password" onChange={e => setPasswordConfirm(e.target.value)} />
+					<div className="flex-row">
+            <input className="input-login" type={inputType2} onChange={e => setPasswordConfirm(e.target.value)}/>
+            <a onClick={() => toggleInputType2()}>
+              <img src="./eye.svg" alt="show-password"/>  
+            </a>
+          </div>
 					{alertPasswordConfirm &&
 					<span className="alert-text">As senhas são diferentes!</span>}
 				</div>

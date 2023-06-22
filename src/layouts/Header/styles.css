@@ -16,6 +16,7 @@
   align-items: center;
   height: 100%;
   margin-left: 1rem;
+  width: 50%;
 }
 
 .logo-image {
@@ -39,6 +40,6 @@
 }
 
 .link_header {
-  width: 100%;
+  width: 50%;
   height: 6rem;
 }

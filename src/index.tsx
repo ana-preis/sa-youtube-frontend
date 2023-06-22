@@ -19,6 +19,7 @@ import CategoryDetails from "./pages/CategoryDetails";
 import { handleFetchCategoryByID, handleFetchCategories } from "./services/CategoryServices";
 import UserDetails from "./pages/UserDetails";
 import Categories from './pages/Categories';
+import { handleMe } from './services/UserService';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,10 +51,10 @@ const router = createBrowserRouter(
           return handleFetchCategoryByID(params.id)
         }} />
       <Route 
-        path="users/1" 
+        path="users/profile" 
         element={<UserDetails />} 
         loader={({ params }) => {
-          return handleFetchCategoryByID(params.id)
+          return handleMe()
         }} />
     </Route>
   )

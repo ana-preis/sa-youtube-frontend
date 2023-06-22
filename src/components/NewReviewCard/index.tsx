@@ -25,7 +25,8 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 	useEffect(() => {
     handleFetchCategories()
 		.then((v) => {
-			if(v) setCategoryList(v)
+      const data = v.data as CategoryType[]
+			if(data) setCategoryList(data)
     }).catch((error) => {
       console.error(errors.ERR_GET_CATEGORIES, error);
 			alert(`${errors.ERR_GET_CATEGORIES}${error}`)
