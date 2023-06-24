@@ -3,6 +3,7 @@ import { CategorySearchType, CategoryType } from "../types/Category"
 import { ResponseType } from "../types/Http"
 import { UserType } from "../types/User"
 import { errors, isResponseError400 } from "./ErrorHandler"
+import { updateUser } from "./UserService"
 
 export const handleFetchCategoriesByName = async (text: string | undefined) => {
   const response = await api.get<ResponseType>(`http://localhost:8080/categories?text=${text}`)
@@ -32,12 +33,13 @@ export const handleDeleteCategoryToUser = async (userID: string, categoryID: str
 }
 
 
-export const handleOnClickSubscribe = async (category: CategorySearchType, userState: UserType) => {
-  if(userState && userState.id && userState?.subscriptionsIDs) {
+export const handleOnClickSubscribe = async (category: CategorySearchType, userState: UserType, setUserState: any) => {
+  if (userState && userState.id && userState?.subscriptionsIDs) {
     const list = userState.subscriptionsIDs.filter((c) => {
-      c === category.id
+      console.log("category id ", category.id)
+      return c === category.id
     })
-
+    console.log("list ", list)
     if (list.length === 0) {
       try {
         const response = await handleSaveCategoryToUser(userState.id, category.id)
@@ -52,6 +54,7 @@ export const handleOnClickSubscribe = async (category: CategorySearchType, userS
         const response = await handleDeleteCategoryToUser(userState.id, category.id)
         if (!response && isResponseError400(errors.ERR_UNSUBSCRIBE, response ?? { status: 400, data: null })) return;
         alert("Categoria removida do usuario com sucesso!")
+        await updateUser(setUserState)
       } catch (error) {
         console.error(errors.ERR_UNSUBSCRIBE, error);
         alert(`${errors.ERR_UNSUBSCRIBE}${category.name}. error: ${error}`)

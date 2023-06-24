@@ -22,7 +22,7 @@ const Categories = () => {
     userContext
   } = context || {};
 
-  const [userState, setUSerState] = useState<UserType | null>(userContext[0] ?? null);
+  const [userState, setUserState] = userContext;
 
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [categories, setCategories] = useState<CategorySearchType[]>(categoriesData)
@@ -53,7 +53,7 @@ const Categories = () => {
         isDropdownVisible={false}
         placeholder="Pesquise uma categoria aqui"
       />
-      <CategoryListV2 categories={isFilterActive ? data : categories} user={userState} />
+      <CategoryListV2 categories={isFilterActive ? data : categories} user={userState} setUser={setUserState} />
     </div>
   )
 }

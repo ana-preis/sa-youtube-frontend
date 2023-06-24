@@ -37,6 +37,7 @@ export const updateUser = async (setUserState: any) => {
       const data = response.data as UserType;
       setUserState(data);
       setCookie("userID", data.id, 7);
+      console.log(" suer atualizado: ", data)
     }
   } catch (error) {
     window.location.reload();

@@ -1,5 +1,5 @@
 import { CategorySearchType } from "../../../../types/Category";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import CategoryCard from "../../../../components/CategoryCard";
 import { UserType } from "../../../../types/User";
@@ -8,15 +8,17 @@ import { handleOnClickSubscribe } from "../../../../services/CategoryServices";
 interface CategoryListV2Props {
   categories: CategorySearchType[];
   user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
 }
 
 const CategoryListV2 = (props: CategoryListV2Props) => {
-  const { categories, user } = props;
+  const { categories, user, setUser } = props;
   const navigate = useNavigate();
-  const handleClickHeart = (category: CategorySearchType) => {
+
+  const handleClickHeart = async (category: CategorySearchType) => {
     if(!user) return
-    handleOnClickSubscribe(category, user)
-    navigate("/")
+    await handleOnClickSubscribe(category, user, setUser)
+    window.location.reload();
   }
 
   const renderCategory = (category: CategorySearchType) => {

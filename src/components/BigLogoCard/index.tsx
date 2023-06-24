@@ -4,7 +4,7 @@ import "./styles.css";
 const BigLogoCard = () => {
   const firstText =
     "Participe de grupos relacionados à conteúdos do seu interesse e acesse as avaliações de outros usuários.";
-  const secondText = "Busque os vídeos mais bem avaliados pela comunidade.";
+  const secondText = "Acesse os vídeos mais bem avaliados pela comunidade.";
 
   return (
     <div className="flex-big-logo width-100 flex-row">

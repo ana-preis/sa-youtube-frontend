@@ -63,14 +63,14 @@ const CategoryDetails = () => {
       updateUser(setUserState);
       console.error(errors.ERR_SUBSCRIBE, error);
       alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`);
-      window.location.reload();
+      // window.location.reload();
     }
   }
 
-  const handleOnClickSubscribe = () => {
-    handleOnSubscribe();
-    updateUser(setUserState);
-    window.location.reload();
+  const handleOnClickSubscribe = async () => {
+    await handleOnSubscribe();
+    await updateUser(setUserState);
+    // window.location.reload();
   }
 
   const renderDefaultContainers = () => {

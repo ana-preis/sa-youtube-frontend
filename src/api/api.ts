@@ -76,10 +76,11 @@ async function request<T>(url: string, config: RequestInit): Promise<ResponseTyp
   try {
     console.log(" url: ", url)
     console.log(" config: ", config)
+    console.log(" token: ", getAuthorizationToken())
     const response = await fetch(url, config);
-    console.log("response: ", response)
     const status = response.status
     const data = await response.json();
+    console.log("data: ", data)
     const result : ResponseType =  {
       status,
       data,

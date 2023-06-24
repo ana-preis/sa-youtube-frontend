@@ -26,7 +26,7 @@ const Homepage = () => {
     userContext
   } = context || {};
 
-  const [userState, setUSerState] = userContext;
+  const [userState, setUserState] = userContext;
   const [selectedFilter, setSelectedFilter] = useState<string>("videos");
   const [searchType, setSearchType] = useState<string>("");
   const [isFilterActive, setIsFilterActive] = useState<boolean>(false);
@@ -70,10 +70,10 @@ const Homepage = () => {
     navigate("/categories")
   }
 
-  const handleClickHeart = (category: CategorySearchType) => {
+  const handleClickHeart = async (category: CategorySearchType) => {
     if(!userState) return
-    handleOnClickSubscribe(category, userState)
-    navigate("/")
+    await handleOnClickSubscribe(category, userState, setUserState)
+    window.location.reload();
   }
 
   const sortCategoryList = (): CategorySearchType[] => {
