@@ -17,6 +17,7 @@ export interface CategorySearchType {
   description?: string;
   userList: UserOutDTO[];
   viewCount?: number;
+  videoCount?: number;
   videoDTOList?: VideoType[];
 }
 

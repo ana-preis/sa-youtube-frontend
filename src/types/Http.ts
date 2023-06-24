@@ -11,7 +11,7 @@ export interface RequestInit {
 
 export interface ResponseType {
   status: number;
-  data: UserOutDTO | UserType | VideoType | VideoType[] | ReviewPostDTO | ReviewSearchType[] | CategoryType | CategoryType[] | CategorySearchType[] | TokenAuth | ErrorResponse| ReviewType | null;
+  data: UserOutDTO | UserType | VideoType | VideoType[] | ReviewPostDTO | ReviewSearchType[] | CategoryType | CategoryType[] | CategorySearchType[] | CategorySearchType | TokenAuth | ErrorResponse| ReviewType | null;
 }
 
 export interface ErrorResponse {

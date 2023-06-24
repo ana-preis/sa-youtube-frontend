@@ -10,7 +10,8 @@ export interface UserType {
   toWatchList?: VideoType[];
   finishedList?: VideoType[];
   messageList?: string[];
-  subscriptions?: CategoryType[];
+  subscriptionsIDs?: string[];
+  reviewList?: ReviewSearchType[];
   role?: string;
 }
 

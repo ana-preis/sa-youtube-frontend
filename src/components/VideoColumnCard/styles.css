@@ -8,26 +8,16 @@
 .white-bg {
   background: #fff;
   width: 90%;
-  height: 100%;
+  height: 101%;
   border-radius: 25px 0 0 25px;
 }
 
 .video-thumbnail-container {
-  position: relative;
-  overflow: hidden;
-  padding-top: 57%;
   line-height: 0;
   color: #000;
-  width: 98.2%;
 }
 
 .video-thumbnail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
   margin-top: 2rem;
 }
 
@@ -44,4 +34,11 @@
 .related-title {
   margin-bottom: 0;
   text-align: center;
+}
+
+.horizontal-related {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

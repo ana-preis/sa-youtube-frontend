@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react'
 import "./styles.css";
-import { CategorySearchType, CategoryType } from "../../types/Category";
-import { truncateVideoCount } from "../../helpers/truncateVideoCount";
-import { videoUrl } from "../../helpers/videoTransformer";
-import { Link } from 'react-router-dom';
-import { MockUserType } from "../../mocks/MockUser";
+import { CategorySearchType } from "../../types/Category";
+import CategoryCard from '../CategoryCard';
+
 
 interface CategoryContainerProps {
   handleOnClickAllCategories: () => any;
@@ -14,69 +11,12 @@ interface CategoryContainerProps {
 
 const CategoryContainer = (props: CategoryContainerProps) => {
 
-  // user = useUser
-  const [user, setUser] = useState(MockUserType)
-
   const { handleOnClickAllCategories, categories, onClickSubscribe } = props;
-
-  const isCategoryubscribed = (category: CategorySearchType) :boolean => {
-    if(user.subscriptions) {
-      const filtered = user.subscriptions.filter((c) => {
-        return c.id === category.id
-      })
-      return filtered.length > 0;
-    }
-    return false;
-  }
 
   const renderCategory = (category: CategorySearchType) => {
     if(!category.videoDTOList) category.videoDTOList = [];
-    const videoCount = truncateVideoCount(category.viewCount);
     return (
-      <div  className="flex-column cards-category_container">
-        <div className="category-title flex-row">
-          {category.name}
-          <button title="Inscrever-se" onClick={() => onClickSubscribe(category)}>
-            {isCategoryubscribed(category)
-              ?
-              <img src="./heart-fill.svg" alt="icon-heart" className="icon-heart" />
-              :
-              <img src="./heart.svg" alt="icon-heart" className="icon-heart" />
-            }
-          </button>
-        </div>
-        <Link to={`/categories/${category.id}`}>
-          { category.videoDTOList.length > 0 ? 
-            <iframe
-              className="video"
-              src= {videoUrl(category.videoDTOList[0].id)}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-            :
-            <div className="video flex-column jc-center">
-              <span className="no-videos">Ainda não há vídeos nessa categoria</span>
-            </div>
-          }
-          <div className="video-footer flex-row">
-            {
-              category.videoDTOList.length > 0 ??
-                <span className="video-footer-text">
-                  + {videoCount}k visualizações
-                </span>
-            }
-            <button className="arrow-left_btn">
-              <img
-                src="./arrow-left.svg"
-                alt="arrow-left"
-                className="arrow-left"
-              />
-            </button>
-          </div>
-        </Link>
-      </div>
+      <CategoryCard category={category} onClickSubscribe={onClickSubscribe} />
     );
   };
 

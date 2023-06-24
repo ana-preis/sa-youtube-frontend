@@ -9,7 +9,7 @@ export const handleFetchVideoDetails = async (videoId: string | undefined) => {
 }
 
 export const handleFetchVideos = async (text: string | undefined) => {
-  const response = await api.get<ResponseType>(`http://localhost:8080/search?q=${text}&type=video`)
+  const response = await api.get<ResponseType>(`http://localhost:8080/search?q=${text}`)
   return addVideoURLToList(response);
 }
 

@@ -9,10 +9,11 @@ import NewReviewCard from '../../components/NewReviewCard';
 import { VideoType } from '../../types/Video';
 import { handleSaveNewReview } from "../../services/ReviewService";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { errors } from "../../services/ErrorHandler";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import { handleFetchVideos } from "../../services/VideoServices";
 import { UserContext } from "../../layouts/PageBase";
 import { ResponseType } from '../../types/Http';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const VideoDetails = () => {
 
@@ -24,20 +25,40 @@ const VideoDetails = () => {
   const [video, setVideo] = useState<VideoType>(videosData);
 	const [relatedVideos, setRelatedVideos] = useState<VideoType[]>()
 
+  const context = useContext(UserContext);
+  const { 
+    userContext
+  } = context || {};
+
+  const [userState, setUSerState] = userContext;
+
+  const getRelatedVideosByTitle = async () => {
+    try {
+      const response = await handleFetchVideos(videosData.title.split(" ")[5])
+      if (!response && isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
+      const relatedVideos = response.data as VideoType[] || []
+      if (relatedVideos.length == 0) return;
+      relatedVideos.shift();
+      setRelatedVideos(relatedVideos)
+      return response?.status as number;
+    } catch (error) {
+      return null;
+    }
+  }
+
 	useEffect(() => {
-		// console.log(videoLoader.title.split(" ")[5])
-		// handleFetchVideos(videoLoader.title.split(" ")[5]).then((response) => {
-		// 	setRelatedVideos(response)
-		// }).catch(() => {
-		// 	handleFetchVideos(videoLoader.channelTitle).then((response) => {
-		// 		setRelatedVideos(response)
-		// 	})
-		// })
-	})
+    // videos relacionados
+    try {
+      getRelatedVideosByTitle();
+    } catch (error) {
+      setRelatedVideos([]);
+    }
+	},[]);
+
 
 	const renderNewReviewModal = () => {
-		setShowNewReview(true)
-	}
+		setShowNewReview(true);
+	};
 
 	const handleSaveReview = (rating: number | undefined, text: string, category: string[]) => {
 		if (!rating) {
@@ -54,13 +75,10 @@ const VideoDetails = () => {
 		}
 
     const now = Date.now()
-
-		// GET USER INFO AND POPULATE NEW REQUEST
-
     const newReview: ReviewPostDTO = {
       rating: Number(rating),
       text,
-      userId: "181d4695-6bc6-4958-8528-4a45de31d26f",
+      userId: userState?.id ?? "",
       publishedAt: now,
       videoId: video.id,
 			categoryIdList: category
@@ -79,9 +97,7 @@ const VideoDetails = () => {
 
 	return (
 		<>
-			<div className="breadcrumb">
-				Breadcrumb - Breadcrumb
-			</div>
+			<Breadcrumbs breadcrumbPage={video.title}></Breadcrumbs>
 			<div className="video-detail flex-row">
 				<VideoDetailCard video={video} renderNewReviewModal={renderNewReviewModal}/>
 				<VideoColumnCard videoList={relatedVideos ?? []} />

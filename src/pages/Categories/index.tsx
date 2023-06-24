@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { CategorySearchType, CategoryType } from "../../types/Category";
 import {
   useLoaderData,
@@ -10,11 +10,19 @@ import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CategoryListV2 from './components/CategoryListV2';
 import { ResponseType } from '../../types/Http';
+import { UserContext } from "../../layouts/PageBase";
+import { UserType } from '../../types/User';
 
 const Categories = () => {
 
   const categoryLoader: ResponseType = useLoaderData() as ResponseType;
   const categoriesData = categoryLoader.data as CategorySearchType[]
+  const context = useContext(UserContext);
+  const { 
+    userContext
+  } = context || {};
+
+  const [userState, setUSerState] = useState<UserType | null>(userContext[0] ?? null);
 
   const [selectedFilter, setSelectedFilter] = useState<string>("videos")
   const [categories, setCategories] = useState<CategorySearchType[]>(categoriesData)
@@ -45,7 +53,7 @@ const Categories = () => {
         isDropdownVisible={false}
         placeholder="Pesquise uma categoria aqui"
       />
-      <CategoryListV2 categories={isFilterActive ? data : categories} />
+      <CategoryListV2 categories={isFilterActive ? data : categories} user={userState} />
     </div>
   )
 }

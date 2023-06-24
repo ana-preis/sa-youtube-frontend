@@ -13,28 +13,26 @@ import BestRatedList from "./components/BestRatedList";
 import MostPopular from "./components/MostPopularList";
 import AllVideosList from "./components/AllVideosList";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { handleSaveCategoryToUser, handleUpdateUser } from '../../services/UserService';
-import { UserType } from '../../types/User';
-import { MockUserType } from '../../mocks/MockUser';
+import { handleSaveCategoryToUser } from '../../services/CategoryServices';
 import { VideoType } from '../../types/Video';
 import { ResponseType } from '../../types/Http';
 import { UserContext } from '../../layouts/PageBase';
+import { updateUser } from '../../services/UserService';
 
 const CategoryDetails = () => {
 
   const categoryLoader: ResponseType = useLoaderData() as ResponseType;
   const context = useContext(UserContext);
   const { userContext } = context || {};
-  const user = userContext[0];
 
   const navigate = useNavigate();
-  const [selectedFilter, setSelectedFilter] = useState<string>("videos")
-  const [category] = useState<CategoryType>(categoryLoader.data as CategoryType)
-  const [isFilterActive, setIsFilterActive] = useState<boolean>(false)
-  const [searchType, setSearchType] = useState<string>("")
-  const [data, setData] = useState<any>()
-  const [searchText, setSearchText] = useState<string>()
-  const [userState, setUserState] = useState<UserType | null>(user)
+  const [selectedFilter, setSelectedFilter] = useState<string>("videos");
+  const [category] = useState<CategoryType>(categoryLoader.data as CategoryType);
+  const [isFilterActive, setIsFilterActive] = useState<boolean>(false);
+  const [searchType, setSearchType] = useState<string>("");
+  const [data, setData] = useState<any>();
+  const [searchText, setSearchText] = useState<string>();
+  const [userState, setUserState] = userContext;
 
   const onClickSearch = async (text: string) => {
     setSearchType(selectedFilter)
@@ -53,20 +51,32 @@ const CategoryDetails = () => {
   const handleOnSubscribe = async () => {
     try {
       if (!userState) throw new Error("Erro ao cadastrar categoria ao usuario");
+      if(userState?.subscriptionsIDs?.includes(category.id)) {
+        alert(" Ops! Ja se inscreveu nessa categoria!")
+        return;
+      }
       const response = await handleSaveCategoryToUser(userState.id, category.id);
       if (isResponseError400(errors.ERR_LOGIN, response)) return;
       alert(`Inscricao feita com sucesso!`);
-      window.location.reload();
+      return;
     } catch(error) {
+      updateUser(setUserState);
       console.error(errors.ERR_SUBSCRIBE, error);
       alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`);
+      window.location.reload();
     }
+  }
+
+  const handleOnClickSubscribe = () => {
+    handleOnSubscribe();
+    updateUser(setUserState);
+    window.location.reload();
   }
 
   const renderDefaultContainers = () => {
     return (
       <>
-        <CategoryHeader category={category} onSubscribe={handleOnSubscribe}/>
+        <CategoryHeader category={category} onSubscribe={handleOnClickSubscribe}/>
         <hr className="category-details-hr" />
         <BestRatedList videos={category.videoDTOList ?? []} />
         <hr className="category-details-hr" />

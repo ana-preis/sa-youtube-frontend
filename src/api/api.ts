@@ -74,7 +74,10 @@ export const api = {
 
 async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
   try {
+    console.log(" url: ", url)
+    console.log(" config: ", config)
     const response = await fetch(url, config);
+    console.log("response: ", response)
     const status = response.status
     const data = await response.json();
     const result : ResponseType =  {

@@ -67,6 +67,10 @@ iframe {
   align-items: center;
 }
 
+.no-padding{
+  padding: 0;
+}
+
 .btn {
   color: #fff;
   cursor: pointer;

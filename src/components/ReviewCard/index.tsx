@@ -26,7 +26,6 @@ const ReviewCard = (props : ReviewCardProps) => {
 		}
 		return emptyStars;
 	}
-
 	return(
 		<div className="card flex-row">
 			<div className="review flex-column">

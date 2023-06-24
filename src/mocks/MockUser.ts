@@ -16,11 +16,7 @@ export const MockUserType: UserType = {
   username: "anapreis",
   email:"anapreis@gmail.com",
   password:"123456",
-  subscriptions: [
-    {
-      id: "05098440-0051-4046-8834-a24c9b0dbb97",
-      name: "Tutoriais",
-      videoDTOList: MockVideoList
-    }
+  subscriptionsIDs: [
+    "05098440-0051-4046-8834-a24c9b0dbb97",
   ]
 }

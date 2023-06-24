@@ -16,6 +16,7 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 					<img className="video-thumbnail" src={video.thumbnailUrl}></img>
 				</a>
 				<h3 className="related-video-title">{video.title}</h3>
+        <hr className="horizontal-related"/>
 			</>
 		)
 	}
@@ -24,7 +25,12 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 		<div className="related-videos-container">
 			<div className="white-bg flex-column">
         <h2 className="related-title">Relacionados</h2>
-				{videoList.slice(0, 3).map((v) => renderVideoList(v))}
+				{ videoList.length > 0 
+          ?        
+          videoList.slice(0, 3).map((v) => renderVideoList(v))
+          :
+          <span>Sem videos relacionados</span>
+        }
 			</div>
 		</div>
 	)

@@ -109,13 +109,13 @@ const Header = () => {
       </Link>
       <div className="flex-row">
         { shouldRenderProfileName && user &&
-          <Link to={`/users/profile`}>
+          <Link to={`/users/profile`} className="no-padding">
             <Button  className="login-button" text={user.username} />
           </Link> }
         { shouldRenderLogout &&
           <Button className="login-button" text="Sair" onClick={() => handleLogout()}/> }
         { shouldRenderLogin &&
-          <Link to="/login">
+          <Link to="/login" className="no-padding">
             <Button className="login-button" text="Login"/>
           </Link> }
       </div>

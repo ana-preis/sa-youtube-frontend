@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserOutDTO, UserType, PasswordDTO } from "../../types/User";
 import { useLoaderData } from "react-router-dom";
 import './styles.css'
@@ -14,6 +14,8 @@ import { UserContext } from "../../layouts/PageBase";
 import { ResponseType } from "../../types/Http";
 import Modal from "../../components/Modal";
 import { setCookie } from "../../services/cookies/CookieService";
+import { handleFetchCategoryByID } from "../../services/CategoryServices";
+import { CategorySearchType } from "../../types/Category";
 
 const UserDetails = () => {
 
@@ -23,19 +25,40 @@ const UserDetails = () => {
   } = context || {};
 
   const [userContextState, setUserContextState] = userContext;
-  const [showModal, setShowModal] = useState<boolean>(false)
-  const [showModalDeleteAccount, setShowModalDeleteAccount] = useState<boolean>(false)
-  const [showModalPassword, setShowModalPassword] = useState<boolean>(false)
-  const [userName, setUserName] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [oldPassword, setOldPassword] = useState<string>("")
-  const [newPassword, setNewPassword] = useState<string>("")
+  const [categoryList, setCategoryList] = useState<CategorySearchType[]>();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModalDeleteAccount, setShowModalDeleteAccount] = useState<boolean>(false);
+  const [showModalPassword, setShowModalPassword] = useState<boolean>(false);
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [oldPassword, setOldPassword] = useState<string>("");
+  const [newPassword, setNewPassword] = useState<string>("");
   const navigate = useNavigate();
   const userLoader: ResponseType = useLoaderData() as ResponseType;
-  const user = userLoader.data as UserOutDTO;
+  const user = userLoader.data as UserType;
+
+  const getCategoryList = () => {
+    const list: CategorySearchType[] = [];
+    user.subscriptionsIDs?.map(async (c) => {
+      try {
+        const response = await handleFetchCategoryByID(c);
+        if (isResponseError400(errors.ERR_GET_CATEGORIES, response)) return;
+        list.push(response.data as CategorySearchType);
+      } catch (error) {
+        console.error(errors.ERR_GET_CATEGORIES, error);
+        alert(`${errors.ERR_GET_CATEGORIES}${error}`)
+      }
+    })
+    return list;
+  }
+
+  useEffect(() => {
+    if(!user) return;
+    const resultList = getCategoryList()
+    setCategoryList(resultList)
+  })
 
   const handleSaveUser = async () => {
-    
     const userInDTO: UserType = {
       id: user.id,
       email: user.email,
@@ -96,7 +119,7 @@ const UserDetails = () => {
 			<Breadcrumbs />
 			<div className="user-detail flex-row">
 				<UserDetailCard user={user} setShowModal={setShowModal} setUserName={setUserName} setShowModalPassword={setShowModalPassword}/>
-				<UserCategoriesColumnCard categoryList={user.categoryList ?? []} />
+				<UserCategoriesColumnCard categoryList={categoryList ?? []} />
 			</div>
 			<ReviewContainer reviewList={user.reviewList ?? []}/>
       <Button 
