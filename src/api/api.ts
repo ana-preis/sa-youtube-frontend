@@ -10,15 +10,13 @@ const getAuthorizationToken = () => {
 
 export const api = {
     get: <TResponse>(url: string) => 
-    request<TResponse>(url, { 
-      method: 'GET', 
-      headers: { 
-        "Content-type": "application/json;charset=UTF-8",
-        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-      },
-      mode: 'cors' 
-    }),
-  
+      request<TResponse>(url, { 
+        method: 'GET', 
+        headers: { 
+          "Content-type": "application/json;charset=UTF-8",
+          ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+        },
+        mode: 'cors' }),
   
   post: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
     request<TResponse>(url, { 
@@ -31,24 +29,23 @@ export const api = {
       body }),
     
   put: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
-  request<TResponse>(url, { 
-    method: 'PUT',
-    headers: { 
-      "Content-type": "application/json;charset=UTF-8",
-      ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-    },
-    mode: 'cors',
-    body }),
+    request<TResponse>(url, { 
+      method: 'PUT',
+      headers: { 
+        "Content-type": "application/json;charset=UTF-8",
+        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+      },
+      mode: 'cors',
+      body }),
 
-  delete: (url: string) => 
-  request (url, { 
-    method: 'DELETE',
-    headers: { 
-      "Content-type": "application/json;charset=UTF-8",
-      ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-    },
-    mode: 'cors'
-  }),
+  delete: <TResponse>(url: string) => 
+    request <TResponse>(url, { 
+      method: 'DELETE',
+      headers: { 
+        "Content-type": "application/json;charset=UTF-8",
+        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+      },
+      mode: 'cors' }),
 }
 
 async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {

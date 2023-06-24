@@ -36,7 +36,7 @@ const UserCategoriesColumnCard = ( props: UserCategoriesColumnCardProps ) => {
 					<h2 className="user-categories-title">Suas categorias</h2>
 					{ categoryList.length > 0 ?
             categoryList.slice(0, 3).map((c) => renderVideoList(c)) :
-            "Ainda não tem categorias aqui!"
+            (<span className="no-categories">Ainda não tem categorias aqui!</span>)
           }
 			</div>
 

@@ -2,11 +2,10 @@ import { useState } from "react";
 import Button from "../../../../components/Button";
 import { UserOutDTO } from "../../../../types/User";
 import '../../styles.css'
-import { MockUser } from "../../../../mocks/MockUser";
 
 interface UserDetailCardProps {
   user: UserOutDTO;
-  setShowModal:any;
+  setShowModal:React.Dispatch<React.SetStateAction<boolean>>;
   setUserName: any;
 }
 
@@ -14,7 +13,6 @@ const UserDetailCard = (props: UserDetailCardProps) => {
 
   const [isEditingUserName, setIsEditingUsername] = useState<boolean>(false);
   const { user, setShowModal, setUserName } = props;
-  const userMock = MockUser;
 
   const verifyLength = (value: string, len: number) => {
     if(len === 0) {
@@ -43,7 +41,7 @@ const UserDetailCard = (props: UserDetailCardProps) => {
                     ? 
                       <input className="input-username" onChange={e => setUserName(e.target.value)}></input>
                     : 
-                      <span className="user-detail_text">{userMock.username}</span>
+                      <span className="user-detail_text">{user.username}</span>
                   }
               </div>
               <Button 
@@ -53,15 +51,15 @@ const UserDetailCard = (props: UserDetailCardProps) => {
             </div>
             <div>
               <span className="user-detail_text-title">Email: </span>
-              <span className="user-detail_text">{userMock.email}</span>
+              <span className="user-detail_text">{user.email}</span>
             </div>
             <div>
               <span className="user-detail_text-title">Quantidade de avaliações: </span>
-              <span className="user-detail_text">{verifyLength("avaliação", userMock.reviewList?.length ?? 0)}</span>
+              <span className="user-detail_text">{verifyLength("avaliação", user.reviewList?.length ?? 0)}</span>
             </div>
             <div>
               <span className="user-detail_text-title">Categorias inscritas: </span>
-              <span className="user-detail_text">{verifyLength("categoria", userMock.categoryList?.length ?? 0)}</span>
+              <span className="user-detail_text">{verifyLength("categoria", user.categoryList?.length ?? 0)}</span>
             </div>
           </div>
           

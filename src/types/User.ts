@@ -11,6 +11,7 @@ export interface UserType {
   finishedList?: VideoType[];
   messageList?: string[];
   subscriptions?: CategoryType[];
+  role?: string;
 }
 
 export interface UserOutDTO {

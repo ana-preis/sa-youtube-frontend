@@ -85,13 +85,18 @@ const Header = () => {
   }, [user, location.pathname])
 
   const handleLogout = async () => {
-    await handleRevoke();
-    setCookie("accessToken", "", 7);
-    setCookie("refreshToken", "", 7);
-    setCookie("userID", "", 7);
-    setUser(null);
-    alert("Logout realizado com sucesso!")
-    window.location.reload();
+    try {
+      // await handleRevoke();
+      setCookie("accessToken", "", 7);
+      setCookie("refreshToken", "", 7);
+      setCookie("userID", "", 7);
+      setUser(null);
+      alert("Logout realizado com sucesso!")
+      window.location.reload();
+    } catch (error) {
+      alert(`Algo deu errado: ${error}`)
+    }
+
   }
 
 	return (
@@ -101,17 +106,19 @@ const Header = () => {
 						<img src="./log2.svg" alt="logo" className="logo-image"></img>
 						<div className="logo-text">ComuniTube</div>
 				</a>
-			</Link>
-      { shouldRenderProfileName && user &&
-        <Link to={`/users/${user.id}`}>
-          <Button  className="login-button" text={user.username} />
-        </Link> }
-      { shouldRenderLogout &&
-        <Button className="login-button" text="Sair" onClick={() => handleLogout()}/> }
-      { shouldRenderLogin &&
-        <Link to="/login">
-          <Button className="login-button" text="Login"/>
-        </Link> }
+      </Link>
+      <div className="flex-row">
+        { shouldRenderProfileName && user &&
+          <Link to={`/users/profile`}>
+            <Button  className="login-button" text={user.username} />
+          </Link> }
+        { shouldRenderLogout &&
+          <Button className="login-button" text="Sair" onClick={() => handleLogout()}/> }
+        { shouldRenderLogin &&
+          <Link to="/login">
+            <Button className="login-button" text="Login"/>
+          </Link> }
+      </div>
 		</div>
 	)  
 }
