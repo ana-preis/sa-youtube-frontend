@@ -7,12 +7,13 @@ interface UserDetailCardProps {
   user: UserOutDTO;
   setShowModal:React.Dispatch<React.SetStateAction<boolean>>;
   setUserName: any;
+  setShowModalPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UserDetailCard = (props: UserDetailCardProps) => {
 
   const [isEditingUserName, setIsEditingUsername] = useState<boolean>(false);
-  const { user, setShowModal, setUserName } = props;
+  const { user, setShowModal, setUserName, setShowModalPassword } = props;
 
   const verifyLength = (value: string, len: number) => {
     if(len === 0) {
@@ -34,7 +35,7 @@ const UserDetailCard = (props: UserDetailCardProps) => {
       <div className="white-bg">
           <h2 className="user-detail-title">Suas informações:</h2>
           <div className="user-detail_text-container flex-column">
-            <div className="flex-row username-edit">
+            <div className="flex-row jc-between">
               <div>
                 <span className="user-detail_text-title">Username: </span>
                   {isEditingUserName 
@@ -49,9 +50,15 @@ const UserDetailCard = (props: UserDetailCardProps) => {
                 text={isEditingUserName ? "Salvar" : "Editar username"} 
                 onClick={isEditingUserName ? handleSaveUsername : handleEdit}/>
             </div>
-            <div>
-              <span className="user-detail_text-title">Email: </span>
-              <span className="user-detail_text">{user.email}</span>
+            <div className="flex-row jc-between ">
+              <div>
+                <span className="user-detail_text-title">Email: </span>
+                <span className="user-detail_text">{user.email}</span>
+              </div>
+              <Button 
+                className="user-detail-edit_button" 
+                text={"Alterar senha"} 
+                onClick={() => setShowModalPassword(true)}/>
             </div>
             <div>
               <span className="user-detail_text-title">Quantidade de avaliações: </span>

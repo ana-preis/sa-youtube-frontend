@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import { getCookie, setCookie } from "../services/cookies/CookieService";
 import { ResponseType } from "../types/Http";
 
@@ -14,6 +13,7 @@ export const api = {
         method: 'GET', 
         headers: { 
           "Content-type": "application/json;charset=UTF-8",
+          "Accept": "application/json",
           ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
         },
         mode: 'cors' }),
@@ -23,6 +23,7 @@ export const api = {
       method: 'POST',
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
+        "Accept": "application/json",
         ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
       },
       mode: 'cors',
@@ -33,7 +34,25 @@ export const api = {
       method: 'PUT',
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
+        "Accept": "application/json",
         ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+        "Access-Control-Allow-Headers": "Accept",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+      },
+      mode: 'cors',
+      body }),
+
+  patch: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
+    request<TResponse>(url, { 
+      method: 'PATCH',
+      headers: { 
+        "Content-type": "application/json;charset=UTF-8",
+        "Accept": "application/json",
+        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+        "Access-Control-Allow-Headers": "Accept",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
       },
       mode: 'cors',
       body }),
@@ -43,7 +62,12 @@ export const api = {
       method: 'DELETE',
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
+        "Accept": "application/json",
         ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Methods": "GET; POST; PATCH; PUT; DELETE; OPTIONS"
       },
       mode: 'cors' }),
 }

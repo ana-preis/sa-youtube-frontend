@@ -47,7 +47,6 @@ const SignUp = () => {
 		if (username === "" || email === "" || password === "") {
 			return true;
 		}
-		console.log(password.length)
 		if (password.length < 8) {
 			setAlertPasswordMin(true)
 		}

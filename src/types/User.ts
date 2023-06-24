@@ -34,3 +34,8 @@ export interface TokenAuth {
   refreshToken: string;
   email: string;
 }
+
+export interface PasswordDTO {
+  oldPassword: string;
+  newPassword: string;
+}

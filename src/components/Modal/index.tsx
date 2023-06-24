@@ -10,17 +10,27 @@ interface ModalProps {
   contentText: string;
   title: string;
   showModal: React.Dispatch<React.SetStateAction<boolean>>;
+  secondText?: string;
+  secondInputValue?: string;
+  setSecondInputValue?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Modal = (props: ModalProps) => {
 
-  const { handleOnSave, inputValue, setInputValue, buttonText, contentText, title, showModal } = props
+  const { handleOnSave, inputValue, setInputValue, buttonText, contentText, title, showModal, secondText, secondInputValue, setSecondInputValue } = props
   const [inputType, setInputType] = useState("password");
+  const [inputType2, setInputType2] = useState("password");
   
   const toggleInputType = () => {
     if (inputType == "password") setInputType("text");
     else setInputType("password");
   }
+
+  const toggleInputType2 = () => {
+    if (inputType2 == "password") setInputType2("text");
+    else setInputType2("password");
+  }
+
 
   return (
     <div className="modal-container">
@@ -39,6 +49,19 @@ const Modal = (props: ModalProps) => {
               <img src="./eye.svg" alt="show-password"/>  
             </a>
           </div>
+          {secondText &&
+            <p>
+              {secondText}
+            </p>
+          }
+          {setSecondInputValue &&
+            <div className="flex-row">
+              <input className="input-username modal-input" type={inputType2} onChange={(e) => setSecondInputValue(e.target.value)} value={secondInputValue}></input>
+              <a onClick={() => toggleInputType2()}>
+                <img src="./eye.svg" alt="show-password"/>  
+              </a>
+            </div>
+          }
           <Button text={buttonText} className="user-detail-edit_button" onClick={handleOnSave}/>
         </div>
       </div>

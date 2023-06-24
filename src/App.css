@@ -59,6 +59,10 @@ iframe {
   justify-content: center;
 }
 
+.jc-between {
+  justify-content: space-between;
+}
+
 .ai-center {
   align-items: center;
 }

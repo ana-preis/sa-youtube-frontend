@@ -1,5 +1,5 @@
 import { api } from "../api/api"
-import { UserType, UserAuth } from "../types/User";
+import { UserType, UserAuth, PasswordDTO } from "../types/User";
 import { ResponseType } from "../types/Http"
 
 export const handleSaveNewUser = async (user: UserAuth) => {
@@ -8,7 +8,17 @@ export const handleSaveNewUser = async (user: UserAuth) => {
 }
 
 export const handleUpdateUser = async (user: UserType, id: string) => {
-  const response = await api.put<string, ResponseType>(`http://localhost:8080/users/${id}`, JSON.stringify(user));
+  const response = await api.patch<string, ResponseType>(`http://localhost:8080/users/${id}`, JSON.stringify(user));
+  return response;
+}
+
+export const handleUpdatePassword = async (user: PasswordDTO, id: string) => {
+  const response = await api.patch<string, ResponseType>(`http://localhost:8080/users/${id}/password`, JSON.stringify(user));
+  return response;
+}
+
+export const handleDeleteUser = async (id: string) => {
+  const response = await api.delete<string>(`http://localhost:8080/users/${id}`);
   return response;
 }
 
