@@ -160,7 +160,7 @@ const Login = (props: LoginProps) => {
           <div className="flex-row">
             <input className="input-login" type={inputType} onChange={e => setPassword(e.target.value)} value={password} />
             <a onClick={() => toggleInputType()}>
-              <img src="./eye.svg" alt="show-password"/>  
+              { inputType == 'password' ? <img src="./eye.svg" alt="show-password"/> : <img src="./eye-closed.svg" alt="hide-password" />} 
             </a>
           </div>
 					<div className="flex-row password-msgs-login">

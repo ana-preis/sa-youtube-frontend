@@ -47,7 +47,7 @@ const Modal = (props: ModalProps) => {
             <div className="flex-row">
               <input className="input-username modal-input" type={inputType} onChange={(e) => setInputValue(e.target.value)} value={inputValue}></input>
               <a onClick={() => toggleInputType()}>
-                <img src="./eye.svg" alt="show-password"/>  
+                { inputType == 'password' ? <img src="./eye.svg" alt="show-password"/> : <img src="./eye-closed.svg" alt="hide-password" />} 
               </a>
             </div>
             :
@@ -62,7 +62,7 @@ const Modal = (props: ModalProps) => {
             <div className="flex-row">
               <input className="input-username modal-input" type={inputType2} onChange={(e) => setSecondInputValue(e.target.value)} value={secondInputValue}></input>
               <a onClick={() => toggleInputType2()}>
-                <img src="./eye.svg" alt="show-password"/>  
+                { inputType2 == 'password' ? <img src="./eye.svg" alt="show-password"/> : <img src="./eye-closed.svg" alt="hide-password" />} 
               </a>
             </div>
           }

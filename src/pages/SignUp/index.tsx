@@ -119,7 +119,7 @@ const SignUp = () => {
           <div className="flex-row">
             <input className="input-login" type={inputType1} onChange={e => setPassword(e.target.value)} />
             <a onClick={(e) => toggleInputType1()}>
-              <img src="./eye.svg" alt="show-password" className=""/>  
+              { inputType1 == 'password' ? <img src="./eye.svg" alt="show-password"/> : <img src="./eye-closed.svg" alt="hide-password" />} 
             </a>
           </div>
 					<div className="flex-row password-msgs">
@@ -145,7 +145,7 @@ const SignUp = () => {
 					<div className="flex-row">
             <input className="input-login" type={inputType2} onChange={e => setPasswordConfirm(e.target.value)}/>
             <a onClick={() => toggleInputType2()}>
-              <img src="./eye.svg" alt="show-password"/>  
+              { inputType2 == 'password' ? <img src="./eye.svg" alt="show-password"/> : <img src="./eye-closed.svg" alt="hide-password" />}
             </a>
           </div>
 					{alertPasswordConfirm &&
