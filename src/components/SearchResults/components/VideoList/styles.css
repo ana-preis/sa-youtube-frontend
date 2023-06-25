@@ -41,6 +41,7 @@ p.video-text_results, a.video-text_results, span.video-text_results {
 }
 
 .video-publish_results {
+  color: #000;
   font-size: 0.8rem;
   padding: 0 0;
   border: none;
@@ -48,6 +49,7 @@ p.video-text_results, a.video-text_results, span.video-text_results {
 }
 
 .video-description_results {
+  color: #000;
   margin-top: 1rem;
   font-size: 0.8rem;
   line-height: normal;

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { VideoType } from "../../types/Video";
+import { Link } from "react-router-dom";
 import "./styles.css"
 
 interface VideoColumnCardProps {
@@ -12,9 +13,9 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
 	const renderVideoList = (video : VideoType ) => {
 		return (
 			<>
-				<a className="width-100 flex-column ai-center video-thumbnail-container">
+				<Link to={`/videos/${video.id}`} className="video-thumbnail-container">
 					<img className="video-thumbnail" src={video.thumbnailUrl}></img>
-				</a>
+				</Link>
 				<h3 className="related-video-title">{video.title}</h3>
         <hr className="horizontal-related"/>
 			</>
@@ -29,7 +30,7 @@ const VideoColumnCard = (props : VideoColumnCardProps) => {
           ?        
           videoList.slice(0, 3).map((v) => renderVideoList(v))
           :
-          <span>Sem videos relacionados</span>
+          <span className="no-related-videos">Sem videos relacionados</span>
         }
 			</div>
 		</div>

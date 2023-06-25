@@ -8,15 +8,15 @@ const getAuthorizationToken = () => {
 }
 
 export const api = {
-    get: <TResponse>(url: string) => 
-      request<TResponse>(url, { 
-        method: 'GET', 
-        headers: { 
-          "Content-type": "application/json;charset=UTF-8",
-          "Accept": "application/json",
-          ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-        },
-        mode: 'cors' }),
+  get: <TResponse>(url: string) => 
+    request<TResponse>(url, { 
+      method: 'GET', 
+      headers: { 
+        "Content-type": "application/json;charset=UTF-8",
+        "Accept": "application/json",
+        ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
+      },
+      mode: 'cors' }),
   
   post: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
     request<TResponse>(url, { 
@@ -36,9 +36,6 @@ export const api = {
         "Content-type": "application/json;charset=UTF-8",
         "Accept": "application/json",
         ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-        "Access-Control-Allow-Headers": "Accept",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
       },
       mode: 'cors',
       body }),
@@ -50,44 +47,35 @@ export const api = {
         "Content-type": "application/json;charset=UTF-8",
         "Accept": "application/json",
         ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-        "Access-Control-Allow-Headers": "Accept",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
       },
       mode: 'cors',
       body }),
 
-  delete: <TResponse>(url: string) => 
+  delete: <TBody extends BodyInit, TResponse>(url: string, body: TBody) => 
     request <TResponse>(url, { 
       method: 'DELETE',
       headers: { 
         "Content-type": "application/json;charset=UTF-8",
         "Accept": "application/json",
         ...(getAuthorizationToken() ? {"Authorization": `${getAuthorizationToken()}`} : {}),
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Methods": "GET; POST; PATCH; PUT; DELETE; OPTIONS"
       },
-      mode: 'cors' }),
+      mode: 'cors',
+      body }),
 }
 
 async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
-  try {
-    console.log(" url: ", url)
-    console.log(" config: ", config)
-    console.log(" token: ", getAuthorizationToken())
-    const response = await fetch(url, config);
-    const status = response.status
-    const data = await response.json();
-    console.log("data: ", data)
-    const result : ResponseType =  {
-      status,
-      data,
-    }
-    return result;
-  } catch (error) {
-    console.log(" error: ", error)
-    throw new Error('Erro na requisição HTTP');
+  console.log(" url: ", url)
+  const response = await fetch(url, config);
+  console.log(" response: ", response)
+  const status = response.status
+  if (!response.ok) throw new Error(await response.text());
+  if (url.includes('login') && status == 400) throw new Error(await response.text())
+  if (!url.includes('categories') && config.method === 'DELETE') return { status:204, data:null }
+  const data = await response.json();
+  console.log("data: ", data)
+  const result : ResponseType =  {
+    status,
+    data,
   }
+  return result;
 }

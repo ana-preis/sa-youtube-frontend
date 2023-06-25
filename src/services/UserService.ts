@@ -19,8 +19,8 @@ export const handleUpdatePassword = async (user: PasswordDTO, id: string) => {
   return response;
 }
 
-export const handleDeleteUser = async (id: string) => {
-  const response = await api.delete<string>(`http://localhost:8080/users/${id}`);
+export const handleDeleteUser = async (user: UserAuth) => {
+  const response = await api.delete<string, ResponseType>(`http://localhost:8080/users`, JSON.stringify(user));
   return response;
 }
 
@@ -29,17 +29,8 @@ export const handleMe = async () => {
   return response;
 }
 
-export const updateUser = async (setUserState: any) => {
-  try {
-    const response = await api.get<ResponseType>(`http://localhost:8080/me`)
-    if (!response && isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
-    if (response) {
-      const data = response.data as UserType;
-      setUserState(data);
-      setCookie("userID", data.id, 7);
-      console.log(" suer atualizado: ", data)
-    }
-  } catch (error) {
-    window.location.reload();
-  }
+export const updateUser = async (setUserState: any, user: UserType) => {
+      setUserState(user);
+      setCookie("userID", user.id, 7);
+
 }

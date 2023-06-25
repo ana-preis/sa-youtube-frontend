@@ -30,7 +30,7 @@ const ReviewCard = (props : ReviewCardProps) => {
 		<div className="card flex-row">
 			<div className="review flex-column">
 				<div className="flex-row review-header">
-					<h2 className="user">{review.userName}</h2>
+					<h2 className="user">{review.username}</h2>
 				</div>
 				<div className="review-comment">{review.text}</div>
 				<div className="review-footer flex-row">

@@ -9,6 +9,6 @@ export const handleLogin = async (email: string, password: string) => {
 }
 
 export const handleRevoke = async () => {
-  const response = await api.delete(`http://localhost:8080/revoke`)
+  const response = await api.delete(`http://localhost:8080/revoke`, JSON.stringify(""))
   return response;
 }

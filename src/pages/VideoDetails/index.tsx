@@ -24,7 +24,7 @@ const VideoDetails = () => {
 	const [showNewReview, setShowNewReview] = useState(false);
   const [video, setVideo] = useState<VideoType>(videosData);
 	const [relatedVideos, setRelatedVideos] = useState<VideoType[]>()
-
+  console.log("response: ", videosData)
   const context = useContext(UserContext);
   const { 
     userContext
@@ -35,7 +35,7 @@ const VideoDetails = () => {
   const getRelatedVideosByTitle = async () => {
     try {
       const response = await handleFetchVideos(videosData.title.split(" ")[5])
-      if (!response && isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
+      if (!response || isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
       const relatedVideos = response.data as VideoType[] || []
       if (relatedVideos.length == 0) return;
       relatedVideos.shift();
@@ -46,14 +46,14 @@ const VideoDetails = () => {
     }
   }
 
-	useEffect(() => {
-    // videos relacionados
-    try {
-      getRelatedVideosByTitle();
-    } catch (error) {
-      setRelatedVideos([]);
-    }
-	},[]);
+	// useEffect(() => {
+  //   // videos relacionados
+  //   try {
+  //     getRelatedVideosByTitle();
+  //   } catch (error) {
+  //     setRelatedVideos([]);
+  //   }
+	// },[]);
 
 
 	const renderNewReviewModal = () => {

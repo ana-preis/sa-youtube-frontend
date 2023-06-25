@@ -20,9 +20,3 @@ export interface CategorySearchType {
   videoCount?: number;
   videoDTOList?: VideoType[];
 }
-
-// const toCategoryType = (categorySearch: CategorySearchType): CategoryType => {
-//   const newCategory : CategoryType = {
-//     id: categorySearch.id
-//   } 
-// }

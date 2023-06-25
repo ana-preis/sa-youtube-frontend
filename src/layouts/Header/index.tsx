@@ -27,7 +27,7 @@ const Header = () => {
   const getUser = async (userID: string) => {
     try {
       const response = await api.get<ResponseType>(`http://localhost:8080/me`)
-      if (!response && isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
+      if (!response || isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
       if (response) {
         const data = response.data as UserType;
         setUser(data);
@@ -92,7 +92,7 @@ const Header = () => {
       setCookie("userID", "", 7);
       setUser(null);
       alert("Logout realizado com sucesso!")
-      window.location.reload();
+      navigate("/")
     } catch (error) {
       alert(`Algo deu errado: ${error}`)
     }

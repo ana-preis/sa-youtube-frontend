@@ -73,7 +73,6 @@ const Homepage = () => {
   const handleClickHeart = async (category: CategorySearchType) => {
     if(!userState) return
     await handleOnClickSubscribe(category, userState, setUserState)
-    window.location.reload();
   }
 
   const sortCategoryList = (): CategorySearchType[] => {

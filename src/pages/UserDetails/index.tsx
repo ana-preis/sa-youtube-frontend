@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { UserOutDTO, UserType, PasswordDTO } from "../../types/User";
+import { UserOutDTO, UserType, PasswordDTO, UserAuth } from "../../types/User";
 import { useLoaderData } from "react-router-dom";
 import './styles.css'
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import ReviewContainer from "../../components/ReviewContainer";
 import UserDetailCard from "./components/UserDetailCard";
 import UserCategoriesColumnCard from "./components/UserCategoriesColumnCard";
 import Button from "../../components/Button";
-import { handleUpdateUser, handleDeleteUser, handleUpdatePassword } from "../../services/UserService";
+import { handleUpdateUser, handleDeleteUser, handleUpdatePassword, updateUser } from "../../services/UserService";
 import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { UserContext } from "../../layouts/PageBase";
@@ -56,7 +56,7 @@ const UserDetails = () => {
     if(!user) return;
     const resultList = getCategoryList()
     setCategoryList(resultList)
-  })
+  },[])
 
   const handleSaveUser = async () => {
     const userInDTO: UserType = {
@@ -70,18 +70,23 @@ const UserDetails = () => {
       if (isResponseError400(errors.ERR_LOGIN, response)) return;
       alert("Novo username salvo com sucesso!")
       setShowModal(false)
-      // window.location.reload();
+      window.location.reload();
     } catch(error) {
 			console.error(errors.ERR_UPDATE_USERNAME, error);
 			alert(`${errors.ERR_UPDATE_USERNAME}${error}`)
-      // window.location.reload();
+      window.location.reload();
 		}
   }
 
   const handleDeleteAccount = async () => {
     try {
-      const response = await handleDeleteUser(user.id)
-      if (isResponseError400(errors.ERR_LOGIN, response)) return;
+      const body: UserAuth = {
+        username: user.username,
+        email: user.email,
+        password: password
+      }
+      const response = await handleDeleteUser(body)
+      if (isResponseError400(errors.ERR_DELETE_ACCOUNT, response)) return;
       alert("Conta excluída com sucesso!")
       setCookie("accessToken", "", 7);
       setCookie("refreshToken", "", 7);
@@ -90,8 +95,8 @@ const UserDetails = () => {
       setShowModal(false)
       navigate("/");
     } catch (error) {
-      console.error(errors.ERR_DELETE_ACCOUNTE, error);
-			alert(`${errors.ERR_DELETE_ACCOUNTE}${error}`)
+      console.error(errors.ERR_DELETE_ACCOUNT, error);
+			alert(`${errors.ERR_DELETE_ACCOUNT}${error}`)
       window.location.reload();
     }
   }
@@ -101,15 +106,18 @@ const UserDetails = () => {
       oldPassword,
       newPassword, 
     }
+    console.log(passwordDTO)
     try {
       const response = await handleUpdatePassword(passwordDTO, user.id)
+      console.log(response)
       if (isResponseError400(errors.ERR_UPDATE_PASSWORD, response)) return;
       alert("Senha alterada com sucesso!")
       setShowModal(false)
-      // window.location.reload();
+      await updateUser(setUserContextState, response.data as UserType)
+      window.location.reload();
     } catch (error) {
-      console.error(errors.ERR_DELETE_ACCOUNTE, error);
-			alert(`${errors.ERR_DELETE_ACCOUNTE}${error}`)
+      console.error(errors.ERR_UPDATE_PASSWORD, error);
+			alert(`${errors.ERR_UPDATE_PASSWORD}${error}`)
       window.location.reload();
     }
   }

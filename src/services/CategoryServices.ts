@@ -22,13 +22,11 @@ export const handleFetchCategories = async () => {
 
 export const handleSaveCategoryToUser = async (userID: string, categoryID: string) => {
   const response = await api.post<string, ResponseType>(`http://localhost:8080/users/${userID}/categories/${categoryID}`, JSON.stringify(""));
-  console.log( " add ", response)
   return response;
 }
 
 export const handleDeleteCategoryToUser = async (userID: string, categoryID: string) => {
-  const response = await api.delete(`http://localhost:8080/users/${userID}/categories/${categoryID}`);
-  console.log( " remove ", response)
+  const response = await api.delete<string, ResponseType>(`http://localhost:8080/users/${userID}/categories/${categoryID}`, JSON.stringify(""));
   return response;
 }
 
@@ -36,28 +34,31 @@ export const handleDeleteCategoryToUser = async (userID: string, categoryID: str
 export const handleOnClickSubscribe = async (category: CategorySearchType, userState: UserType, setUserState: any) => {
   if (userState && userState.id && userState?.subscriptionsIDs) {
     const list = userState.subscriptionsIDs.filter((c) => {
-      console.log("category id ", category.id)
       return c === category.id
     })
-    console.log("list ", list)
     if (list.length === 0) {
       try {
         const response = await handleSaveCategoryToUser(userState.id, category.id)
-        if (!response && isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
+        if (!response || isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
         alert("Nova categoria salva com sucesso!")
+        await updateUser(setUserState, response.data as UserType)
+        return;
       } catch(error) {
         console.error(errors.ERR_SUBSCRIBE, error);
         alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`)
+        return;
       }
     } else {
       try {
         const response = await handleDeleteCategoryToUser(userState.id, category.id)
-        if (!response && isResponseError400(errors.ERR_UNSUBSCRIBE, response ?? { status: 400, data: null })) return;
+        if (!response || isResponseError400(errors.ERR_UNSUBSCRIBE, response ?? { status: 400, data: null })) return;
         alert("Categoria removida do usuario com sucesso!")
-        await updateUser(setUserState)
+        await updateUser(setUserState, response.data as UserType)
+        return;
       } catch (error) {
         console.error(errors.ERR_UNSUBSCRIBE, error);
         alert(`${errors.ERR_UNSUBSCRIBE}${category.name}. error: ${error}`)
+        return;
       }
     }
   }

@@ -8,7 +8,7 @@ export interface VideoType {
   thumbnailUrl: string;
   description: string;
   tags?: string[];
-  publishedAt: string;
+  publishedAt: number;
   channelTitle: string;
   likeCount: number;
   viewCount: number;

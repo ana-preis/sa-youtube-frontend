@@ -21,6 +21,7 @@ const Breadcrumbs = (props: BreadcrumbsProps) => {
     // ajustar a pagina de lista de categorias
     { path: "/categories", breadcrumb: "Categorias" },
     { path: "/categories/:categoryID", breadcrumb: breadcrumbPage },
+    { path: "/videos/", breadcrumb: null },
     { path: "/videos/:id", breadcrumb: breadcrumbPage }
   ];
 

@@ -9,7 +9,7 @@ export const errors = {
   ERR_SIGNUP: "Ocorreu um erro ao efetuar o cadastro: ",
   ERR_UPDATE_USERNAME: "Ocorreu um erro ao efetuar a atualização do username: ",
   ERR_UPDATE_PASSWORD: "Ocorreu um erro ao efetuar a atualização da senha: ",
-  ERR_DELETE_ACCOUNTE: "Ocorreu um erro ao efetuar a exclusão da conta: ",
+  ERR_DELETE_ACCOUNT: "Ocorreu um erro ao efetuar a exclusão da conta: ",
   ERR_SAVE_REVIEW: "Ocorreu um erro ao registrar uma nova avaliação: ",
   ERR_SUBSCRIBE: "Ocorreu um erro ao se inscrever na categoria: ",
   ERR_UNSUBSCRIBE: "Ocorreu um erro ao remover a inscricao na categoria: "

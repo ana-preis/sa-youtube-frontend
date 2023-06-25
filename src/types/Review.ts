@@ -33,7 +33,7 @@ export interface ReviewSearchType {
   id?: string;
   text?: string;
   userId: string;
-  userName: string;
+  username: string;
   rating: number;
   publishedAt: number;
   publishedAtString?: string

@@ -49,25 +49,17 @@ const Login = () => {
 	}
 
 	const login = async () => {
-    try {
-      // const body: UserAuth = { email, password }
-      const response = await handleLogin(email, password)
-      if (isResponseError400(errors.ERR_LOGIN, response)) return;
-      const tokens = response.data as TokenAuth;
-      setCookie("accessToken", tokens.accessToken, 7);
-      setCookie("refreshToken", tokens.refreshToken, 7);
-    } catch(error) {
-			alert(`${errors.ERR_LOGIN}${error}`);
-			setEmail("");
-			setPassword("");
-			window.location.reload();
-		}
+    const response = await handleLogin(email, password)
+    if (isResponseError400(errors.ERR_LOGIN, response)) return;
+    const tokens = response.data as TokenAuth;
+    setCookie("accessToken", tokens.accessToken, 7);
+    setCookie("refreshToken", tokens.refreshToken, 7);
 	}
 
   const getUser = async () => {
     try {
       const response = await api.get<ResponseType>(`http://localhost:8080/me`)
-      if (!response && isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
+      if (!response || isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
       if (response) {
         const data = response.data as UserType;
         updateUser(data);

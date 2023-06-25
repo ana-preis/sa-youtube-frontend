@@ -16,9 +16,8 @@ const CategoryListV2 = (props: CategoryListV2Props) => {
   const navigate = useNavigate();
 
   const handleClickHeart = async (category: CategorySearchType) => {
-    if(!user) return
+    if(!user) return;
     await handleOnClickSubscribe(category, user, setUser)
-    window.location.reload();
   }
 
   const renderCategory = (category: CategorySearchType) => {
