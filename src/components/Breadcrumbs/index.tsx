@@ -18,7 +18,6 @@ const Breadcrumbs = (props: BreadcrumbsProps) => {
   const routes = [
     { path: "/users/:userId", breadcrumb: "Meu Perfil" },
     { path: "/users", breadcrumb: null },
-    // ajustar a pagina de lista de categorias
     { path: "/categories", breadcrumb: "Categorias" },
     { path: "/categories/:categoryID", breadcrumb: breadcrumbPage },
     { path: "/videos/", breadcrumb: null },

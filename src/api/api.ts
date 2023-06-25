@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "../services/cookies/CookieService";
+import { getCookie } from "../services/cookies/CookieService";
 import { ResponseType } from "../types/Http";
 
 const getAuthorizationToken = () => {
@@ -64,16 +64,19 @@ export const api = {
 }
 
 async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
-  console.log(" url: ", url)
-  console.log(" token: ", getAuthorizationToken())
+  // console.log(" url: ", url)
+  // console.log(" token: ", getAuthorizationToken())
   const response = await fetch(url, config);
-  console.log(" response: ", response)
+  // console.log(" response: ", response)
   const status = response.status
   if (!response.ok) throw new Error(await response.text());
+
   if (url.includes('login') && status === 400) throw new Error(await response.text())
   if (!url.includes('categories') && config.method === 'DELETE') return { status:204, data:null }
+  if (url.includes('password') && config.method === 'PATCH') return { status:204, data:null }
+  
   const data = await response.json();
-  console.log("data: ", data)
+  // console.log("data: ", data)
   const result : ResponseType =  {
     status,
     data,

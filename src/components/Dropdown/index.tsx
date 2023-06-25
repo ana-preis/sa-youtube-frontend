@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Filter } from '../../types/Filters';
-import { searchDropdownItems } from "../../helpers/searchDropdownItems";
 import './styles.css'
+import { searchDropdownItems } from "../../helpers/searchDropdownItems";
+import { Filter } from '../../types/Filters';
 
 interface DropdownProps {
   handleOnChangeDropdown: (e:string)=>any;

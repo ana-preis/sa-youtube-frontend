@@ -1,5 +1,5 @@
-import { VideoType } from "../../../../types/Video";
 import { Link } from "react-router-dom";
+import { VideoType } from "../../../../types/Video";
 
 interface BestRatedListProps {
   videos: VideoType[];

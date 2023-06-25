@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "../Button";
 import './styles.css';
+import Button from "../Button";
 
 interface ModalProps {
   handleOnSave: () => void;

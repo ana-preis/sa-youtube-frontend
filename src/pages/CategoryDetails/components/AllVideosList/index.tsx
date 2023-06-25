@@ -1,6 +1,6 @@
-import { VideoType } from "../../../../types/Video";
 import { Link } from "react-router-dom";
 import './styles.css'
+import { VideoType } from "../../../../types/Video";
 
 interface AllVideosListProps {
   videos: VideoType[];

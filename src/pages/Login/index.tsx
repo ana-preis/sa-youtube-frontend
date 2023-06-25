@@ -1,24 +1,31 @@
-import { useContext, useState } from 'react';
-import './styles.css';
+import { useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
+import './styles.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { api } from '../../api/api';
 import { handleLogin } from "../../services/AuthService";
 import { errors } from "../../services/ErrorHandler";
-import { UserContext } from "../../layouts/PageBase";
-import { setCookie, getCookie } from "../../services/cookies/CookieService";
-import { TokenAuth, UserAuth, UserType } from '../../types/User';
+import { setCookie } from "../../services/cookies/CookieService";
 import { isResponseError400 } from '../../services/ErrorHandler';
-import { api } from '../../api/api';
+import { TokenAuth, UserType } from '../../types/User';
 import { ResponseType } from '../../types/Http';
 
-const Login = () => {
+import { UserContext } from "../../layouts/PageBase";
+import Button from "../../components/Button";
+
+interface LoginProps {
+  isErrorRedirect?: boolean | undefined;
+}
+
+const Login = (props: LoginProps) => {
 
   const navigate = useNavigate();
   const context = useContext(UserContext);
   const { userContext } = context || {};
   const updateUser = userContext[1];
+
+  let { isErrorRedirect } = props;
 
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
@@ -27,6 +34,23 @@ const Login = () => {
 	const [alertPassword, setAlertPassword] = useState(false);
   const [inputType, setInputType] = useState("password");
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
+  useEffect(() => {
+    console.log(isErrorRedirect)
+    if (isErrorRedirect) {
+      toast.info("Faça o login primeiro para acessar essa página!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      isErrorRedirect = false;
+    }
+  },[isErrorRedirect])
 
   const toggleInputType = () => {
     if (inputType == "password") setInputType("text");

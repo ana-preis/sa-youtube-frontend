@@ -1,6 +1,5 @@
-import { MockCategoryList } from "../../../../mocks/MockCategoryList";
-import { CategorySearchType, CategoryType } from "../../../../types/Category";
 import '../../styles.css'
+import { CategorySearchType } from "../../../../types/Category";
 
 
 interface UserCategoriesColumnCardProps {

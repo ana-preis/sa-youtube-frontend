@@ -1,20 +1,20 @@
-import { useState, useEffect, useContext } from 'react';
-import './styles.css'
+import { useState, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { useLoaderData, useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import { MockVideoList } from "../../mocks/MockVideoList";
+import './styles.css'
+import { handleSaveNewReview } from "../../services/ReviewService";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
+import { handleFetchVideos } from "../../services/VideoServices";
+import { ReviewPostDTO } from '../../types/Review';
+import { VideoType } from '../../types/Video';
+import { ResponseType } from '../../types/Http';
+
+import { UserContext } from "../../layouts/PageBase";
 import VideoDetailCard from '../../components/VideoDetailCard';
 import VideoColumnCard from '../../components/VideoColumnCard';
 import ReviewContainer from '../../components/ReviewContainer';
-import { ReviewPostDTO, ReviewSearchType } from '../../types/Review';
 import NewReviewCard from '../../components/NewReviewCard';
-import { VideoType } from '../../types/Video';
-import { handleSaveNewReview } from "../../services/ReviewService";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { errors, isResponseError400 } from "../../services/ErrorHandler";
-import { handleFetchVideos } from "../../services/VideoServices";
-import { UserContext } from "../../layouts/PageBase";
-import { ResponseType } from '../../types/Http';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 const VideoDetails = () => {
@@ -56,7 +56,6 @@ const VideoDetails = () => {
   //     setRelatedVideos([]);
   //   }
 	// },[]);
-
 
 	const renderNewReviewModal = () => {
 		setShowNewReview(true);

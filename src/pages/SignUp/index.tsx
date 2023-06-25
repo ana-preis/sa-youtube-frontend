@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
-import { UserType, UserAuth } from "../../types/User";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
 import { handleSaveNewUser } from "../../services/UserService";
 import { errors, isResponseError400 } from "../../services/ErrorHandler";
-import { UserContext } from "../../layouts/PageBase";
+import { UserAuth } from "../../types/User";
+
+import Button from "../../components/Button";
 
 const SignUp = () => {
 	

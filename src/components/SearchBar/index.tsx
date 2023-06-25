@@ -1,5 +1,5 @@
+import { useState } from "react";
 import "./styles.css";
-import { SetStateAction, useState } from "react";
 import Dropdown from "../Dropdown";
 
 interface SearchBarProps {

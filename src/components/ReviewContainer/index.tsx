@@ -1,7 +1,7 @@
 import "./styles.css"
-import ReviewCard from "../ReviewCard";
-import { ReviewPostDTO, ReviewSearchType } from "../../types/Review";
+import { ReviewPostDTO } from "../../types/Review";
 import { UserType } from "../../types/User";
+import ReviewCard from "../ReviewCard";
 
 interface ReviewContainerProps {
 	reviewList: ReviewPostDTO[];

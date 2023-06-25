@@ -2,7 +2,6 @@ import "./styles.css";
 import { CategorySearchType } from "../../types/Category";
 import CategoryCard from '../CategoryCard';
 
-
 interface CategoryContainerProps {
   handleOnClickAllCategories: () => any;
   categories: CategorySearchType[];

@@ -1,8 +1,8 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import './styles.css'
 import { CategorySearchType } from "../../types/Category";
 import { UserContext } from "../../layouts/PageBase";
-import { useContext } from "react";
-import './styles.css'
 
 interface CategoryCardProps {
   category: CategorySearchType;

@@ -1,7 +1,7 @@
-import { VideoType } from "../../types/Video";
-import Button from "../../components/Button";
 import "./styles.css";
+import { VideoType } from "../../types/Video";
 import { UserType } from "../../types/User";
+import Button from "../../components/Button";
 
 interface VideoDetailCardProps {
 	video: VideoType;

@@ -1,23 +1,23 @@
 import { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate, useLoaderData } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import { UserOutDTO, UserType, PasswordDTO, UserAuth } from "../../types/User";
-import { useLoaderData } from "react-router-dom";
 import './styles.css'
-import { useNavigate } from "react-router-dom";
+import { handleUpdateUser, handleDeleteUser, handleUpdatePassword, updateUser } from "../../services/UserService";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
+import { setCookie } from "../../services/cookies/CookieService";
+import { handleFetchCategoryByID } from "../../services/CategoryServices";
+import { UserType, PasswordDTO, UserAuth } from "../../types/User";
+import { ResponseType } from "../../types/Http";
+import { CategorySearchType } from "../../types/Category";
+
 import ReviewContainer from "../../components/ReviewContainer";
 import UserDetailCard from "./components/UserDetailCard";
 import UserCategoriesColumnCard from "./components/UserCategoriesColumnCard";
 import Button from "../../components/Button";
-import { handleUpdateUser, handleDeleteUser, handleUpdatePassword, updateUser } from "../../services/UserService";
-import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { UserContext } from "../../layouts/PageBase";
-import { ResponseType } from "../../types/Http";
 import Modal from "../../components/Modal";
-import { setCookie } from "../../services/cookies/CookieService";
-import { handleFetchCategoryByID } from "../../services/CategoryServices";
-import { CategorySearchType } from "../../types/Category";
 
 const UserDetails = () => {
 
@@ -206,7 +206,7 @@ const UserDetails = () => {
         theme: "light",
       })
       setShowModal(false)
-      await updateUser(setUserContextState, response.data as UserType)
+      await updateUser(setUserContextState, { ...user, password: newPassword })
       setTimeout(() => window.location.reload(), 3000);
     } catch (error) {
       console.error(errors.ERR_UPDATE_PASSWORD, error);

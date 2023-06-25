@@ -1,8 +1,7 @@
 import { api } from "../api/api"
+import { setCookie } from "./cookies/CookieService";
 import { UserType, UserAuth, PasswordDTO } from "../types/User";
 import { ResponseType } from "../types/Http"
-import { errors, isResponseError400 } from "./ErrorHandler";
-import { setCookie } from "./cookies/CookieService";
 
 export const handleSaveNewUser = async (user: UserAuth) => {
     const response = await api.post<string, ResponseType>(`http://localhost:8080/users`, JSON.stringify(user));

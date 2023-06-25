@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Button from "../../../../components/Button";
-import { UserOutDTO } from "../../../../types/User";
 import '../../styles.css'
+import { UserOutDTO } from "../../../../types/User";
 import { CategorySearchType } from "../../../../types/Category";
+
+import Button from "../../../../components/Button";
 
 interface UserDetailCardProps {
   user: UserOutDTO;
@@ -32,7 +33,6 @@ const UserDetailCard = (props: UserDetailCardProps) => {
     setShowModal(true)
     setIsEditingUsername(false)
   }
-  console.log(" user ", user)
 
   return (
     <div className="flex-column user-container">

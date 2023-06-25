@@ -1,22 +1,23 @@
 
 import { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate, useLoaderData } from 'react-router-dom';
+import './styles.css'
 import 'react-toastify/dist/ReactToastify.css';
+import { handleFetchVideos } from "../../services/VideoServices";
+import { handleFetchCategoriesByName, handleOnClickSubscribe } from "../../services/CategoryServices";
+import { handleSortVideoList } from "../../helpers/videoTransformer";
+import { getCookie } from "../../services/cookies/CookieService";
+import { errors } from "../../services/ErrorHandler";
+import { CategorySearchType } from "../../types/Category";
+import { ResponseType } from "../../types/Http";
+
+import { UserContext } from "../../layouts/PageBase";
 import BigLogoCard from "../../components/BigLogoCard";
 import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
 import CategoryContainer from "../../components/CategoryContainer";
-import { handleFetchVideos } from "../../services/VideoServices";
-import { handleFetchCategoriesByName, handleOnClickSubscribe } from "../../services/CategoryServices";
-import './styles.css'
-import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import SearchResults from "../../components/SearchResults";
-import { Link, useNavigate, useLoaderData } from 'react-router-dom';
-import { CategorySearchType } from "../../types/Category";
-import { UserContext } from "../../layouts/PageBase";
-import { handleSortVideoList } from "../../helpers/videoTransformer";
-import { ResponseType } from "../../types/Http";
-import { getCookie } from "../../services/cookies/CookieService";
 
 const Homepage = () => {
 

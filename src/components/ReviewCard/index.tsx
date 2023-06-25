@@ -1,14 +1,14 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import "./styles.css"
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ReviewPostDTO, ReviewSearchType } from "../../types/Review"
-import { UserType } from "../../types/User";
-import { SetStateAction, useState } from "react";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
+import { handleDeleteReview, handleEditReview } from "../../services/ReviewService";
+import { ReviewPostDTO } from "../../types/Review"
+
 import Button from "../Button";
 import Modal from "../Modal";
-import { errors, isResponseError400 } from "../../services/ErrorHandler";
-import { useNavigate } from "react-router-dom";
-import { handleDeleteReview, handleEditReview } from "../../services/ReviewService";
 
 interface ReviewCardProps {
 	review: ReviewPostDTO;

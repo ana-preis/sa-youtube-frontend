@@ -1,16 +1,16 @@
-import Button from '../../components/Button';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './styles.css';
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../PageBase';
+import { api } from '../../api/api';
 import { getCookie, setCookie } from '../../services/cookies/CookieService';
+import { handleRevoke } from '../../services/AuthService';
 import { errors, isResponseError400 } from '../../services/ErrorHandler';
 import { UserType } from '../../types/User';
-import { api } from '../../api/api';
 import { ResponseType } from '../../types/Http';
-import { handleRevoke } from '../../services/AuthService';
+import { UserContext } from '../PageBase';
+import Button from '../../components/Button';
+import 'react-toastify/dist/ReactToastify.css';
+import './styles.css';
 
 const Header = () => {
   const context = useContext(UserContext);
@@ -138,8 +138,8 @@ const Header = () => {
           <Link to="/login" className="no-padding">
             <Button className="login-button" text="Login"/>
           </Link> }
+          <ToastContainer className="toast-container-header" />
       </div>
-      <ToastContainer />
 		</div>
 	)  
 }

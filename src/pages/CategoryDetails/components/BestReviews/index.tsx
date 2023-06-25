@@ -1,7 +1,5 @@
 import { VideoType } from "../../../../types/Video";
 import { ReviewType } from "../../../../types/Review";
-import { Link } from "react-router-dom";
-
 
 interface BestReviewsProps {
   videos: VideoType[] | undefined;
@@ -12,10 +10,9 @@ const BestReviews = (props: BestReviewsProps) => {
   const { videos } = props;
 
   const renderReviews = () => {
+    //implementar após likes de review
     let renderReviews: ReviewType[];
-    if(videos) {
-
-    }
+    if(videos) {}
     return (
       <div>
         <h3>Ainda não há vídeos nessa categoria!</h3>

@@ -44,3 +44,7 @@
   width: 50%;
   height: 6rem;
 }
+
+.toast-container-header {
+  margin-right: -10rem;
+}

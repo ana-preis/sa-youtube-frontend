@@ -1,8 +1,8 @@
-import { CategorySearchType } from "../../../../types/Category";
-import { truncateVideoCount } from "../../../../helpers/truncateVideoCount";
-import { videoUrl } from "../../../../helpers/videoTransformer";
 import { Link } from 'react-router-dom';
 import './styles.css';
+import { truncateVideoCount } from "../../../../helpers/truncateVideoCount";
+import { videoUrl } from "../../../../helpers/videoTransformer";
+import { CategorySearchType } from "../../../../types/Category";
 
 interface CategoryListV2Props {
   categories: CategorySearchType[];

@@ -1,8 +1,8 @@
 
-import React, {useState} from "react";
+import {useState} from "react";
+import './styles.css'
 import { MockPlayList } from "../../../../mocks/MockPlayList20";
 import { PlayListType } from "../../../../types/PlayList";
-import './styles.css'
 
 const PlayList = () => {
   const [searchType, setSearchType] = useState<string>('Playlists')

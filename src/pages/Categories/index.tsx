@@ -1,17 +1,14 @@
 import { useContext, useState } from 'react';
-import { CategorySearchType, CategoryType } from "../../types/Category";
 import {
   useLoaderData,
 } from "react-router-dom";
 import './styles.css'
-import { errors } from "../../services/ErrorHandler";
-import SearchBar from "../../components/SearchBar";
-import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
-import Breadcrumbs from "../../components/Breadcrumbs";
-import CategoryListV2 from './components/CategoryListV2';
+import { CategorySearchType } from "../../types/Category";
 import { ResponseType } from '../../types/Http';
 import { UserContext } from "../../layouts/PageBase";
-import { UserType } from '../../types/User';
+import SearchBar from "../../components/SearchBar";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import CategoryListV2 from './components/CategoryListV2';
 
 const Categories = () => {
 

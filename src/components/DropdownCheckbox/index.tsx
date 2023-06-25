@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { CategorySearchType, CategoryType } from "../../types/Category";
+import { useEffect, useState } from "react";
 import './styles.css'
+import { CategorySearchType } from "../../types/Category";
 
 interface DropdownCheckboxProps {
   options: CategorySearchType[];

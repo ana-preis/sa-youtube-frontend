@@ -1,24 +1,25 @@
 import { useContext, useState } from 'react';
-import { CategorySearchType, CategoryType } from "../../types/Category";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {
   useLoaderData,
   useNavigate
 } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css'
-import { errors, isResponseError400 } from "../../services/ErrorHandler";
-import SearchBar from "../../components/SearchBar";
+import { errors } from "../../services/ErrorHandler";
 import { handleFetchVideosByCategoryID } from "../../services/VideoServices";
+import { handleOnClickSubscribe } from '../../services/CategoryServices';
+import { CategorySearchType } from "../../types/Category";
+import { VideoType } from '../../types/Video';
+import { ResponseType } from '../../types/Http';
+
+import { UserContext } from '../../layouts/PageBase';
+import SearchBar from "../../components/SearchBar";
 import CategoryHeader from "./components/CategoryHeader";
 import BestRatedList from "./components/BestRatedList";
 import MostPopular from "./components/MostPopularList";
 import AllVideosList from "./components/AllVideosList";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { handleOnClickSubscribe } from '../../services/CategoryServices';
-import { VideoType } from '../../types/Video';
-import { ResponseType } from '../../types/Http';
-import { UserContext } from '../../layouts/PageBase';
 
 const CategoryDetails = () => {
 

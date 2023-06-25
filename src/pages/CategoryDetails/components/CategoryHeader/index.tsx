@@ -1,7 +1,7 @@
-import Button from "../../../../components/Button";
-import { CategorySearchType, CategoryType } from "../../../../types/Category";
-import { UserType } from "../../../../types/User";
 import './styles.css'
+import { CategorySearchType } from "../../../../types/Category";
+import { UserType } from "../../../../types/User";
+import Button from "../../../../components/Button";
 
 interface CategoryHeaderProps {
   category: CategorySearchType;
