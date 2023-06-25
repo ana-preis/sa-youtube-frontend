@@ -20,7 +20,7 @@ const VideoDetails = () => {
 	const navigate = useNavigate();
 	const videoLoader: ResponseType = useLoaderData() as ResponseType;
   const videosData = videoLoader.data as VideoType
-	const [reviewList] = useState<ReviewSearchType[]>(videosData.reviews ?? [])
+	const [reviewList] = useState<ReviewPostDTO[]>(videosData.reviews ?? [])
 	const [showNewReview, setShowNewReview] = useState(false);
   const [video, setVideo] = useState<VideoType>(videosData);
 	const [relatedVideos, setRelatedVideos] = useState<VideoType[]>()
@@ -81,7 +81,8 @@ const VideoDetails = () => {
       userId: userState?.id ?? "",
       publishedAt: now,
       videoId: video.id,
-			categoryIdList: category
+			categoryIdList: category,
+      username: userState?.username ?? "",
     }
 		
 		handleSaveNewReview(video, newReview)
@@ -99,12 +100,12 @@ const VideoDetails = () => {
 		<>
 			<Breadcrumbs breadcrumbPage={video.title}></Breadcrumbs>
 			<div className="video-detail flex-row">
-				<VideoDetailCard video={video} renderNewReviewModal={renderNewReviewModal}/>
+				<VideoDetailCard user={userState} video={video} renderNewReviewModal={renderNewReviewModal}/>
 				<VideoColumnCard videoList={relatedVideos ?? []} />
 			</div>
 			{showNewReview && 
 			<NewReviewCard video={video} onSaveReview={handleSaveReview} />}
-			<ReviewContainer reviewList={reviewList}/>
+			<ReviewContainer reviewList={reviewList} user={userState}/>
 		</>
 	)
 }

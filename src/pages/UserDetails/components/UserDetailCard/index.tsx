@@ -2,23 +2,26 @@ import { useState } from "react";
 import Button from "../../../../components/Button";
 import { UserOutDTO } from "../../../../types/User";
 import '../../styles.css'
+import { CategorySearchType } from "../../../../types/Category";
 
 interface UserDetailCardProps {
   user: UserOutDTO;
   setShowModal:React.Dispatch<React.SetStateAction<boolean>>;
   setUserName: any;
   setShowModalPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  categoryList: CategorySearchType[];
 }
 
 const UserDetailCard = (props: UserDetailCardProps) => {
 
   const [isEditingUserName, setIsEditingUsername] = useState<boolean>(false);
-  const { user, setShowModal, setUserName, setShowModalPassword } = props;
+  const { user, setShowModal, setUserName, setShowModalPassword, categoryList } = props;
 
   const verifyLength = (value: string, len: number) => {
     if(len === 0) {
       return `Você ainda não tem nenhuma ${value}`
     }
+    return len;
   }
 
   const handleEdit = () => {
@@ -29,6 +32,7 @@ const UserDetailCard = (props: UserDetailCardProps) => {
     setShowModal(true)
     setIsEditingUsername(false)
   }
+  console.log(" user ", user)
 
   return (
     <div className="flex-column user-container">
@@ -66,7 +70,7 @@ const UserDetailCard = (props: UserDetailCardProps) => {
             </div>
             <div>
               <span className="user-detail_text-title">Categorias inscritas: </span>
-              <span className="user-detail_text">{verifyLength("categoria", user.categoryList?.length ?? 0)}</span>
+              <span className="user-detail_text">{verifyLength("categoria", categoryList.length ?? 0)}</span>
             </div>
           </div>
           

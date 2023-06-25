@@ -30,7 +30,6 @@ export const handleMe = async () => {
 }
 
 export const updateUser = async (setUserState: any, user: UserType) => {
-      setUserState(user);
-      setCookie("userID", user.id, 7);
-
+  setUserState(user);
+  setCookie("userID", user.id, 7);
 }

@@ -1,18 +1,24 @@
 import "./styles.css"
 import ReviewCard from "../ReviewCard";
-import { ReviewSearchType } from "../../types/Review";
+import { ReviewPostDTO, ReviewSearchType } from "../../types/Review";
+import { UserType } from "../../types/User";
 
 interface ReviewContainerProps {
-	reviewList: ReviewSearchType[];
+	reviewList: ReviewPostDTO[];
+  user: UserType | null;
 }
 
 const ReviewContainer = (props: ReviewContainerProps) => {
-	const {reviewList} = props
+	const {reviewList, user } = props
 
-	const renderReview = (review : ReviewSearchType) => {
+	const renderReview = (review : ReviewPostDTO) => {
+    let isEditable = false;
+    if (user?.role === "ROLE_ADMIN") isEditable = true;
+    else if (user?.id === review.userId) isEditable = true;
+
 		return (
 			<div className="main-container flex-column">
-				<ReviewCard review={review}/>
+				<ReviewCard review={review} isEditable={isEditable} />
 			</div>
 		)
 	}

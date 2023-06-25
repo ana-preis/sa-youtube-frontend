@@ -72,7 +72,7 @@ const Homepage = () => {
 
   const handleClickHeart = async (category: CategorySearchType) => {
     if(!userState) return
-    await handleOnClickSubscribe(category, userState, setUserState)
+    await handleOnClickSubscribe(category, userState, setUserState);
   }
 
   const sortCategoryList = (): CategorySearchType[] => {

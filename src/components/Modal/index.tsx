@@ -4,8 +4,8 @@ import './styles.css';
 
 interface ModalProps {
   handleOnSave: () => void;
-  inputValue: string;
-  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  inputValue?: string;
+  setInputValue?: React.Dispatch<React.SetStateAction<string>>;
   buttonText: string;
   contentText: string;
   title: string;
@@ -31,7 +31,6 @@ const Modal = (props: ModalProps) => {
     else setInputType2("password");
   }
 
-
   return (
     <div className="modal-container">
       <div className="modal-save-user flex-column ai-center">
@@ -43,12 +42,17 @@ const Modal = (props: ModalProps) => {
           <p>
             {contentText}
           </p>
-          <div className="flex-row">
-            <input className="input-username modal-input" type={inputType} onChange={(e) => setInputValue(e.target.value)} value={inputValue}></input>
-            <a onClick={() => toggleInputType()}>
-              <img src="./eye.svg" alt="show-password"/>  
-            </a>
-          </div>
+          { setInputValue 
+            ?
+            <div className="flex-row">
+              <input className="input-username modal-input" type={inputType} onChange={(e) => setInputValue(e.target.value)} value={inputValue}></input>
+              <a onClick={() => toggleInputType()}>
+                <img src="./eye.svg" alt="show-password"/>  
+              </a>
+            </div>
+            :
+            <></>
+          }
           {secondText &&
             <p>
               {secondText}

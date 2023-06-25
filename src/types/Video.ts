@@ -1,5 +1,5 @@
 import { PlayListType } from "./PlayList";
-import { ReviewSearchType } from "./Review";
+import { ReviewPostDTO, ReviewSearchType } from "./Review";
 
 export interface VideoType {
   id: string;
@@ -14,7 +14,7 @@ export interface VideoType {
   viewCount: number;
   reviewCount?: number;
   averageRating?: number;
-  reviews?: ReviewSearchType[];
+  reviews?: ReviewPostDTO[];
   categoryIDList?: string[];
   url?: string;
 }

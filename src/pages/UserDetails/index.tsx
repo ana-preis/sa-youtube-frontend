@@ -37,27 +37,48 @@ const UserDetails = () => {
   const userLoader: ResponseType = useLoaderData() as ResponseType;
   const user = userLoader.data as UserType;
 
-  const getCategoryList = () => {
+  const getCategoryList = async (): Promise<CategorySearchType[]> => {
     const list: CategorySearchType[] = [];
-    user.subscriptionsIDs?.map(async (c) => {
-      try {
-        const response = await handleFetchCategoryByID(c);
-        if (isResponseError400(errors.ERR_GET_CATEGORIES, response)) return;
-        list.push(response.data as CategorySearchType);
-      } catch (error) {
-        console.error(errors.ERR_GET_CATEGORIES, error);
-        alert(`${errors.ERR_GET_CATEGORIES}${error}`)
-      }
-    })
-    return list;
+  
+    try {
+      const responses = await Promise.all(
+        user.subscriptionsIDs?.map(async (c) => {
+          try {
+            const response = await handleFetchCategoryByID(c);
+            if (isResponseError400(errors.ERR_GET_CATEGORIES, response)) return null;
+            return response.data as CategorySearchType;
+          } catch (error) {
+            console.error(errors.ERR_GET_CATEGORIES, error);
+            alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+            return null;
+          }
+        }) ?? []
+      );
+  
+      list.push(...responses.filter((response): response is CategorySearchType => response !== null));
+      return list;
+    } catch (error) {
+      console.error(errors.ERR_GET_CATEGORIES, error);
+      alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+      return [];
+    }
   }
 
   useEffect(() => {
-    if(!user) return;
-    const resultList = getCategoryList()
-    setCategoryList(resultList)
+    const fetchData = async () => {
+      try {
+        if(!user) return;
+        const result = await getCategoryList();
+        setCategoryList(result)
+      } catch (error) {
+        console.error(errors.ERR_GET_CATEGORIES, error);
+        alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+        return [];
+      }
+    }
+    fetchData();
   },[])
-
+  
   const handleSaveUser = async () => {
     const userInDTO: UserType = {
       id: user.id,
@@ -126,10 +147,10 @@ const UserDetails = () => {
 		<>
 			<Breadcrumbs />
 			<div className="user-detail flex-row">
-				<UserDetailCard user={user} setShowModal={setShowModal} setUserName={setUserName} setShowModalPassword={setShowModalPassword}/>
+				<UserDetailCard user={user} categoryList={categoryList ?? []} setShowModal={setShowModal} setUserName={setUserName} setShowModalPassword={setShowModalPassword}/>
 				<UserCategoriesColumnCard categoryList={categoryList ?? []} />
 			</div>
-			<ReviewContainer reviewList={user.reviewList ?? []}/>
+			<ReviewContainer reviewList={user.reviewList ?? []} user={user}/>
       <Button 
         text="Excluir conta"
         className="delete-account"

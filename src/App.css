@@ -84,3 +84,7 @@ iframe {
 .btn:hover {
   text-decoration: none;
 }
+
+.icon-width{
+  width: 2rem;
+}

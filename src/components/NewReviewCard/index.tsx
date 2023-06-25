@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { handleFetchCategories } from "../../services/CategoryServices";
-import { CategoryType } from "../../types/Category";
+import { CategorySearchType, CategoryType } from "../../types/Category";
 import { VideoType } from '../../types/Video';
-import { errors } from "../../services/ErrorHandler";
+import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import Button from '../Button';
 import DropdownCheckbox from "../DropdownCheckbox";
 import { useNavigate } from "react-router-dom";
@@ -20,19 +20,24 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 	const [rating, setRating] = useState<number>();
 	const [reviewText, setReviewText] = useState<string>("");
 	const [category, setCategory] = useState<string[]>([])
-	const [categoryList, setCategoryList] = useState<CategoryType[]>([])
+	const [categoryList, setCategoryList] = useState<CategorySearchType[]>([])
 
 	useEffect(() => {
-    handleFetchCategories()
-		.then((v) => {
-      const data = v.data as CategoryType[]
-			if(data) setCategoryList(data)
-    }).catch((error) => {
-      console.error(errors.ERR_GET_CATEGORIES, error);
-			alert(`${errors.ERR_GET_CATEGORIES}${error}`)
-			navigate(`/videos/${video.id}`)
-    });
+    const fetchCategories = async () => {
+      try {
+        const response = await handleFetchCategories();
+        if (!response || isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
+        console.log(" response: ", response);
+        setCategoryList(response.data as CategorySearchType[]);
+      } catch (error) {
+        console.error(errors.ERR_GET_CATEGORIES, error);
+        alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+        return;
+      }
+    }
+    fetchCategories();
   },[])
+  console.log(" category list: ", categoryList)
 
 	return (
 		<div className="new-review-main-container">
@@ -43,7 +48,7 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 							<h2 className="new-review-title">O que você achou do conteúdo?</h2>
 						</div>
 						<textarea 
-						className="text-input" 
+						className="text-input text-input-new" 
 						placeholder="Digite aqui sua avaliação" 
 						value={reviewText}
 						onChange={e => setReviewText(e.target.value)}

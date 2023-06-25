@@ -1,5 +1,5 @@
 import { CategorySearchType, CategoryType } from "./Category";
-import { ReviewSearchType, ReviewType } from "./Review";
+import { ReviewPostDTO, ReviewSearchType, ReviewType } from "./Review";
 import { VideoType } from "./Video";
 
 export interface UserType {
@@ -11,7 +11,7 @@ export interface UserType {
   finishedList?: VideoType[];
   messageList?: string[];
   subscriptionsIDs?: string[];
-  reviewList?: ReviewSearchType[];
+  reviewList?: ReviewPostDTO[];
   role?: string;
 }
 

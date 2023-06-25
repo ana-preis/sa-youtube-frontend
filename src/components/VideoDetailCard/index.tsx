@@ -1,14 +1,16 @@
 import { VideoType } from "../../types/Video";
 import Button from "../../components/Button";
 import "./styles.css";
+import { UserType } from "../../types/User";
 
 interface VideoDetailCardProps {
 	video: VideoType;
-  renderNewReviewModal: () => void
+  renderNewReviewModal: () => void;
+  user: UserType | null;
 }
 
 const VideoDetailCard = (props: VideoDetailCardProps) => {
-	const {video, renderNewReviewModal} = props;
+	const {video, renderNewReviewModal, user } = props;
 
 	const getNumberOfStars = (rate: number | undefined) => {
 		if (!rate) return (<div></div>);
@@ -35,6 +37,15 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
     })
   }
 
+  const renderNewReviewBtn = () => {
+    console.log(video.reviews)
+    const review = video.reviews?.find((r) => r.userId === user?.id);
+    if (!review) {
+      return (
+        <Button className="review-button" text="Avalie" onClick={renderNewReviewModal}/>
+      )
+    }
+  }
 
   return (
     <div className="video-container flex-column">
@@ -48,21 +59,23 @@ const VideoDetailCard = (props: VideoDetailCardProps) => {
           {formatDescription()}
         </div>
         <div className="rating-card flex-column">
-          <h3>Média de avaliações</h3>
-          {!video.averageRating ? (
-            <div className="first-review-msg">
-              <p>Este vídeo ainda não foi avaliado.</p>
-              <p>Seja o primeiro a avaliar clicando no botão abaixo:</p>
-            </div>
-          ) : (
-            <div>
-              <p className="rate">{video.averageRating.toFixed(1)}</p>
-              <div className="flex-row stars">
-                {getNumberOfStars(video.averageRating)}
+          <div>
+            <h3>Média de avaliações</h3>
+            {!video.averageRating ? (
+              <div className="first-review-msg">
+                <p>Este vídeo ainda não foi avaliado.</p>
+                <p>Seja o primeiro a avaliar clicando no botão abaixo:</p>
               </div>
-            </div>
-          )}
-          <Button className="review-button" text="Avalie" onClick={renderNewReviewModal}/>
+            ) : (
+              <div>
+                <p className="rate">{video.averageRating.toFixed(1)}</p>
+                <div className="flex-row stars">
+                  {getNumberOfStars(video.averageRating)}
+                </div>
+              </div>
+            )}
+          </div>
+          { renderNewReviewBtn() }
         </div>
       </div>
     </div>

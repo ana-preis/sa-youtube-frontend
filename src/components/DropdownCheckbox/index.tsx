@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { CategoryType } from "../../types/Category";
+import { CategorySearchType, CategoryType } from "../../types/Category";
 import './styles.css'
 
 interface DropdownCheckboxProps {
-  options: CategoryType[];
+  options: CategorySearchType[];
   setCategory: React.Dispatch<React.SetStateAction<string[]>>;
   savedCategories: string[];
 }

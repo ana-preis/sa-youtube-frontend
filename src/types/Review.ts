@@ -13,11 +13,13 @@ export interface ReviewType {
 
 export interface ReviewPostDTO {
   userId: string;
+  username: string;
   videoId: string;
   rating: number;
   text: string;
   publishedAt: number;
-  categoryIdList: string[]
+  categoryIdList: string[],
+
 }
 
 export interface ReviewGetType {

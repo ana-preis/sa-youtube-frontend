@@ -65,11 +65,12 @@ export const api = {
 
 async function request<T>(url: string, config: RequestInit): Promise<ResponseType> {
   console.log(" url: ", url)
+  console.log(" token: ", getAuthorizationToken())
   const response = await fetch(url, config);
   console.log(" response: ", response)
   const status = response.status
   if (!response.ok) throw new Error(await response.text());
-  if (url.includes('login') && status == 400) throw new Error(await response.text())
+  if (url.includes('login') && status === 400) throw new Error(await response.text())
   if (!url.includes('categories') && config.method === 'DELETE') return { status:204, data:null }
   const data = await response.json();
   console.log("data: ", data)
