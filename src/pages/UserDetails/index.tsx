@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { UserOutDTO, UserType, PasswordDTO, UserAuth } from "../../types/User";
 import { useLoaderData } from "react-router-dom";
 import './styles.css'
@@ -49,7 +51,16 @@ const UserDetails = () => {
             return response.data as CategorySearchType;
           } catch (error) {
             console.error(errors.ERR_GET_CATEGORIES, error);
-            alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+            toast.error(`${errors.ERR_GET_CATEGORIES}${error}`, {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             return null;
           }
         }) ?? []
@@ -59,7 +70,16 @@ const UserDetails = () => {
       return list;
     } catch (error) {
       console.error(errors.ERR_GET_CATEGORIES, error);
-      alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+      toast.error(`${errors.ERR_GET_CATEGORIES}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return [];
     }
   }
@@ -72,7 +92,16 @@ const UserDetails = () => {
         setCategoryList(result)
       } catch (error) {
         console.error(errors.ERR_GET_CATEGORIES, error);
-        alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+        toast.error(`${errors.ERR_GET_CATEGORIES}${error}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         return [];
       }
     }
@@ -89,13 +118,31 @@ const UserDetails = () => {
     try {
       const response = await handleUpdateUser(userInDTO, user.id)
       if (isResponseError400(errors.ERR_LOGIN, response)) return;
-      alert("Novo username salvo com sucesso!")
+      toast.success("Novo username salvo com sucesso!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       setShowModal(false)
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 3000);
     } catch(error) {
 			console.error(errors.ERR_UPDATE_USERNAME, error);
-			alert(`${errors.ERR_UPDATE_USERNAME}${error}`)
-      window.location.reload();
+			toast.error(`${errors.ERR_UPDATE_USERNAME}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      setTimeout(() => window.location.reload(), 3000);
 		}
   }
 
@@ -108,7 +155,16 @@ const UserDetails = () => {
       }
       const response = await handleDeleteUser(body)
       if (isResponseError400(errors.ERR_DELETE_ACCOUNT, response)) return;
-      alert("Conta excluída com sucesso!")
+      toast.success("Conta excluída com sucesso!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       setCookie("accessToken", "", 7);
       setCookie("refreshToken", "", 7);
       setCookie("userID", "", 7);
@@ -117,8 +173,17 @@ const UserDetails = () => {
       navigate("/");
     } catch (error) {
       console.error(errors.ERR_DELETE_ACCOUNT, error);
-			alert(`${errors.ERR_DELETE_ACCOUNT}${error}`)
-      window.location.reload();
+			toast.error(`${errors.ERR_DELETE_ACCOUNT}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      setTimeout(() => window.location.reload(), 3000);
     }
   }
 
@@ -127,19 +192,35 @@ const UserDetails = () => {
       oldPassword,
       newPassword, 
     }
-    console.log(passwordDTO)
     try {
       const response = await handleUpdatePassword(passwordDTO, user.id)
-      console.log(response)
       if (isResponseError400(errors.ERR_UPDATE_PASSWORD, response)) return;
-      alert("Senha alterada com sucesso!")
+      toast.success("Senha alterada com sucesso!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       setShowModal(false)
       await updateUser(setUserContextState, response.data as UserType)
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 3000);
     } catch (error) {
       console.error(errors.ERR_UPDATE_PASSWORD, error);
-			alert(`${errors.ERR_UPDATE_PASSWORD}${error}`)
-      window.location.reload();
+			toast.error(`${errors.ERR_UPDATE_PASSWORD}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      setTimeout(() => window.location.reload(), 3000);
     }
   }
 
@@ -192,6 +273,7 @@ const UserDetails = () => {
               secondInputValue={newPassword}
               setSecondInputValue={setNewPassword} />
         }
+        <ToastContainer />
 		</>
 	)
 }

@@ -1,4 +1,6 @@
 import { useContext, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 import { UserType, UserAuth } from "../../types/User";
 import { Link, useNavigate } from "react-router-dom";
@@ -70,12 +72,30 @@ const SignUp = () => {
 		handleSaveNewUser(body)
 		.then((response) => {
       if (isResponseError400(errors.ERR_SIGNUP, response)) return;
-			alert(`Cadastrado com sucesso :) `)
+			toast.success(`Cadastrado com sucesso :) `, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
 			navigate("/login")
 		}).catch((error) => {
 			console.error(errors.ERR_SIGNUP, error);
-			alert(`${errors.ERR_SIGNUP}${error}`)
-			window.location.reload();
+			toast.error(`${errors.ERR_SIGNUP}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+			setTimeout(() => window.location.reload(), 3000);
 		});
 	}
 
@@ -136,6 +156,7 @@ const SignUp = () => {
 				<Button className="btn-cadastro" text="Cadastre-se" onClick={handleSignUp} />
 				<p className="login-redirect">Já é membro? <Link to="/login" className="login-link">Login.</Link></p>
 			</div>
+      <ToastContainer  />
 		</div>
 	);
 }

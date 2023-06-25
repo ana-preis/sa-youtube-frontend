@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import './styles.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { handleLogin } from "../../services/AuthService";
@@ -67,10 +69,19 @@ const Login = () => {
       }
     } catch (error) {
 			console.error(errors.ERR_LOGIN, error);
-			alert(`${errors.ERR_LOGIN}${error}`);
+			toast.error(`${errors.ERR_LOGIN}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
 			setEmail("");
 			setPassword("");
-			window.location.reload();
+			setTimeout(() => window.location.reload(), 3000);
 		}
   }
 
@@ -78,12 +89,30 @@ const Login = () => {
 		if (validateInputs()) return;
     try {
       await login();
-      alert(`Bem vindo :) `);
+      toast(`Bem vindo :) `, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       await getUser();
       navigate("/");
     } catch (error) {
       console.error(errors.ERR_LOGIN, error);
-      alert(`${errors.ERR_LOGIN}${error}`);
+      toast.error(`${errors.ERR_LOGIN}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       navigate("/login");
       setEmail("");
       setPassword("");
@@ -121,6 +150,7 @@ const Login = () => {
 				<Button className="btn-cadastro" text="Entrar" onClick={handleSignUp} />
 				<p className="login-redirect">Ainda não é membro? <Link to="/signup" className="login-link">Cadastre-se.</Link></p>
 			</div>
+      <ToastContainer />
 		</div>
 	)
 }

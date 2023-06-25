@@ -1,5 +1,7 @@
 import Button from '../../components/Button';
 import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../PageBase';
@@ -91,10 +93,28 @@ const Header = () => {
       setCookie("refreshToken", "", 7);
       setCookie("userID", "", 7);
       setUser(null);
-      alert("Logout realizado com sucesso!")
+      toast("Logout realizado com sucesso!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       navigate("/")
     } catch (error) {
-      alert(`Algo deu errado: ${error}`)
+      toast.error(`Algo deu errado: ${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     }
 
   }
@@ -119,6 +139,7 @@ const Header = () => {
             <Button className="login-button" text="Login"/>
           </Link> }
       </div>
+      <ToastContainer />
 		</div>
 	)  
 }

@@ -1,4 +1,6 @@
 import { api } from "../api/api"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { CategorySearchType, CategoryType } from "../types/Category"
 import { ResponseType } from "../types/Http"
 import { UserType } from "../types/User"
@@ -40,24 +42,60 @@ export const handleOnClickSubscribe = async (category: CategorySearchType, userS
       try {
         const response = await handleSaveCategoryToUser(userState.id, category.id)
         if (!response || isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
-        alert("Nova categoria salva com sucesso!")
+        toast.success("Nova categoria salva com sucesso!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
         await updateUser(setUserState, response.data as UserType)
         return;
       } catch(error) {
         console.error(errors.ERR_SUBSCRIBE, error);
-        alert(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`)
+        toast.error(`${errors.ERR_SUBSCRIBE}${category.name}. error: ${error}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
         return;
       }
     } else {
       try {
         const response = await handleDeleteCategoryToUser(userState.id, category.id)
         if (!response || isResponseError400(errors.ERR_UNSUBSCRIBE, response ?? { status: 400, data: null })) return;
-        alert("Categoria removida do usuario com sucesso!")
+        toast.success("Categoria removida do usuario com sucesso!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
         await updateUser(setUserState, response.data as UserType)
         return;
       } catch (error) {
         console.error(errors.ERR_UNSUBSCRIBE, error);
-        alert(`${errors.ERR_UNSUBSCRIBE}${category.name}. error: ${error}`)
+        toast.error(`${errors.ERR_UNSUBSCRIBE}${category.name}. error: ${error}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
         return;
       }
     }

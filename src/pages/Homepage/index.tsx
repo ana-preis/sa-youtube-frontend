@@ -1,5 +1,7 @@
 
 import { useContext, useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import BigLogoCard from "../../components/BigLogoCard";
 import Button from "../../components/Button";
 import SearchBar from "../../components/SearchBar";
@@ -49,7 +51,16 @@ const Homepage = () => {
         setIsFilterActive(true)
       }).catch((error) => {
         console.error(errors.ERR_SEARCH_VIDEOS_BY_TEXT, error);
-        alert(`${errors.ERR_SEARCH_VIDEOS_BY_TEXT}${text}. error: ${error}`)
+        toast.error(`${errors.ERR_SEARCH_VIDEOS_BY_TEXT}${text}. error: ${error}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
         navigate("/")
       });
     } else {
@@ -59,7 +70,16 @@ const Homepage = () => {
         setIsFilterActive(true)
       }).catch((error) => {
         console.error(errors.ERR_SEARCH_CATEGORIES_BY_TEXT, error);
-        alert(`${errors.ERR_SEARCH_CATEGORIES_BY_TEXT}${text}. error: ${error}`)
+        toast.error(`${errors.ERR_SEARCH_CATEGORIES_BY_TEXT}${text}. error: ${error}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
         navigate("/")
       });
     }
@@ -105,6 +125,7 @@ const Homepage = () => {
         </>
       :
         <SearchResults listType={searchType} data={data} searchText={searchText}/>}
+        <ToastContainer />
     </>
   );
 }

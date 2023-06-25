@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { CategorySearchType, CategoryType } from "../../types/Category";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   useLoaderData,
   useNavigate
@@ -42,7 +44,16 @@ const CategoryDetails = () => {
       setIsFilterActive(true)
     }).catch((error) => {
       console.error(errors.ERR_SEARCH_VIDEOS_BY_CATEGORY, error);
-			alert(`${errors.ERR_SEARCH_VIDEOS_BY_CATEGORY}${category.id}. error: ${error}`)
+			toast.error(`${errors.ERR_SEARCH_VIDEOS_BY_CATEGORY}${category.id}. error: ${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       navigate(`/categories/${category.id}`)
     });
   }
@@ -82,6 +93,7 @@ const CategoryDetails = () => {
         placeholder="Pesquise os vídeos dessa categoria aqui"
       />
       {isFilterActive ? renderVideoSearchList() : renderDefaultContainers()}
+      <ToastContainer  />
     </div>
   )
 }

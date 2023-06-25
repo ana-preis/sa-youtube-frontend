@@ -1,4 +1,6 @@
 import "./styles.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ReviewPostDTO, ReviewSearchType } from "../../types/Review"
 import { UserType } from "../../types/User";
 import { SetStateAction, useState } from "react";
@@ -56,13 +58,31 @@ const ReviewCard = (props : ReviewCardProps) => {
       }
       const response = await handleEditReview(body)
       if (isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
-      alert("Avaliação atualizada com sucesso!")
+      toast.success("Avaliação atualizada com sucesso!", {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       setIsEditingReview(false)
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 2500);
     } catch (error) {
       console.error(errors.ERR_SAVE_REVIEW, error);
-			alert(`${errors.ERR_SAVE_REVIEW}${error}`)
-			window.location.reload();
+			toast.error(`${errors.ERR_SAVE_REVIEW}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+			setTimeout(() => window.location.reload(), 3000);
     }
   }
 
@@ -71,13 +91,31 @@ const ReviewCard = (props : ReviewCardProps) => {
       const body: ReviewPostDTO = { ...review }
       const response = await handleDeleteReview(body)
       if (isResponseError400(errors.ERR_LOGIN, response ?? { status: 400, data: null })) return;
-      alert("Avaliação excluída!")
+      toast("Avaliação excluída!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       setIsEditingReview(false)
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 3000);
     } catch (error) {
       console.error(errors.ERR_SAVE_REVIEW, error);
-			alert(`${errors.ERR_SAVE_REVIEW}${error}`)
-			window.location.reload();
+			toast.error(`${errors.ERR_SAVE_REVIEW}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+			setTimeout(() => window.location.reload(), 3000);
     }
   }
 

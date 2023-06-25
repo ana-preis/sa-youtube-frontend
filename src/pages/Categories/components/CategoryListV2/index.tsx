@@ -1,5 +1,7 @@
 import { CategorySearchType } from "../../../../types/Category";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 import CategoryCard from "../../../../components/CategoryCard";
 import { UserType } from "../../../../types/User";
@@ -32,6 +34,7 @@ const CategoryListV2 = (props: CategoryListV2Props) => {
       <div className="category-containerv2">
         {categories.map((c) => renderCategory(c))}
       </div>
+      <ToastContainer />
     </div>
   );
 }

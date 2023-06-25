@@ -1,4 +1,6 @@
 import { ErrorResponse, ResponseType } from "../types/Http";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const errors = {
   ERR_GET_CATEGORIES: "Ocorreu um erro ao obter as categorias: ",
@@ -19,18 +21,45 @@ export const errors = {
 export const isResponseError400 = (ErrTag: string, response: ResponseType) => {
   if (response.status === 401) {
     console.error(ErrTag, "Nao autorizado");
-    alert(`${ErrTag} `)
+    toast.error(`${ErrTag} `, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
     return true
   }
   if (response.status === 403) {
     console.error(ErrTag, "Proibido");
-    alert(`${ErrTag} `)
+    toast.error(`${ErrTag} `, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
     return true
   }
   if (response.status === 400) {
     const error = response.data as ErrorResponse
     console.error(ErrTag, error.msg);
-    alert(`${ErrTag}${error.msg}`)
+    toast.error(`${ErrTag}${error.msg}`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
     return true
   }
 }

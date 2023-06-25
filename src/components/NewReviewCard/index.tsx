@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { handleFetchCategories } from "../../services/CategoryServices";
 import { CategorySearchType, CategoryType } from "../../types/Category";
 import { VideoType } from '../../types/Video';
@@ -31,7 +33,16 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
         setCategoryList(response.data as CategorySearchType[]);
       } catch (error) {
         console.error(errors.ERR_GET_CATEGORIES, error);
-        alert(`${errors.ERR_GET_CATEGORIES}${error}`);
+        toast.error(`${errors.ERR_GET_CATEGORIES}${error}`, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         return;
       }
     }
@@ -82,6 +93,7 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 				onClick={() => onSaveReview(rating, reviewText, category)}
 				/>
 			</div>
+      <ToastContainer  />
 		</div>
 	)
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import './styles.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { MockVideoList } from "../../mocks/MockVideoList";
 import VideoDetailCard from '../../components/VideoDetailCard';
 import VideoColumnCard from '../../components/VideoColumnCard';
@@ -62,15 +64,42 @@ const VideoDetails = () => {
 
 	const handleSaveReview = (rating: number | undefined, text: string, category: string[]) => {
 		if (!rating) {
-      alert("Preencha o campo da nota!")
+      toast.info("Preencha o campo da nota!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
       return
     }
     if(rating > 10 || rating < 0) {
-      alert("A nota deve ser entre 0 e 10!")
+      toast.info("A nota deve ser entre 0 e 10!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
       return
     }
 		if(category.length === 0) {
-			alert("Deve haver pelo menos uma categoria selecionada!")
+			toast.info("Deve haver pelo menos uma categoria selecionada!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
       return
 		}
 
@@ -87,12 +116,30 @@ const VideoDetails = () => {
 		
 		handleSaveNewReview(video, newReview)
 		.then(() => {
-			alert(`Sua avaliação foi enviada :) `)
-			window.location.reload();
+			toast(`Sua avaliação foi enviada :) `, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+			setTimeout(() => window.location.reload(), 3000);
 		}).catch((error) => {
 			console.error(errors.ERR_SAVE_REVIEW, error);
-			alert(`${errors.ERR_SAVE_REVIEW}${error}`)
-			navigate(`/videos/${video.id}`)
+			toast.error(`${errors.ERR_SAVE_REVIEW}${error}`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+      setTimeout(() => navigate(`/videos/${video.id}`), 3000);
 		});
 	}
 
@@ -106,6 +153,7 @@ const VideoDetails = () => {
 			{showNewReview && 
 			<NewReviewCard video={video} onSaveReview={handleSaveReview} />}
 			<ReviewContainer reviewList={reviewList} user={userState}/>
+      <ToastContainer />
 		</>
 	)
 }
