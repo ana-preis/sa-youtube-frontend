@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import './styles.css'
 import { VideoType } from "../../../../types/Video";
+import { useEffect, useState } from "react";
 
 interface VideoListProps {
   videos: VideoType[];
@@ -11,6 +12,14 @@ interface VideoListProps {
 
 const VideoList = (props: VideoListProps) => {
   const{ videos, text, searchType } = props;
+
+  const [videoList, setVideoList] = useState<VideoType[]>();
+
+  useEffect(() => {
+    const sortedList = videos.sort((a,b) => (b.averageRating || 0) - (a.averageRating || 0))
+    setVideoList(sortedList);
+  })
+
 
   const getPublishDate = (video: VideoType) => {
     const date = new Date(video.publishedAt);
@@ -45,8 +54,8 @@ const VideoList = (props: VideoListProps) => {
       <div className="flex-column video-list">
         <span className="list-tip">{getSuperiorSearchString()}</span>
         
-        { videos ? 
-          videos.map((video) => renderVideoList(video))
+        { videoList ? 
+          videoList.map((video) => renderVideoList(video))
         :
           <div>erro</div>}
       </div>

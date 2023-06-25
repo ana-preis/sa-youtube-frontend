@@ -30,6 +30,13 @@ export const handleMe = async () => {
 }
 
 export const updateUser = async (setUserState: any, user: UserType) => {
-  setUserState(user);
-  setCookie("userID", user.id, 7);
+  try {
+    const response = await handleMe();
+    if (response.status === 400) return;
+    const userMe = response.data as UserType;
+    setUserState(userMe);
+    setCookie("userID", userMe.id, 7);
+  } catch (error) {
+    return error;
+  }
 }

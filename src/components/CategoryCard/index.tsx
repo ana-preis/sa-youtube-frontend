@@ -20,7 +20,7 @@ const CategoryCard = (props: CategoryCardProps) => {
 
   if(!category.videoDTOList) category.videoDTOList = [];
 
-  const isCategoryubscribed = (category: CategorySearchType) :boolean => {
+  const isCategorySubscribed = (category: CategorySearchType) :boolean => {
     if(user && user.subscriptionsIDs) {
       return user.subscriptionsIDs?.includes(category.id)
     }
@@ -34,7 +34,7 @@ const CategoryCard = (props: CategoryCardProps) => {
           {category.name}
         </Link>
         <button title="Inscrever-se" onClick={() => onClickSubscribe(category)}>
-          {isCategoryubscribed(category)
+          {isCategorySubscribed(category)
             ?
             <img src="./heart-fill.svg" alt="icon-heart" className="icon-heart" />
             :

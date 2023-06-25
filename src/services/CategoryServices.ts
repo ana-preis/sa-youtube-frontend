@@ -24,12 +24,13 @@ export const handleFetchCategories = async () => {
 
 export const handleSaveCategoryToUser = async (userID: string, categoryID: string) => {
   const response = await api.post<string, ResponseType>(`http://localhost:8080/users/${userID}/categories/${categoryID}`, JSON.stringify(""));
-  console.log("add subs: ", response)
+  // console.log("add subs: ", response)
   return response;
 }
 
 export const handleDeleteCategoryToUser = async (userID: string, categoryID: string) => {
   const response = await api.delete<string, ResponseType>(`http://localhost:8080/users/${userID}/categories/${categoryID}`, JSON.stringify(""));
+  // console.log("delete subs: ", response)
   return response;
 }
 
@@ -39,10 +40,13 @@ export const handleOnClickSubscribe = async (category: CategorySearchType, userS
     const list = userState.subscriptionsIDs.filter((c) => {
       return c === category.id
     })
+    // console.log("list de inscritas", list)
     if (list.length === 0) {
       try {
+        // console.log("vai se inscrever", list)
         const response = await handleSaveCategoryToUser(userState.id, category.id)
         if (!response || isResponseError400(errors.ERR_SUBSCRIBE, response ?? { status: 400, data: null })) return;
+        console.log("response desinscreveu", response)
         toast.success("Nova categoria salva com sucesso!", {
           position: "top-center",
           autoClose: 3000,
@@ -71,7 +75,9 @@ export const handleOnClickSubscribe = async (category: CategorySearchType, userS
       }
     } else {
       try {
+        // console.log("vai se desinscrever", list)
         const response = await handleDeleteCategoryToUser(userState.id, category.id)
+        console.log("response desinscreveu", response)
         if (!response || isResponseError400(errors.ERR_UNSUBSCRIBE, response ?? { status: 400, data: null })) return;
         toast.success("Categoria removida do usuario com sucesso!", {
           position: "top-center",
