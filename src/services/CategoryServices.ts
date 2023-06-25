@@ -24,6 +24,7 @@ export const handleFetchCategories = async () => {
 
 export const handleSaveCategoryToUser = async (userID: string, categoryID: string) => {
   const response = await api.post<string, ResponseType>(`http://localhost:8080/users/${userID}/categories/${categoryID}`, JSON.stringify(""));
+  console.log("add subs: ", response)
   return response;
 }
 

@@ -15,7 +15,7 @@ export interface VideoType {
   reviewCount?: number;
   averageRating?: number;
   reviews?: ReviewPostDTO[];
-  categoryIDList?: string[];
+  categoryIDList?: string[] | IdNameType[];
   url?: string;
 }
 
@@ -46,4 +46,9 @@ export interface VideoReviewDTO {
   userToWatch?: VideoType[];
   userFinishedList?: VideoType[];
   playlist?: PlayListType[];
+}
+
+export interface IdNameType {
+  id: string;
+  name: string;
 }

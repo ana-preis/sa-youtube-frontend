@@ -25,6 +25,7 @@ export const handleDeleteUser = async (user: UserAuth) => {
 
 export const handleMe = async () => {
   const response = await api.get<ResponseType>(`http://localhost:8080/me`);
+  console.log( "/me: ", response)
   return response;
 }
 

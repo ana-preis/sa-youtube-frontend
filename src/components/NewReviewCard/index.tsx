@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { handleFetchCategories } from "../../services/CategoryServices";
 import { errors, isResponseError400 } from "../../services/ErrorHandler";
 import { CategorySearchType } from "../../types/Category";
-import { VideoType } from '../../types/Video';
+import { IdNameType, VideoType } from '../../types/Video';
 
 import Button from '../Button';
 import DropdownCheckbox from "../DropdownCheckbox";
@@ -81,7 +81,7 @@ const NewReviewCard = ( props : NewReviewCardProps ) => {
 					(categoryList.length > 0) &&
 						<>
 							<h2 className="new-review-title">Escolha uma categoria para o vídeo:</h2>
-							<DropdownCheckbox options={categoryList} setCategory={setCategory} savedCategories={video.categoryIDList ?? []}/>
+							<DropdownCheckbox options={categoryList} setCategory={setCategory} savedCategories={video.categoryIDList as IdNameType[] ?? []}/>
 						</>
 				}
 				<Button 

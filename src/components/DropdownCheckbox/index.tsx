@@ -5,7 +5,7 @@ import { CategorySearchType } from "../../types/Category";
 interface DropdownCheckboxProps {
   options: CategorySearchType[];
   setCategory: React.Dispatch<React.SetStateAction<string[]>>;
-  savedCategories: string[];
+  savedCategories: { id: string, name: string }[];
 }
 
 const DropdownCheckbox = (props: DropdownCheckboxProps) => {
@@ -13,12 +13,12 @@ const DropdownCheckbox = (props: DropdownCheckboxProps) => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [disabledItems, setDisabledItems] = useState<string[]>([])
 
-
   useEffect(() => {
     if(savedCategories.length > 0) {
-      setCheckedItems(savedCategories)
-      setCategory(savedCategories)
-      setDisabledItems(savedCategories)
+      const idListSaved = savedCategories.map((c) => c.id)
+      setCheckedItems(idListSaved)
+      setCategory(idListSaved)
+      setDisabledItems(idListSaved)
     }
   }, [])
 
@@ -31,7 +31,6 @@ const DropdownCheckbox = (props: DropdownCheckboxProps) => {
   }
 
   const [list, setList] = useState(mountList());
-
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
