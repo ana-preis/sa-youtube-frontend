@@ -48,14 +48,14 @@ const VideoDetails = () => {
     }
   }
 
-	// useEffect(() => {
-  //   // videos relacionados
-  //   try {
-  //     getRelatedVideosByTitle();
-  //   } catch (error) {
-  //     setRelatedVideos([]);
-  //   }
-	// },[]);
+	useEffect(() => {
+    // videos relacionados
+    try {
+      getRelatedVideosByTitle();
+    } catch (error) {
+      setRelatedVideos([]);
+    }
+	},[]);
 
 	const renderNewReviewModal = () => {
 		setShowNewReview(true);

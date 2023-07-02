@@ -4,7 +4,7 @@
   padding: 2rem 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 3rem;
+  column-gap: 2.5rem;
 }
 
 .cards-category_containerv2 {

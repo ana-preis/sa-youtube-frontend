@@ -1,6 +1,5 @@
 .category-container {
-  width: 90%;
-  padding: 2rem 3rem;
+  padding: 2rem 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 3rem;
